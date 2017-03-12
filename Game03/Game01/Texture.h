@@ -18,8 +18,8 @@ class Texture
       void free();
 
       void setBlendMode(SDL_BlendMode blending);
-      void Texture::setAlpha(Uint8 alpha);
-      void Texture::setColor(Uint8 red, Uint8 green, Uint8 blue);
+      void setAlpha(Uint8 alpha);
+      void setColor(Uint8 red, Uint8 green, Uint8 blue);
 
       // Render the texture
       void render(
