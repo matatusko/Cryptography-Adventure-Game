@@ -21,6 +21,13 @@ enum class Location {
    World,
 };
 
+enum class Direction {
+   Up = 8,
+   Down = 0,
+   Right = 4,
+   Left = 12,
+};
+
 struct Obstacles {
    Obstacles(SDL_Rect pos_) {
       pos = pos_;
@@ -43,3 +50,6 @@ void cameraFocus(SDL_Rect* camera, Character* character);
 int animateCharacter(Character* character);
 void setObstacles(std::vector<Obstacles>* obstacles);
 bool checkCollision(SDL_Rect rect1, const SDL_Rect rect2);
+void renderHome(Window* window, Textures* textures, SDL_Rect* camera);
+void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Obstacles> obstacles,
+   int playerPositionX, int playerPositionY);

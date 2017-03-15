@@ -90,33 +90,17 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render the screen to the window depending on current location player is in
       if (character.getCurrentLocation() == Location::Home) {
-         // Render the home in the middle of a screen
-         textures->home.render(window, CAMERA_WIDTH / 2 - textures->home.getWidth() / 2, 
-                                       CAMERA_HEIGHT / 2 - textures->home.getHeight() / 2);
+         renderHome(window, textures, &camera);
       }
       else if (character.getCurrentLocation() == Location::World) {
-         // Render background clipped to the camera screen
-         textures->worldmap.render(window, 0, 0, &camera);
-
-         // Run through all the obstacle rects and check for collision
-         // If collision found return sprite back to the position before the movement
-         SDL_Rect playerLocation{ character.getPosX(), character.getPosY(),
-                                 TILE_SIZE, TILE_SIZE };
-         for (const auto o : obstacles) {
-            if (checkCollision(playerLocation, o.pos)) {
-               character.setPlayerPosX(playerPositionX);
-               character.setPlayerPosY(playerPositionY);
-            }
-         }
-
-         // Center the camera with the focus on the character and keep it in bounds of the map
-         cameraFocus(&camera, &character);
+         renderWorld(window, textures, &character, &camera, obstacles, playerPositionX, playerPositionY);
       }
 
       // Render character
       character.render(window, textures, camera.x, camera.y, currentAnimation);
 
       printf("pos X: %d, pos Y: %d\n", character.getPosX(), character.getPosY());
+      printf("Currect direction: %d\n", (int)character.getCurrentDirection());
 
       // Update screen
       SDL_RenderPresent(window->renderer);
@@ -124,6 +108,35 @@ void gameLoop(Textures* textures, Window* window)
       // Sleep for a short while to add pixel-styled movement
       SDL_Delay(50);
    }
+}
+
+void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
+{
+   // Render the home in the middle of a screen and reset the camera
+   camera->x = 0; camera->y = 0;
+   textures->home.render(window, CAMERA_WIDTH / 2 - textures->home.getWidth() / 2,
+      CAMERA_HEIGHT / 2 - textures->home.getHeight() / 2);
+}
+
+void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Obstacles> obstacles,
+   int playerPositionX, int playerPositionY)
+{
+   // Render background clipped to the camera screen
+   textures->worldmap.render(window, 0, 0, camera);
+
+   // Run through all the obstacle rects and check for collision
+   // If collision found return sprite back to the position before the movement
+   SDL_Rect playerLocation{ character->getPosX(), character->getPosY(),
+      TILE_SIZE, TILE_SIZE };
+   for (const auto o : obstacles) {
+      if (checkCollision(playerLocation, o.pos)) {
+         character->setPlayerPosX(playerPositionX);
+         character->setPlayerPosY(playerPositionY);
+      }
+   }
+
+   // Center the camera with the focus on the character and keep it in bounds of the map
+   cameraFocus(camera, character);
 }
 
 void cameraFocus(SDL_Rect* camera, Character* character)
@@ -150,7 +163,7 @@ void cameraFocus(SDL_Rect* camera, Character* character)
 int animateCharacter(Character* character) {
 
    static int frameChange = 0;
-   int currentFrame = character->getCurrentClip();
+   int currentFrame = (int) character->getCurrentDirection();
    // Checks if the character is moving, and if it is increases the current movement state by +1
    // up to 4 times, when it returns back to the original when the key is pressed up
    if (character->getCharacterMoving()) {

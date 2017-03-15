@@ -15,9 +15,6 @@ class Character
       // Move the character
       void collisionCheck(Textures* textures);
 
-      // Check interactable location
-      //void checkInteractable(Textures* textures);
-
       // Sets the sprite clips in the right order
       void setSpriteClips();
 
@@ -29,8 +26,8 @@ class Character
       int getPosY();
       void setPlayerPosX(int positionXToSet);
       void setPlayerPosY(int positionYToSet);
-      int getCurrentClip();
       bool getCharacterMoving();
+      Direction getCurrentDirection();
       Location getCurrentLocation();
 
    private:
@@ -44,12 +41,10 @@ class Character
       // render the one we need at a particular time
       SDL_Rect spriteClips[16];
 
-      // Current sprite clip to render
-      int currentClip;
-
       // Character is currently moving flag
       bool characterMoving;
 
       // Location where the player currently is
       Location currentLoc;
+      Direction currentDirection;
 };

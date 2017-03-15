@@ -13,10 +13,10 @@ Character::Character()
 
    // Set the initial location to home
    currentLoc = Location::Home;
+   currentDirection = Direction::Down;
 
    // Initialize sprite animation and set the current clip to 0
    setSpriteClips();
-   currentClip = 0;
    characterMoving = false;
 }
 
@@ -29,22 +29,20 @@ void Character::handleEvents(SDL_Event &e, Textures* textures)
       switch (e.key.keysym.sym) {
          case SDLK_UP:
             posY -= TILE_SIZE;
-            currentClip = 8;
+            currentDirection = Direction::Up;
             break;
          case SDLK_DOWN:
             posY += TILE_SIZE;
-            currentClip = 0;
+            currentDirection = Direction::Down;
             break;
          case SDLK_LEFT:
             posX -= TILE_SIZE;
-            currentClip = 12;
+            currentDirection = Direction::Left;
             break;
          case SDLK_RIGHT:
             posX += TILE_SIZE;
-            currentClip = 4;
+            currentDirection = Direction::Right;
             break;
- //        case SDLK_SPACE:
-            //checkInteractable(textures);
       }
    } 
    // Key released
@@ -53,26 +51,33 @@ void Character::handleEvents(SDL_Event &e, Textures* textures)
       // Reset the character's velocity by adjusting it
       switch (e.key.keysym.sym) {
          case SDLK_UP:
-            currentClip = 8;
+            currentDirection = Direction::Up;
             break;
          case SDLK_DOWN:
-            currentClip = 0;
+            currentDirection = Direction::Down;
             break;
          case SDLK_LEFT:
-            currentClip = 12;
+            currentDirection = Direction::Left;
             break;
          case SDLK_RIGHT:
-            currentClip = 4;
+            currentDirection = Direction::Right;
             break;
       } 
    } 
+   
+   // Check for collision with walls
    collisionCheck(textures);
 }
 
 void Character::collisionCheck(Textures* textures)
 {
    if (currentLoc == Location::World) {
-      // Check if the character is trying to go out of the world map
+      // Check if the character is trying to go out of the world map or is trying to enter another area
+      if ((posX == 1984 || posX == 1952) && (posY == 1792)) {
+         currentLoc = Location::Home;
+         posX = 640;
+         posY = 424;
+      }
       if (posX < 128) {
          posX += TILE_SIZE;
       }
@@ -89,7 +94,7 @@ void Character::collisionCheck(Textures* textures)
    }
 
    if (currentLoc == Location::Home) {
-      // Check if the character is touching the walls in the hous
+      // Check if the character is touching the walls in the house or the door
       if (posY >= CAMERA_HEIGHT / 2 + textures->home.getHeight() / 2 - 32) {
          currentLoc = Location::World;
          posX = 2016;
@@ -129,9 +134,9 @@ int Character::getPosY()
    return posY;
 }
 
-int Character::getCurrentClip()
+Direction Character::getCurrentDirection()
 {
-   return currentClip;
+   return currentDirection;
 }
 
 bool Character::getCharacterMoving()
@@ -174,4 +179,3 @@ void Character::setSpriteClips()
       next_y += TILE_SIZE;
    }
 }
-
