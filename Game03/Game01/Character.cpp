@@ -103,10 +103,10 @@ void Character::collisionCheck(Textures* textures)
          posY += TILE_SIZE;
       }
       // Leave the space so the character can pass through the door
-      if ((posY + TILE_SIZE > CAMERA_HEIGHT / 2 + textures->home.getHeight() / 2 - 64) &&
-               (posX <= CAMERA_WIDTH / 2 - textures->home.getWidth() / 2 + 224) ||
-               (posY + TILE_SIZE > CAMERA_HEIGHT / 2 + textures->home.getHeight() / 2 - 64) &&
-               (posX >= CAMERA_WIDTH / 2 - textures->home.getWidth() / 2 + 256)) {
+      if (((posY + TILE_SIZE > CAMERA_HEIGHT / 2 + textures->home.getHeight() / 2 - 64) &&
+               (posX <= CAMERA_WIDTH / 2 - textures->home.getWidth() / 2 + 224)) ||
+               ((posY + TILE_SIZE > CAMERA_HEIGHT / 2 + textures->home.getHeight() / 2 - 64) &&
+               (posX >= CAMERA_WIDTH / 2 - textures->home.getWidth() / 2 + 256))) {
          posY -= TILE_SIZE;
       }
    } 
