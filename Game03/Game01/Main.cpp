@@ -73,8 +73,8 @@ void gameLoop(Textures* textures, Window* window)
    setObstacles(&obstacles);
 
    // Initialie the NPC vector
-   std::vector<Npc> npc;
-   setNpc(&npc);
+   std::vector<Npc> npcs;
+   setNpc(&npcs);
 
    // Start the game loop
    while (gameRunning) {
@@ -83,6 +83,9 @@ void gameLoop(Textures* textures, Window* window)
       playerPositionX = character.getPosX();
       playerPositionY = character.getPosY();
 
+      // Select the proper animation clip to render
+      currentAnimation = animateCharacter(&character);
+
       // Handle the main game events on queue
       while (SDL_PollEvent(&e) != 0) {
          // Check for quit signal
@@ -90,11 +93,10 @@ void gameLoop(Textures* textures, Window* window)
             gameRunning = false;
          }
          // Handle the character events including movement and collision checks
-         character.handleEvents(e, textures);
+         character.handleEvents(e);
+         character.collisionCheck(textures);
+         checkForObjectsCollision(&character, obstacles, npcs, playerPositionX, playerPositionY);
       }
-     
-      // Select the proper animation clip to render
-      currentAnimation = animateCharacter(&character);
 
       // Clear screen
       SDL_RenderClear(window->renderer);
@@ -104,9 +106,7 @@ void gameLoop(Textures* textures, Window* window)
          renderHome(window, textures, &camera);
       }
       else if (character.getCurrentLocation() == Location::World) {
-         renderWorld(window, textures, &character, &camera, obstacles, npc, playerPositionX, playerPositionY);
-         // Render the NPCs
-
+         renderWorld(window, textures, &character, &camera, npcs);
       }
 
       // Render character
@@ -131,9 +131,7 @@ void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
       CAMERA_HEIGHT / 2 - textures->home.getHeight() / 2);
 }
 
-void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, 
-   std::vector<Obstacles> obstacles, std::vector<Npc> npcs,
-   int playerPositionX, int playerPositionY)
+void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Npc> npcs)
 {
    // Render background clipped to the camera screen
    textures->worldmap.render(window, 0, 0, camera);
@@ -141,23 +139,6 @@ void renderWorld(Window* window, Textures* textures, Character* character, SDL_R
    // Render all the NPCs
    for (auto npc : npcs) {
       npc.render(window, textures, camera->x, camera->y);
-   }
-   // Run through all the obstacle rects and check for collision
-   // If collision found return sprite back to the position before the movement
-   SDL_Rect playerLocation{ character->getPosX(), character->getPosY(),
-      TILE_SIZE, TILE_SIZE };
-   for (const auto obstacle : obstacles) {
-      if (checkCollision(playerLocation, obstacle.pos)) {
-         character->setPlayerPosX(playerPositionX);
-         character->setPlayerPosY(playerPositionY);
-      }
-   }
-   // Check for collision with NPCs
-   for (auto npc : npcs) {
-      if (checkCollision(playerLocation, npc.getLocation())) {
-         character->setPlayerPosX(playerPositionX);
-         character->setPlayerPosY(playerPositionY);
-      }
    }
 
    // Center the camera with the focus on the character and keep it in bounds of the map
@@ -274,5 +255,27 @@ void cutNPCSpritesheet(Textures* textures)
       }
       next_x = 0;
       next_y += TILE_SIZE;
+   }
+}
+
+void checkForObjectsCollision(Character *character, std::vector<Obstacles> obstacles, std::vector<Npc> npcs,
+   int playerPositionX, int playerPositionY)
+{
+   SDL_Rect playerLocation = { character->getPosX() , character->getPosY(), TILE_SIZE, TILE_SIZE };
+
+   // Check collisions with NPC all the NPCs
+   for (auto npc : npcs) {
+      if (checkCollision(playerLocation, npc.getLocation())) {
+         character->setPlayerPosX(playerPositionX);
+         character->setPlayerPosY(playerPositionY);
+      }
+   }
+   // Run through all the obstacle rects and check for collision
+   // If collision found return sprite back to the position before the movement
+   for (const auto obstacle : obstacles) {
+      if (checkCollision(playerLocation, obstacle.pos)) {
+         character->setPlayerPosX(playerPositionX);
+         character->setPlayerPosY(playerPositionY);
+      }
    }
 }

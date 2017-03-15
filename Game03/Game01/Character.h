@@ -7,7 +7,7 @@ class Character
       Character();
 
       // Events related to character
-      void handleEvents(SDL_Event &e, Textures* textures);
+      void handleEvents(SDL_Event &e);
 
       // Move the character
       void collisionCheck(Textures* textures);
@@ -28,7 +28,7 @@ class Character
       Location getCurrentLocation();
 
    private:
-      // Currect character position
+      // Currect character position after and before the movement
       int posX, posY;
 
       // The current movement of the character

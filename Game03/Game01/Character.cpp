@@ -20,7 +20,7 @@ Character::Character()
    characterMoving = false;
 }
 
-void Character::handleEvents(SDL_Event &e, Textures* textures)
+void Character::handleEvents(SDL_Event &e)
 {
    // Key pressed
    if (e.type == SDL_KEYDOWN) {
@@ -64,9 +64,6 @@ void Character::handleEvents(SDL_Event &e, Textures* textures)
             break;
       } 
    } 
-   
-   // Check for collision with walls
-   collisionCheck(textures);
 }
 
 void Character::collisionCheck(Textures* textures)
@@ -106,7 +103,7 @@ void Character::collisionCheck(Textures* textures)
       if (posX + TILE_SIZE > CAMERA_WIDTH / 2 + textures->home.getWidth() / 2) {
          posX -= TILE_SIZE;
       }
-      if (posY <= CAMERA_HEIGHT / 2 - textures->home.getHeight() / 2 + 64 ) {
+      if (posY <= CAMERA_HEIGHT / 2 - textures->home.getHeight() / 2 + 32 ) {
          posY += TILE_SIZE;
       }
       // Leave the space so the character can pass through the door
