@@ -32,7 +32,6 @@ struct Textures {
    Texture worldmap;
    Texture character;
    Texture home;
-   Texture collisions;
 };
 typedef struct Textures Textures;
 // Somehow Character class wouldn't recognize the Textures structures if it was included beforehand

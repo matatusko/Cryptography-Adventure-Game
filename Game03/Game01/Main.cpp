@@ -40,12 +40,6 @@ bool loadMedia(Textures *textures, Window *window)
       success = false;
    }
 
-   // Load the collisions texture
-   if (!(textures->collisions.loadFromFile("images/collision.png", window))) {
-      std::cout << "Failed to load the character texture" << std::endl;
-      success = false;
-   }
-
    return success;
 }
 
@@ -103,7 +97,6 @@ void gameLoop(Textures* textures, Window* window)
       else if (character.getCurrentLocation() == Location::World) {
          // Render background clipped to the camera screen
          textures->worldmap.render(window, 0, 0, &camera);
-         textures->collisions.render(window, 0, 0, &camera);
 
          // Run through all the obstacle rects and check for collision
          // If collision found return sprite back to the position before the movement
