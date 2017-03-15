@@ -1,7 +1,4 @@
 #pragma once
-#include "Main.h"
-#include "Window.h"
-#include "Texture.h"
 
 class Character
 {

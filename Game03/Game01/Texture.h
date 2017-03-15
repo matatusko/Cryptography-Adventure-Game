@@ -29,12 +29,14 @@ class Texture
          SDL_Rect* clip = NULL,
          double angle = 0.0,
          SDL_Point* center = NULL,
-         SDL_RendererFlip flip = SDL_FLIP_NONE
+         SDL_RendererFlip flip = SDL_FLIP_NONE,
+         bool spriteIn = false
       );
 
       // Get the dimenstions of an image
       int getWidth();
       int getHeight();
+      SDL_Texture* getTexture();
 
    private:
       // Texture will be stored here

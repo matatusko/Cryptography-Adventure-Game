@@ -58,7 +58,8 @@ bool Texture::loadFromFile(std::string file_path, Window* window)
    return texture != NULL;
 }
 
-void Texture::render(Window* window, int x_pos, int y_pos, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
+void Texture::render(Window* window, int x_pos, int y_pos, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip,
+   bool spriteIn)
 {
    // Create a rectangular with proper size and location to where it will be later rendered
    SDL_Rect renderQuad = { x_pos, y_pos, texture_width, texture_height };
@@ -67,6 +68,11 @@ void Texture::render(Window* window, int x_pos, int y_pos, SDL_Rect* clip, doubl
    if (clip != NULL) {
       renderQuad.w = clip->w;
       renderQuad.h = clip->h;
+   }
+
+   if (spriteIn != NULL) {
+      renderQuad.w = TILE_SIZE;
+      renderQuad.h = TILE_SIZE;
    }
 
    // Render to screen
@@ -106,4 +112,9 @@ void Texture::free()
       texture_height = 0;
       texture_width = 0;
    }
+}
+
+SDL_Texture* Texture::getTexture()
+{
+   return texture;
 }
