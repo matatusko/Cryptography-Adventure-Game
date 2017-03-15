@@ -116,6 +116,8 @@ void gameLoop(Textures* textures, Window* window)
       // Render character
       character.render(window, textures, camera.x, camera.y, currentAnimation);
 
+      printf("pos X: %d, pos Y: %d\n", character.getPosX(), character.getPosY());
+
       // Update screen
       SDL_RenderPresent(window->renderer);
 

@@ -15,6 +15,10 @@ class Character
       // Move the character
       void collisionCheck(Textures* textures);
 
+      // Check interactable location
+      //void checkInteractable(Textures* textures);
+
+      // Sets the sprite clips in the right order
       void setSpriteClips();
 
       // Render the dot relative to the camera

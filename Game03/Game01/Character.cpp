@@ -43,6 +43,8 @@ void Character::handleEvents(SDL_Event &e, Textures* textures)
             posX += TILE_SIZE;
             currentClip = 4;
             break;
+ //        case SDLK_SPACE:
+            //checkInteractable(textures);
       }
    } 
    // Key released
