@@ -1,0 +1,2 @@
+gamemake: Main.cpp Character.cpp Window.cpp Texture.cpp
+	clang++ `sdl2-config --cflags --libs` -std=c++11 -lSDL2 -lSDL2_image Main.cpp Character.cpp Window.cpp Texture.cpp -o game
