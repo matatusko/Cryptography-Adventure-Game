@@ -58,8 +58,7 @@ bool Texture::loadFromFile(std::string file_path, Window* window)
    return texture != NULL;
 }
 
-void Texture::render(Window* window, int x_pos, int y_pos, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip,
-   bool spriteIn)
+void Texture::render(Window* window, int x_pos, int y_pos, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
    // Create a rectangular with proper size and location to where it will be later rendered
    SDL_Rect renderQuad = { x_pos, y_pos, texture_width, texture_height };
@@ -70,13 +69,34 @@ void Texture::render(Window* window, int x_pos, int y_pos, SDL_Rect* clip, doubl
       renderQuad.h = clip->h;
    }
 
-   if (spriteIn != NULL) {
-      renderQuad.w = TILE_SIZE;
-      renderQuad.h = TILE_SIZE;
-   }
-
    // Render to screen
    SDL_RenderCopyEx(window->renderer, texture, clip, &renderQuad, angle, center, flip);
+}
+
+bool Texture::loadFromText(Window* window, SDL_Color textColor, SDL_Color backgroundColor, std::string textureText)
+{
+   // Get rid of any preexisting texture
+   free();
+
+   // Render text surface
+   SDL_Surface* textSurface = TTF_RenderText_Shaded(window->font, textureText.c_str(), textColor, backgroundColor);
+   if (textSurface == NULL) {
+      std::cout << "Failed to render text surface! : " << TTF_GetError() << std::endl;
+      return false;
+   }
+   texture = SDL_CreateTextureFromSurface(window->renderer, textSurface);
+   if (texture == NULL) {
+      std::cout << "Failed to create texture from rendered text! : " << SDL_GetError() << std::endl;
+      return false;
+   }
+   // Get texture dimensions
+   texture_width = textSurface->w;
+   texture_height = textSurface->h;
+   
+   // Get rid of now unneccessary surface
+   SDL_FreeSurface(textSurface);
+
+   return true;
 }
 
 void Texture::setBlendMode(SDL_BlendMode blending)

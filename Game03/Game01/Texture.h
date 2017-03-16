@@ -11,8 +11,9 @@ class Texture
       // Deallocate memory
       ~Texture();
 
-      // Load image from a specified file path
+      // Load image or text from a specified file path or string
       bool loadFromFile(std::string file_path, Window* window);
+      bool loadFromText(Window* window, SDL_Color textColor, SDL_Color backgroundColor, std::string textureText);
 
       // Deallocate texture
       void free();
@@ -29,8 +30,7 @@ class Texture
          SDL_Rect* clip = NULL,
          double angle = 0.0,
          SDL_Point* center = NULL,
-         SDL_RendererFlip flip = SDL_FLIP_NONE,
-         bool spriteIn = false
+         SDL_RendererFlip flip = SDL_FLIP_NONE
       );
 
       // Get the dimenstions of an image

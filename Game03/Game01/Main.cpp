@@ -5,6 +5,7 @@ int main(int argc, char* argv[])
    Window window;
    Textures textures;
    window.initialize();
+   srand(time(NULL));
 
    if (!loadMedia(&textures, &window)) {
       std::cout << "Failed loading media. Terminating program." << std::endl;
@@ -47,13 +48,21 @@ bool loadMedia(Textures *textures, Window *window)
    }
    cutNPCSpritesheet(textures);
 
+   // Load the font type and set the texts to proper texture
+   if (!(window->font = TTF_OpenFont("images/Consolas.ttf", 20))) {
+      std::cout << "Failed to load the font" << std::endl;
+      success = false;
+   }
+   getNPCDialog(window, textures);
+
    return success;
 }
 
 void gameLoop(Textures* textures, Window* window)
 {
-   // Game loop flag
+   // Game loop flag and viewport render flag
    bool gameRunning = true;
+   bool interactionFound = false;
    
    // Initialize main character
    Character character;
@@ -61,6 +70,10 @@ void gameLoop(Textures* textures, Window* window)
 
    // Create the camera rectangle at position 0, 0 with camera's features
    SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
+
+   // Create the dialog window
+   SDL_Rect dialogViewport = { 64, 64, 656, 200 };
+   int dialogNumber;
 
    // Initialize Event handler
    SDL_Event e;
@@ -93,7 +106,13 @@ void gameLoop(Textures* textures, Window* window)
             gameRunning = false;
          }
          if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
-            checkForInteraction(&character, npcs);
+            if (interactionFound == true) {
+               interactionFound = false;
+            }
+            if (checkForInteraction(&character, npcs)) {
+               interactionFound = true;
+               dialogNumber = rand() % 5;
+            }
          }
          // Handle the character events including movement and collision checks
          character.handleMovement(e);
@@ -110,6 +129,10 @@ void gameLoop(Textures* textures, Window* window)
       }
       else if (character.getCurrentLocation() == Location::World) {
          renderWorld(window, textures, &character, &camera, npcs);
+      }
+
+      if (interactionFound) {
+         textures->npcDialog[dialogNumber].render(window, 64, 64);
       }
 
       // Render character
@@ -210,54 +233,6 @@ bool checkCollision(SDL_Rect rect1, const SDL_Rect rect2)
    return true; // collision found!!
 }
 
-void setObstacles(std::vector<Obstacles>* obstacles)
-{
-       obstacles->push_back(Obstacles({ 0, 2040, 745, 200 })); // bottom-left forest
-       obstacles->push_back(Obstacles({ 0, 630, 350, 850 })); // left-side water and trees up to 2 houses
-       obstacles->push_back(Obstacles({ 310, 460, 135, 140 })); // bridge left area
-       obstacles->push_back(Obstacles({ 0, 1520, 530, 130 })); // left area around 2 houses
-}
-
-void setNpc(std::vector<Npc>* npc)
-{
-   npc->push_back(Npc(320, 1632, rand() % 24));
-   npc->push_back(Npc(704, 1632, rand() % 24));
-   npc->push_back(Npc(1056, 1632, rand() % 24));
-   npc->push_back(Npc(1024, 1632, rand() % 24));
-   npc->push_back(Npc(1376, 2016, rand() % 24));
-   npc->push_back(Npc(1792, 1824, rand() % 24));
-   npc->push_back(Npc(2784, 1760, rand() % 24));
-   npc->push_back(Npc(3328, 288, rand() % 24));
-   npc->push_back(Npc(3296, 288, rand() % 24));
-   npc->push_back(Npc(1856, 32, rand() % 24));
-   npc->push_back(Npc(1888, 32, rand() % 24));
-   npc->push_back(Npc(1920, 32, rand() % 24));
-   npc->push_back(Npc(1952, 32, rand() % 24));
-   npc->push_back(Npc(1984, 32, rand() % 24));
-   npc->push_back(Npc(1440, 384, rand() % 24));
-   npc->push_back(Npc(1184, 544, rand() % 24));
-   npc->push_back(Npc(1216, 544, rand() % 24));
-   npc->push_back(Npc(320, 320, rand() % 24));
-   npc->push_back(Npc(128, 1088, rand() % 24));
-}
-
-void cutNPCSpritesheet(Textures* textures)
-{
-   int next_x = 0, next_y = 0, current_index = 0;
-   for (int i = 0; i < 4; i++) {
-      for (int j = 0; j < 6; j++) {
-         textures->NPCspritesAvailable[current_index].x = next_x;
-         textures->NPCspritesAvailable[current_index].y = next_y;
-         textures->NPCspritesAvailable[current_index].w = TILE_SIZE;
-         textures->NPCspritesAvailable[current_index].h = TILE_SIZE;
-         next_x += TILE_SIZE;
-         current_index++;
-      }
-      next_x = 0;
-      next_y += TILE_SIZE;
-   }
-}
-
 void checkForObjectsCollision(Character *character, std::vector<Obstacles> obstacles, std::vector<Npc> npcs,
    int playerPositionX, int playerPositionY)
 {
@@ -280,26 +255,28 @@ void checkForObjectsCollision(Character *character, std::vector<Obstacles> obsta
    }
 }
 
-void checkForInteraction(Character *character, std::vector<Npc> npcs)
+bool checkForInteraction(Character *character, std::vector<Npc> npcs)
 {
    // I have no idea why he locations are supposed to be like this :D I suppose 2nd and 4th if-statement make sense
    // But the 1st and 3rd are trial-and-error :D
    for (auto npc : npcs) {
       if ((npc.getLocation().x - 64 == character->getPosX()) && (npc.getLocation().y == character->getPosY() + 32)
          && (character->getCurrentDirection() == Direction::Right)) {
-         printf("Interaction found!\n");
+         return true;
       }
       if ((npc.getLocation().x - 32 == character->getPosX()) && (npc.getLocation().y == character->getPosY())
          && (character->getCurrentDirection() == Direction::Up)) {
-         printf("Interaction found!\n");
+         return true;
       }
       if ((npc.getLocation().y - 64 == character->getPosY()) && (npc.getLocation().x == character->getPosX() + 32)
          && (character->getCurrentDirection() == Direction::Down)) {
-         printf("Interaction found!\n");
+         return true;
       }
       if ((npc.getLocation().y - 32 == character->getPosY()) && (npc.getLocation().x == character->getPosX())
          && (character->getCurrentDirection() == Direction::Left)) {
-         printf("Interaction found!\n");
+         return true;
       }
    }
+
+   return false;
 }

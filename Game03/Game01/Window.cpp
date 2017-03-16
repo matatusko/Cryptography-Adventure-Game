@@ -52,6 +52,13 @@ void Window::initialize()
       SDL_DestroyRenderer(renderer);
       exit(1);
    }
+   // Initialize SDL_TTF
+   if (TTF_Init() == -1) {
+      std::cout << "Failed to initialize SDL_TTD : " << TTF_GetError() << std::endl;
+      SDL_DestroyWindow(window);
+      SDL_DestroyRenderer(renderer);
+      exit(1);
+   }
 }
 
 void Window::cleanup()

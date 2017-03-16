@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <time.h>
 #include "Window.h"
 #include "Texture.h"
 
@@ -40,6 +42,7 @@ struct Textures {
    Texture character;
    Texture home;
    Texture npc;
+   Texture npcDialog[5];
    SDL_Rect NPCspritesAvailable[24];
 };
 typedef struct Textures Textures;
@@ -59,4 +62,5 @@ void cutNPCSpritesheet(Textures* textures);
 void setNpc(std::vector<Npc>* npc);
 void checkForObjectsCollision(Character *character, std::vector<Obstacles> obstacles, std::vector<Npc> npc,
    int playerPositionX, int playerPositionY);
-void checkForInteraction(Character *character, std::vector<Npc> npc);
+bool checkForInteraction(Character *character, std::vector<Npc> npc);
+void getNPCDialog(Window* window, Textures* textures);
