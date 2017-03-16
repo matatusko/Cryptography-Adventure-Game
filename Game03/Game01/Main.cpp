@@ -132,7 +132,7 @@ void gameLoop(Textures* textures, Window* window)
       }
 
       if (interactionFound) {
-         textures->npcDialog[dialogNumber].render(window, 64, 64);
+         textures->npcDialog[dialogNumber].render(window, 64, 64, &camera);
       }
 
       // Render character
