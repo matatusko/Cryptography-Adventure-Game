@@ -72,7 +72,7 @@ void gameLoop(Textures* textures, Window* window)
    SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
 
    // Create the dialog window
-   SDL_Rect dialogViewport = { 64, 64, 656, 200 };
+   SDL_Rect dialogViewport = { 64, 64, 600, 150 };
    int dialogNumber;
 
    // Initialize Event handler
@@ -132,7 +132,9 @@ void gameLoop(Textures* textures, Window* window)
       }
 
       if (interactionFound) {
-         textures->npcDialog[dialogNumber].render(window, 64, 64, &camera);
+         SDL_SetRenderDrawColor(window->renderer, 255, 255, 255, 255);
+         SDL_RenderFillRect(window->renderer, &dialogViewport);
+         textures->npcDialog[dialogNumber].render(window, 75, 75);
       }
 
       // Render character
