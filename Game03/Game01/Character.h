@@ -7,10 +7,10 @@ class Character
       Character();
 
       // Events related to character
-      void handleEvents(SDL_Event &e);
+      void handleMovement(SDL_Event &e);
 
       // Move the character
-      void collisionCheck(Textures* textures);
+      void CheckForWallCollisions(Textures* textures);
 
       // Sets the sprite clips in the right order
       void setSpriteClips();

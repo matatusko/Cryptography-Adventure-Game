@@ -92,9 +92,12 @@ void gameLoop(Textures* textures, Window* window)
          if (e.type == SDL_QUIT) {
             gameRunning = false;
          }
+         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
+            checkForInteraction(&character, npcs);
+         }
          // Handle the character events including movement and collision checks
-         character.handleEvents(e);
-         character.collisionCheck(textures);
+         character.handleMovement(e);
+         character.CheckForWallCollisions(textures);
          checkForObjectsCollision(&character, obstacles, npcs, playerPositionX, playerPositionY);
       }
 
@@ -111,9 +114,6 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render character
       character.render(window, textures, camera.x, camera.y, currentAnimation);
-
-      printf("pos X: %d, pos Y: %d\n", character.getPosX(), character.getPosY());
-      printf("Currect direction: %d\n", (int)character.getCurrentDirection());
 
       // Update screen
       SDL_RenderPresent(window->renderer);
@@ -276,6 +276,30 @@ void checkForObjectsCollision(Character *character, std::vector<Obstacles> obsta
       if (checkCollision(playerLocation, obstacle.pos)) {
          character->setPlayerPosX(playerPositionX);
          character->setPlayerPosY(playerPositionY);
+      }
+   }
+}
+
+void checkForInteraction(Character *character, std::vector<Npc> npcs)
+{
+   // I have no idea why he locations are supposed to be like this :D I suppose 2nd and 4th if-statement make sense
+   // But the 1st and 3rd are trial-and-error :D
+   for (auto npc : npcs) {
+      if ((npc.getLocation().x - 64 == character->getPosX()) && (npc.getLocation().y == character->getPosY() + 32)
+         && (character->getCurrentDirection() == Direction::Right)) {
+         printf("Interaction found!\n");
+      }
+      if ((npc.getLocation().x - 32 == character->getPosX()) && (npc.getLocation().y == character->getPosY())
+         && (character->getCurrentDirection() == Direction::Up)) {
+         printf("Interaction found!\n");
+      }
+      if ((npc.getLocation().y - 64 == character->getPosY()) && (npc.getLocation().x == character->getPosX() + 32)
+         && (character->getCurrentDirection() == Direction::Down)) {
+         printf("Interaction found!\n");
+      }
+      if ((npc.getLocation().y - 32 == character->getPosY()) && (npc.getLocation().x == character->getPosX())
+         && (character->getCurrentDirection() == Direction::Left)) {
+         printf("Interaction found!\n");
       }
    }
 }

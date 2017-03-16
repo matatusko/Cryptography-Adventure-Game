@@ -59,3 +59,4 @@ void cutNPCSpritesheet(Textures* textures);
 void setNpc(std::vector<Npc>* npc);
 void checkForObjectsCollision(Character *character, std::vector<Obstacles> obstacles, std::vector<Npc> npc,
    int playerPositionX, int playerPositionY);
+void checkForInteraction(Character *character, std::vector<Npc> npc);

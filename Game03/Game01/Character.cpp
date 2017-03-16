@@ -20,7 +20,7 @@ Character::Character()
    characterMoving = false;
 }
 
-void Character::handleEvents(SDL_Event &e)
+void Character::handleMovement(SDL_Event &e)
 {
    // Key pressed
    if (e.type == SDL_KEYDOWN) {
@@ -66,7 +66,7 @@ void Character::handleEvents(SDL_Event &e)
    } 
 }
 
-void Character::collisionCheck(Textures* textures)
+void Character::CheckForWallCollisions(Textures* textures)
 {
    if (currentLoc == Location::World) {
       // Check if the character is trying to go out of the world map or is trying to enter another area
