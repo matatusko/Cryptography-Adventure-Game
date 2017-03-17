@@ -42,13 +42,16 @@ struct Textures {
    Texture character;
    Texture home;
    Texture npc;
-   Texture npcDialog[5];
+   Texture npcDialogText[5];
+   Texture dialogBox;
    SDL_Rect NPCspritesAvailable[24];
+   Texture ada;
 };
 typedef struct Textures Textures;
 // Somehow Character class wouldn't recognize the Textures structures if it was included beforehand
 #include "Character.h"
 #include "npc.h"
+#include "Ada.h"
 
 bool loadMedia(Textures *textures, Window *window);
 void gameLoop(Textures* textures, Window* window);
@@ -60,7 +63,7 @@ void renderHome(Window* window, Textures* textures, SDL_Rect* camera);
 void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Npc> npcs);
 void cutNPCSpritesheet(Textures* textures);
 void setNpc(std::vector<Npc>* npc);
-void checkForObjectsCollision(Character *character, std::vector<Obstacles> obstacles, std::vector<Npc> npc,
-   int playerPositionX, int playerPositionY);
-bool checkForInteraction(Character *character, std::vector<Npc> npc);
+void checkForObjectsCollision(Character *character, Ada* ada, std::vector<Obstacles> obstacles, std::vector<Npc> npc,
+   int playerPositionX, int playerPositionY, int adaPositionX, int adaPositionY);
+bool checkForInteraction(Character *character, Ada* ada, std::vector<Npc> npc);
 void getNPCDialog(Window* window, Textures* textures);

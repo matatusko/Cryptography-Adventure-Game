@@ -36,7 +36,7 @@ bool loadMedia(Textures *textures, Window *window)
    }
 
    // Load the home texture
-   if (!(textures->home.loadFromFile("images/home.png", window))) {
+   if (!(textures->home.loadFromFile("images/room.png", window))) {
       std::cout << "Failed to load the home texture" << std::endl;
       success = false;
    }
@@ -55,6 +55,18 @@ bool loadMedia(Textures *textures, Window *window)
    }
    getNPCDialog(window, textures);
 
+   // Load the ada texture 
+   if (!(textures->ada.loadFromFile("images/ada.png", window))) {
+      std::cout << "Failed to load the npc texture" << std::endl;
+      success = false;
+   }
+
+   // Load the dialog box
+   if (!(textures->dialogBox.loadFromFile("images/dialogBox.png", window))) {
+      std::cout << "Failed to load the npc texture" << std::endl;
+      success = false;
+   }
+
    return success;
 }
 
@@ -67,6 +79,10 @@ void gameLoop(Textures* textures, Window* window)
    // Initialize main character
    Character character;
    int playerPositionX, playerPositionY;
+
+   // Initialize Ada
+   Ada ada;
+   int adaPositionX, adaPositionY;
 
    // Create the camera rectangle at position 0, 0 with camera's features
    SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
@@ -92,9 +108,12 @@ void gameLoop(Textures* textures, Window* window)
    // Start the game loop
    while (gameRunning) {
 
-      // Get the current player position
+      // Get the current player and ada's position so if the collision happens they can return to the
+      // position they were before the movement
       playerPositionX = character.getPosX();
       playerPositionY = character.getPosY();
+      adaPositionX = ada.getAdaPosX();
+      adaPositionY = ada.getAdaPosY();
 
       // Select the proper animation clip to render
       currentAnimation = animateCharacter(&character);
@@ -109,15 +128,28 @@ void gameLoop(Textures* textures, Window* window)
             if (interactionFound == true) {
                interactionFound = false;
             }
-            if (checkForInteraction(&character, npcs)) {
+            if (checkForInteraction(&character, &ada, npcs)) {
                interactionFound = true;
                dialogNumber = rand() % 5;
             }
          }
-         // Handle the character events including movement and collision checks
+
+         // Handle the character movement and wall collisions
          character.handleMovement(e);
          character.CheckForWallCollisions(textures);
-         checkForObjectsCollision(&character, obstacles, npcs, playerPositionX, playerPositionY);
+
+         // Move Ada right after the character and don't move it if the character is not moving
+         // so she doesn't enter onto the character when he stops.
+         // Ada only moves once she has been activated by character
+         if (character.getCharacterMoving() && ada.getAdaActive()) {
+            ada.setAdaPosX(playerPositionX);
+            ada.setAdaPosY(playerPositionY);
+         }
+
+         // Check for collisions and if those happen return character right to their original positions
+         // before collision happened
+         checkForObjectsCollision(&character, &ada, obstacles, npcs, playerPositionX, playerPositionY,
+            adaPositionX, adaPositionY);
       }
 
       // Clear screen
@@ -126,19 +158,27 @@ void gameLoop(Textures* textures, Window* window)
       // Render the screen to the window depending on current location player is in
       if (character.getCurrentLocation() == Location::Home) {
          renderHome(window, textures, &camera);
+         ada.render(window, textures, camera.x, camera.y, currentAnimation);
       }
       else if (character.getCurrentLocation() == Location::World) {
          renderWorld(window, textures, &character, &camera, npcs);
       }
 
+      // Print the interaction dialog if found
       if (interactionFound) {
-         SDL_SetRenderDrawColor(window->renderer, 255, 255, 255, 255);
-         SDL_RenderFillRect(window->renderer, &dialogViewport);
-         textures->npcDialog[dialogNumber].render(window, 75, 75);
+         textures->dialogBox.render(window, 50, 50);
+         textures->npcDialogText[dialogNumber].render(window, 75, 75);
       }
 
       // Render character
       character.render(window, textures, camera.x, camera.y, currentAnimation);
+
+      // Render Ada if active
+      if (ada.getAdaActive()) {
+         ada.render(window, textures, camera.x, camera.y, currentAnimation);
+      }
+
+      printf("pos X: %d, pos y: %d\n", character.getPosX(), character.getPosY());
 
       // Update screen
       SDL_RenderPresent(window->renderer);
@@ -235,8 +275,8 @@ bool checkCollision(SDL_Rect rect1, const SDL_Rect rect2)
    return true; // collision found!!
 }
 
-void checkForObjectsCollision(Character *character, std::vector<Obstacles> obstacles, std::vector<Npc> npcs,
-   int playerPositionX, int playerPositionY)
+void checkForObjectsCollision(Character *character, Ada* ada, std::vector<Obstacles> obstacles, std::vector<Npc> npcs,
+   int playerPositionX, int playerPositionY, int adaPositionX, int adaPositionY)
 {
    SDL_Rect playerLocation = { character->getPosX() , character->getPosY(), TILE_SIZE, TILE_SIZE };
 
@@ -245,6 +285,8 @@ void checkForObjectsCollision(Character *character, std::vector<Obstacles> obsta
       if (checkCollision(playerLocation, npc.getLocation())) {
          character->setPlayerPosX(playerPositionX);
          character->setPlayerPosY(playerPositionY);
+         ada->setAdaPosX(adaPositionX);
+         ada->setAdaPosY(adaPositionY);
       }
    }
    // Run through all the obstacle rects and check for collision
@@ -253,12 +295,21 @@ void checkForObjectsCollision(Character *character, std::vector<Obstacles> obsta
       if (checkCollision(playerLocation, obstacle.pos)) {
          character->setPlayerPosX(playerPositionX);
          character->setPlayerPosY(playerPositionY);
+         ada->setAdaPosX(adaPositionX);
+         ada->setAdaPosY(adaPositionY);
       }
    }
 }
 
-bool checkForInteraction(Character *character, std::vector<Npc> npcs)
+bool checkForInteraction(Character *character, Ada *ada, std::vector<Npc> npcs)
 {
+   // Check for the first interaction with Ada in the home location; if found set ada active
+   if ((character->getCurrentLocation() == Location::Home) && (ada->getAdaActive() == false) &&
+      ((character->getPosX() == 672 && character->getPosY() == 360) || (character->getPosX() == 704 && character->getPosY() == 392))) {
+      ada->setAdaActive(true);
+      // return false so no dialog is printed
+      return false;
+   }
    // I have no idea why he locations are supposed to be like this :D I suppose 2nd and 4th if-statement make sense
    // But the 1st and 3rd are trial-and-error :D
    for (auto npc : npcs) {

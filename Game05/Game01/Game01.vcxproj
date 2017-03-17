@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ada.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="npc.cpp" />
@@ -27,6 +28,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ada.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="npc.h" />

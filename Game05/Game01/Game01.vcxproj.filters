@@ -33,6 +33,9 @@
     <ClCompile Include="staticFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ada.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="npc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ada.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

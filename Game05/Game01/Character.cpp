@@ -7,10 +7,6 @@ Character::Character()
    posX = CAMERA_WIDTH / 2;
    posY = CAMERA_HEIGHT / 2;
 
-   // Initialize the current velocity of the character for movement
-   velX = 0;
-   velY = 0;
-
    // Set the initial location to home
    currentLoc = Location::Home;
    currentDirection = Direction::Down;
@@ -23,7 +19,7 @@ Character::Character()
 void Character::handleMovement(SDL_Event &e)
 {
    // Key pressed
-   if (e.type == SDL_KEYDOWN) {
+   if (e.type == SDL_KEYDOWN && e.key.keysym.sym != SDLK_SPACE) {
       characterMoving = true;
       // Move the character according to the key pressed
       switch (e.key.keysym.sym) {

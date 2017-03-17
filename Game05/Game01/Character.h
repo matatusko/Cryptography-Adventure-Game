@@ -15,7 +15,7 @@ class Character
       // Sets the sprite clips in the right order
       void setSpriteClips();
 
-      // Render the dot relative to the camera
+      // Render the cahracter relative to the camera
       void render(Window* window, Textures* textures, int camX, int camY, int animation);
 
       // Get the character's current positions and sprite animation
@@ -28,11 +28,8 @@ class Character
       Location getCurrentLocation();
 
    private:
-      // Currect character position after and before the movement
+      // Currect character position
       int posX, posY;
-
-      // The current movement of the character
-      int velX, velY;
 
       // Sprite animation clips in SDL_Rect. We will store them all in array and
       // render the one we need at a particular time
