@@ -29,6 +29,31 @@ void setNpc(std::vector<Npc>* npc)
    npc->push_back(Npc(1216, 544, rand() % 24));
    npc->push_back(Npc(320, 320, rand() % 24));
    npc->push_back(Npc(128, 1088, rand() % 24));
+   npc->push_back(Npc(384, 608, rand() % 24));
+   npc->push_back(Npc(672, 832, rand() % 24));
+   npc->push_back(Npc(640, 864, rand() % 24));
+   npc->push_back(Npc(704, 864, rand() % 24));
+   npc->push_back(Npc(1024, 1152, rand() % 24));
+   npc->push_back(Npc(160, 1664, rand() % 24));
+   npc->push_back(Npc(1024, 1888, rand() % 24));
+   npc->push_back(Npc(1216, 1888, rand() % 24));
+   npc->push_back(Npc(960, 2016, rand() % 24));
+   npc->push_back(Npc(1728, 1280, rand() % 24));
+   npc->push_back(Npc(2048, 1152, rand() % 24));
+   npc->push_back(Npc(2272, 992, rand() % 24));
+   npc->push_back(Npc(1696, 864, rand() % 24));
+   npc->push_back(Npc(1600, 576, rand() % 24));
+   npc->push_back(Npc(1600, 256, rand() % 24));
+   npc->push_back(Npc(1632, 224, rand() % 24));
+   npc->push_back(Npc(2528, 1056, rand() % 24));
+   npc->push_back(Npc(2944, 1376, rand() % 24));
+   npc->push_back(Npc(2880, 1376, rand() % 24));
+   npc->push_back(Npc(3200, 1856, rand() % 24));
+   npc->push_back(Npc(1616, 1792, rand() % 24));
+   npc->push_back(Npc(3520, 1376, rand() % 24));
+   npc->push_back(Npc(3488, 1376, rand() % 24));
+   npc->push_back(Npc(3488, 736, rand() % 24));
+   npc->push_back(Npc(3360, 736, rand() % 24));
 }
 
 void getNPCDialog(Window* window, Textures* textures)

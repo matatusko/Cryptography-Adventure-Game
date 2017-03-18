@@ -22,18 +22,14 @@ void Ada::setSpriteClips()
 {
    // Since Ada spritesheet is exactly the same as player sprite sheet, I'm cutting in
    // in exactly the same way into 16 different rectangles
-   int next_x = 0, next_y = 0, current_index = 0;
-   for (int i = 0; i < 4; i++) {
-      for (int j = 0; j < 4; j++) {
-         spriteClips[current_index].x = next_x;
-         spriteClips[current_index].y = next_y;
-         spriteClips[current_index].w = TILE_SIZE;
-         spriteClips[current_index].h = TILE_SIZE;
-         next_x += TILE_SIZE;
-         current_index++;
+   for (int y = 0, curr = 0; y < 4; y++) {
+      for (int x = 0; x < 4; x++, curr++)
+      {
+         spriteClips[curr].x = x * 32;
+         spriteClips[curr].y = y * 32;
+         spriteClips[curr].w = 32;
+         spriteClips[curr].h = 32;
       }
-      next_x = 0;
-      next_y += TILE_SIZE;
    }
 }
 
