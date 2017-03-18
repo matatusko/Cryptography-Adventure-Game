@@ -49,7 +49,7 @@ void setNpc(std::vector<Npc>* npc)
    npc->push_back(Npc(2944, 1376, rand() % 24));
    npc->push_back(Npc(2880, 1376, rand() % 24));
    npc->push_back(Npc(3200, 1856, rand() % 24));
-   npc->push_back(Npc(1616, 1792, rand() % 24));
+   npc->push_back(Npc(1600, 1792, rand() % 24));
    npc->push_back(Npc(3520, 1376, rand() % 24));
    npc->push_back(Npc(3488, 1376, rand() % 24));
    npc->push_back(Npc(3488, 736, rand() % 24));
@@ -59,32 +59,51 @@ void setNpc(std::vector<Npc>* npc)
 void getNPCDialog(Window* window, Textures* textures)
 {
    SDL_Color dialogColor = { 0, 0, 0 };
-   SDL_Color backgroundColor = { 255, 255, 255 };
-   if (!(textures->npcDialogText[0].loadFromText(window, dialogColor, backgroundColor,
+   if (!(textures->npcDialogText[0].loadFromText(window, dialogColor,
       "Did you know? Computing industry boasts one of the highest starting salaries for new college graduates!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
-   if (!(textures->npcDialogText[1].loadFromText(window, dialogColor, backgroundColor,
+   if (!(textures->npcDialogText[1].loadFromText(window, dialogColor,
       "Alan Turing the father of computer science, artificial intelligence and who helped break German WW2 cyphers, \
 committed suicide after being forced to undergo hormonal treatment for homosexuality and \
 barred from continuing his cryptographic work."))) {
       printf("Failed to render text texture!\n");
       return;
    }
-   if (!(textures->npcDialogText[2].loadFromText(window, dialogColor, backgroundColor,
+   if (!(textures->npcDialogText[2].loadFromText(window, dialogColor,
       "A 15 year old hacked NASA computers and caused a 21-day shutdown of their computers. \
 He hacked Pentagon weapons computer too…"))) {
       printf("Failed to render text texture!\n");
       return;
    }
-   if (!(textures->npcDialogText[3].loadFromText(window, dialogColor, backgroundColor,
+   if (!(textures->npcDialogText[3].loadFromText(window, dialogColor,
       "U.S. chose 00000000 as the password for its computer controls of nuclear tipped missiles for eight years."))) {
       printf("Failed to render text texture!\n");
       return;
    }
-   if (!(textures->npcDialogText[4].loadFromText(window, dialogColor, backgroundColor,
+   if (!(textures->npcDialogText[4].loadFromText(window, dialogColor,
       "CAPTCHA is an acronym for \"Completely Automated Public Turing test to tell Computers and Humans Apart\""))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+}
+
+void getAdaInitializationDialog(Window* window, Textures* textures)
+{
+   SDL_Color dialogColor = { 255, 0, 0 };
+   if (!(textures->adaInitializationDialog[0].loadFromText(window, dialogColor,
+      "BZzzzZr... WARREUUUM... \n P-please.. Power. up.. wERRRRRUM"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaInitializationDialog[1].loadFromText(window, dialogColor,
+      "Puzzle will go here."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaInitializationDialog[2].loadFromText(window, dialogColor,
+      "Thanks for the power! I will now explain the quest!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -105,4 +124,57 @@ void cutNPCSpritesheet(Textures* textures)
       next_x = 0;
       next_y += TILE_SIZE;
    }
+}
+
+bool loadMedia(Textures *textures, Window *window)
+{
+   // Set success flag
+   bool success = true;
+
+   // Load the background texture
+   if (!(textures->worldmap.loadFromFile("images/map.png", window))) {
+      std::cout << "Failed to load the map texture" << std::endl;
+      success = false;
+   }
+
+   // Load the character texture
+   if (!(textures->character.loadFromFile("images/character.png", window))) {
+      std::cout << "Failed to load the character texture" << std::endl;
+      success = false;
+   }
+
+   // Load the home texture
+   if (!(textures->home.loadFromFile("images/room.png", window))) {
+      std::cout << "Failed to load the home texture" << std::endl;
+      success = false;
+   }
+
+   // Load the npc texture and cut it into SDL_Rects
+   if (!(textures->npc.loadFromFile("images/NPC.png", window))) {
+      std::cout << "Failed to load the npc texture" << std::endl;
+      success = false;
+   }
+   cutNPCSpritesheet(textures);
+
+   // Load the font type and set the texts to proper texture
+   if (!(window->font = TTF_OpenFont("images/Consolas.ttf", 20))) {
+      std::cout << "Failed to load the font" << std::endl;
+      success = false;
+   }
+   getNPCDialog(window, textures);
+
+   // Load the ada texture 
+   if (!(textures->ada.loadFromFile("images/ada.png", window))) {
+      std::cout << "Failed to load the npc texture" << std::endl;
+      success = false;
+   }
+   getAdaInitializationDialog(window, textures);
+
+   // Load the dialog box
+   if (!(textures->dialogBox.loadFromFile("images/dialogBox.png", window))) {
+      std::cout << "Failed to load the npc texture" << std::endl;
+      success = false;
+   }
+
+   return success;
 }

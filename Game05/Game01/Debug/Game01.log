@@ -1,3 +1,13 @@
-﻿  staticFunctions.cpp
+﻿  Main.cpp
+c:\users\tatus\documents\github\teamb\game05\game01\main.cpp(8): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+  Compiling...
+  staticFunctions.cpp
+  npc.cpp
+  Window.cpp
+  Texture.cpp
+  Character.cpp
+  Ada.cpp
+  Generating Code...
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game05\Debug\Game01.exe
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game05\Debug\Game01.pdb (Full PDB)

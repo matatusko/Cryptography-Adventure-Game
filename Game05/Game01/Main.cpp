@@ -18,63 +18,11 @@ int main(int argc, char* argv[])
    return 0;
 }
 
-bool loadMedia(Textures *textures, Window *window)
-{
-   // Set success flag
-   bool success = true; 
-
-   // Load the background texture
-   if (!(textures->worldmap.loadFromFile("images/map.png", window))) {
-      std::cout << "Failed to load the map texture" << std::endl;
-      success = false;
-   }
-
-   // Load the character texture
-   if (!(textures->character.loadFromFile("images/character.png", window))) {
-      std::cout << "Failed to load the character texture" << std::endl;
-      success = false;
-   }
-
-   // Load the home texture
-   if (!(textures->home.loadFromFile("images/room.png", window))) {
-      std::cout << "Failed to load the home texture" << std::endl;
-      success = false;
-   }
-
-   // Load the npc texture and cut it into SDL_Rects
-   if (!(textures->npc.loadFromFile("images/NPC.png", window))) {
-      std::cout << "Failed to load the npc texture" << std::endl;
-      success = false;
-   }
-   cutNPCSpritesheet(textures);
-
-   // Load the font type and set the texts to proper texture
-   if (!(window->font = TTF_OpenFont("images/Consolas.ttf", 20))) {
-      std::cout << "Failed to load the font" << std::endl;
-      success = false;
-   }
-   getNPCDialog(window, textures);
-
-   // Load the ada texture 
-   if (!(textures->ada.loadFromFile("images/ada.png", window))) {
-      std::cout << "Failed to load the npc texture" << std::endl;
-      success = false;
-   }
-
-   // Load the dialog box
-   if (!(textures->dialogBox.loadFromFile("images/dialogBox.png", window))) {
-      std::cout << "Failed to load the npc texture" << std::endl;
-      success = false;
-   }
-
-   return success;
-}
-
 void gameLoop(Textures* textures, Window* window)
 {
    // Game loop flag and viewport render flag
    bool gameRunning = true;
-   bool interactionFound = false;
+   Interaction interactionFlag = Interaction::None;
    
    // Initialize main character
    Character character;
@@ -83,6 +31,7 @@ void gameLoop(Textures* textures, Window* window)
    // Initialize Ada
    Ada ada;
    int adaPositionX, adaPositionY;
+   int currentAdaDialog = 0;
 
    // Create the camera rectangle at position 0, 0 with camera's features
    SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
@@ -124,13 +73,15 @@ void gameLoop(Textures* textures, Window* window)
          if (e.type == SDL_QUIT) {
             gameRunning = false;
          }
-         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
-            if (interactionFound == true) {
-               interactionFound = false;
-            }
-            if (checkForInteraction(&character, &ada, npcs)) {
-               interactionFound = true;
-               dialogNumber = rand() % 5;
+         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && interactionFlag != Interaction::AdaInitialization) {
+            interactionFlag = checkForInteraction(&character, &ada, npcs);
+            dialogNumber = rand() % 5;
+         }
+         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && interactionFlag == Interaction::AdaInitialization
+            && e.key.repeat == 0) {
+            currentAdaDialog++;
+            if (currentAdaDialog > 3) {
+               interactionFlag = Interaction::None;
             }
          }
 
@@ -164,10 +115,20 @@ void gameLoop(Textures* textures, Window* window)
          renderWorld(window, textures, &character, &camera, npcs);
       }
 
-      // Print the interaction dialog if found
-      if (interactionFound) {
+      // No interaction when character starts moving hence will kill the dialog window
+      if (character.getCharacterMoving()) {
+         interactionFlag = Interaction::None;
+      }
+
+      // Print the npc interaction dialog if found
+      if (interactionFlag == Interaction::Npc) {
          textures->dialogBox.render(window, 50, 50);
          textures->npcDialogText[dialogNumber].render(window, 75, 75);
+      }
+
+      // Do the Ada initialization stuff
+      if (interactionFlag == Interaction::AdaInitialization) {
+         StartAdaInitializationEvent(window, textures, &ada, currentAdaDialog);
       }
 
       // Render character
@@ -301,35 +262,42 @@ void checkForObjectsCollision(Character *character, Ada* ada, std::vector<Obstac
    }
 }
 
-bool checkForInteraction(Character *character, Ada *ada, std::vector<Npc> npcs)
+Interaction checkForInteraction(Character *character, Ada *ada, std::vector<Npc> npcs)
 {
    // Check for the first interaction with Ada in the home location; if found set ada active
    if ((character->getCurrentLocation() == Location::Home) && (ada->getAdaActive() == false) &&
       ((character->getPosX() == 672 && character->getPosY() == 360) || (character->getPosX() == 704 && character->getPosY() == 392))) {
       ada->setAdaActive(true);
+      // TODO runAdaInitialization();
       // return false so no dialog is printed
-      return false;
+      return Interaction::AdaInitialization;
    }
    // I have no idea why he locations are supposed to be like this :D I suppose 2nd and 4th if-statement make sense
    // But the 1st and 3rd are trial-and-error :D
    for (auto npc : npcs) {
       if ((npc.getLocation().x - 64 == character->getPosX()) && (npc.getLocation().y == character->getPosY() + 32)
          && (character->getCurrentDirection() == Direction::Right)) {
-         return true;
+         return Interaction::Npc;
       }
       if ((npc.getLocation().x - 32 == character->getPosX()) && (npc.getLocation().y == character->getPosY())
          && (character->getCurrentDirection() == Direction::Up)) {
-         return true;
+         return Interaction::Npc;
       }
       if ((npc.getLocation().y - 64 == character->getPosY()) && (npc.getLocation().x == character->getPosX() + 32)
          && (character->getCurrentDirection() == Direction::Down)) {
-         return true;
+         return Interaction::Npc;
       }
       if ((npc.getLocation().y - 32 == character->getPosY()) && (npc.getLocation().x == character->getPosX())
          && (character->getCurrentDirection() == Direction::Left)) {
-         return true;
+         return Interaction::Npc;
       }
    }
 
-   return false;
+   return Interaction::None;
+}
+
+void StartAdaInitializationEvent(Window* window, Textures* textures, Ada* ada, int currentAdaDialog)
+{
+   textures->dialogBox.render(window, 50, 50);
+   textures->adaInitializationDialog[currentAdaDialog - 1].render(window, 75, 75);
 }

@@ -23,6 +23,13 @@ enum class Location {
    World,
 };
 
+enum class Interaction {
+   Npc,
+   AdaInitialization,
+   Puzzle,
+   None
+};
+
 enum class Direction {
    Up = 8,
    Down = 0,
@@ -42,10 +49,11 @@ struct Textures {
    Texture character;
    Texture home;
    Texture npc;
+   SDL_Rect NPCspritesAvailable[24];
    Texture npcDialogText[5];
    Texture dialogBox;
-   SDL_Rect NPCspritesAvailable[24];
    Texture ada;
+   Texture adaInitializationDialog[3];
 };
 typedef struct Textures Textures;
 // Somehow Character class wouldn't recognize the Textures structures if it was included beforehand
@@ -65,5 +73,7 @@ void cutNPCSpritesheet(Textures* textures);
 void setNpc(std::vector<Npc>* npc);
 void checkForObjectsCollision(Character *character, Ada* ada, std::vector<Obstacles> obstacles, std::vector<Npc> npc,
    int playerPositionX, int playerPositionY, int adaPositionX, int adaPositionY);
-bool checkForInteraction(Character *character, Ada* ada, std::vector<Npc> npc);
+Interaction checkForInteraction(Character *character, Ada* ada, std::vector<Npc> npc);
 void getNPCDialog(Window* window, Textures* textures);
+void getAdaInitializationDialog(Window* window, Textures* textures);
+void StartAdaInitializationEvent(Window* window, Textures* textures, Ada* ada, int currentAdaDialog);

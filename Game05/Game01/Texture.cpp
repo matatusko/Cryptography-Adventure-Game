@@ -73,7 +73,7 @@ void Texture::render(Window* window, int x_pos, int y_pos, SDL_Rect* clip, doubl
    SDL_RenderCopyEx(window->renderer, texture, clip, &renderQuad, angle, center, flip);
 }
 
-bool Texture::loadFromText(Window* window, SDL_Color textColor, SDL_Color backgroundColor, std::string textureText)
+bool Texture::loadFromText(Window* window, SDL_Color textColor, std::string textureText)
 {
    // Get rid of any preexisting texture
    free();

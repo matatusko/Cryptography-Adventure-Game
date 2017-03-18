@@ -13,7 +13,7 @@ class Texture
 
       // Load image or text from a specified file path or string
       bool loadFromFile(std::string file_path, Window* window);
-      bool loadFromText(Window* window, SDL_Color textColor, SDL_Color backgroundColor, std::string textureText);
+      bool loadFromText(Window* window, SDL_Color textColor, std::string textureText);
 
       // Deallocate texture
       void free();
