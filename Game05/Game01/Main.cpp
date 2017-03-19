@@ -32,6 +32,10 @@ void gameLoop(Textures* textures, Window* window)
    Ada ada;
    int adaPositionX, adaPositionY;
    int currentAdaDialog = 0;
+   
+   // Initialize Rail Cipher
+   std::vector<Rail> rail;
+   setRailSpritesPosition(textures, &rail);
 
    // Create the camera rectangle at position 0, 0 with camera's features
    SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
@@ -81,7 +85,15 @@ void gameLoop(Textures* textures, Window* window)
             && e.key.repeat == 0) {
             currentAdaDialog++;
             if (currentAdaDialog > 3) {
+               ada.setAdaActive(true);
                interactionFlag = Interaction::None;
+            }
+         }
+
+         // Handle the mouse movement for rail cipher
+         if (interactionFlag == Interaction::RailCipher) {
+            for (int i = 0; i < 60; i++) {
+               rail[i].handleEvents(&e);
             }
          }
 
@@ -139,7 +151,19 @@ void gameLoop(Textures* textures, Window* window)
          ada.render(window, textures, camera.x, camera.y, currentAnimation);
       }
 
+      // Render the rail cipher if it is its turn
+      if (interactionFlag == Interaction::RailCipher) {
+         textures->AdaRailCipherScreen.render(window, 0, 0);
+         for (int i = 0; i < 30; i++) {
+            rail[i].render(window, textures);
+         }
+         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
+            interactionFlag = Interaction::None;
+         }
+      }
+
       printf("pos X: %d, pos y: %d\n", character.getPosX(), character.getPosY());
+      printf("current inteaction = %d\n", (int)interactionFlag);
 
       // Update screen
       SDL_RenderPresent(window->renderer);
@@ -267,10 +291,17 @@ Interaction checkForInteraction(Character *character, Ada *ada, std::vector<Npc>
    // Check for the first interaction with Ada in the home location; if found set ada active
    if ((character->getCurrentLocation() == Location::Home) && (ada->getAdaActive() == false) &&
       ((character->getPosX() == 672 && character->getPosY() == 360) || (character->getPosX() == 704 && character->getPosY() == 392))) {
-      ada->setAdaActive(true);
-      // TODO runAdaInitialization();
-      // return false so no dialog is printed
+      // return the correct interaction
       return Interaction::AdaInitialization;
+   }
+
+   // Check for interaction for rail puzzle in the left-bottom 'dungeon'
+   if ((character->getCurrentLocation() == Location::World) && (ada->getAdaActive() == true) &&
+      (character->getCurrentDirection() == Direction::Up) &&
+      ((character->getPosX() == 3360 && character->getPosY() == 1952) || 
+      (character->getPosX() == 3328 && character->getPosY() == 1952))) {
+      // return the correct interaction
+      return Interaction::RailCipher;
    }
    // I have no idea why he locations are supposed to be like this :D I suppose 2nd and 4th if-statement make sense
    // But the 1st and 3rd are trial-and-error :D

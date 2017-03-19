@@ -176,5 +176,60 @@ bool loadMedia(Textures *textures, Window *window)
       success = false;
    }
 
+   // Load the rail/pigpen puzzle screen
+   if (!(textures->AdaRailCipherScreen.loadFromFile("images/rail_ada.png", window))) {
+      std::cout << "Failed to load the rail cipher screen texture" << std::endl;
+      success = false;
+   }
+
+   // Load the rail/pigpen puzzle itself
+   if (!(textures->railCipher.loadFromFile("images/railSprites.png", window))) {
+      std::cout << "Failed to load the rail/pigpen sprites texture" << std::endl;
+      success = false;
+   }
+   cutRailSpritesheet(textures);
+
    return success;
+}
+
+void cutRailSpritesheet(Textures* textures)
+{
+   // Cut the spritesheet
+   for (int y = 0, curr = 0; y < 6; y++) {
+      for (int x = 0; x < 10; x++, curr++)
+      {
+         textures->railButtons[curr].x = x * 66;
+         textures->railButtons[curr].y = y * 66;
+         textures->railButtons[curr].w = 66;
+         textures->railButtons[curr].h = 66;
+      }
+   }
+}
+
+void setRailSpritesPosition(Textures* textures, std::vector<Rail>* rail)
+{
+   //Set buttons in correct place
+   int next_x = 70;
+   int next_y = 50;
+   int current_index = 0;
+   for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 10; j++) {
+         rail->push_back(Rail(next_x, next_y, current_index));
+         next_x += 66;
+         current_index++;
+      }
+      next_x = 70;
+      next_y += 66;
+   }
+   next_x = 70;
+   next_y = 50;
+   for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 10; j++) {
+         rail->push_back(Rail(next_x, next_y, current_index));
+         next_x += 66;
+         current_index++;
+      }
+      next_x = 70;
+      next_y += 66;
+   }
 }

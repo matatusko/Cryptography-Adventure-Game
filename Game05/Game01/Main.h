@@ -26,7 +26,7 @@ enum class Location {
 enum class Interaction {
    Npc,
    AdaInitialization,
-   Puzzle,
+   RailCipher,
    None
 };
 
@@ -48,18 +48,25 @@ struct Textures {
    Texture worldmap;
    Texture character;
    Texture home;
+   // npc stuff
    Texture npc;
    SDL_Rect NPCspritesAvailable[24];
    Texture npcDialogText[5];
    Texture dialogBox;
+   // ada stuff
    Texture ada;
    Texture adaInitializationDialog[3];
+   // Rail cipher stuff
+   Texture railCipher;
+   Texture AdaRailCipherScreen;
+   SDL_Rect railButtons[60];
 };
 typedef struct Textures Textures;
 // Somehow Character class wouldn't recognize the Textures structures if it was included beforehand
 #include "Character.h"
 #include "npc.h"
 #include "Ada.h"
+#include "Rail.h"
 
 bool loadMedia(Textures *textures, Window *window);
 void gameLoop(Textures* textures, Window* window);
@@ -77,3 +84,5 @@ Interaction checkForInteraction(Character *character, Ada* ada, std::vector<Npc>
 void getNPCDialog(Window* window, Textures* textures);
 void getAdaInitializationDialog(Window* window, Textures* textures);
 void StartAdaInitializationEvent(Window* window, Textures* textures, Ada* ada, int currentAdaDialog);
+void cutRailSpritesheet(Textures* textures);
+void setRailSpritesPosition(Textures* textures, std::vector<Rail>* rail);
