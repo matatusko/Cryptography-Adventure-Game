@@ -65,15 +65,13 @@ void getNPCDialog(Window* window, Textures* textures)
       return;
    }
    if (!(textures->npcDialogText[1].loadFromText(window, dialogColor,
-      "Alan Turing the father of computer science, artificial intelligence and who helped break German WW2 cyphers, \
-committed suicide after being forced to undergo hormonal treatment for homosexuality and \
-barred from continuing his cryptographic work."))) {
+      "I heard a mathematician called ADA LOVELACE thought about the first computer programs in the 1830s! Can you believe it?"))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->npcDialogText[2].loadFromText(window, dialogColor,
       "A 15 year old hacked NASA computers and caused a 21-day shutdown of their computers. \
-He hacked Pentagon weapons computer too…"))) {
+He hacked Pentagon weapons computer too!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
