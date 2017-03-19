@@ -92,6 +92,9 @@ class LButton
 		//Returns pressed state
 		bool isPressed();
 
+		//Resets press state
+		void resetPress();
+
 	private:
 		//Top left position
 		SDL_Point mPosition;
@@ -107,6 +110,10 @@ class LButton
 
 bool LButton::isPressed() {
 	return pressed;
+}
+
+void LButton::resetPress() {
+	pressed = false;
 }
 
 //Starts up SDL and creates window
@@ -567,22 +574,25 @@ int main( int argc, char* args[] )
 					gButtons[ i ].render();
 				}
 
-				if (gButtons[1].isPressed()) {
-					state_3.render(0,0);
-				}
+				
 				if (gButtons[2].isPressed()) {
 					state_4.render(0,0);
 				}
 				if (gButtons[3].isPressed()) {
 					state_5.render(0,0);
 				}
-				if (gButtons[4].isPressed()) {
-					state_6.render(0,0);
-				}
+				
 				if (gButtons[5].isPressed()) {
 					state_7.render(0,0);
 				}
 
+				if (gButtons[1].isPressed()) {
+					state_3.render(0,0);
+				}
+
+				if (gButtons[4].isPressed()) {
+					state_6.render(0,0);
+				}
 				//Update screen
 				SDL_RenderPresent( gRenderer );
 			}
