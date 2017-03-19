@@ -587,17 +587,20 @@ int main( int argc, char* args[] )
 				}
 
 				if (gButtons[1].isPressed()) {
+					bool clean = true;
 					if (gButtons[5].isPressed()) {
 						state_3.render(0,0);
 						state_7.render(0,0);
-						
+						clean = false;
 					}
-					else if (gButtons[3].isPressed()) {
+					if (gButtons[3].isPressed()) {
 						state_3.render(0,0);
-						state_5.render(0,0);
-						
+						state_5.render(0,0);	
+						clean = false;
 					}
-					 else {state_3.render(0,0);}
+					if (clean == true) {
+						state_3.render(0,0);
+					}
 				}
 
 				if (gButtons[4].isPressed()) {
