@@ -89,6 +89,9 @@ class LButton
 		//Shows button sprite
 		void render();
 
+		//Returns pressed state
+		bool isPressed();
+
 	private:
 		//Top left position
 		SDL_Point mPosition;
@@ -98,7 +101,13 @@ class LButton
    		int mLastSprite;
    		int hoversprite;
 		int presssprite; 
+
+		bool pressed;
 };
+
+bool LButton::isPressed() {
+	return pressed;
+}
 
 //Starts up SDL and creates window
 bool init();
@@ -283,8 +292,7 @@ LButton::LButton()
 {
 	mPosition.x = 0;
 	mPosition.y = 0;
-
-	
+	pressed = false;
 }
 
 void LButton::setPosition( int x, int y , int current_sprite)
@@ -347,9 +355,9 @@ void LButton::handleEvent( SDL_Event* e )
 				break;
 			
 				case SDL_MOUSEBUTTONDOWN:
-				state_3.render(0,0);
 				mCurrentSprite = presssprite;
 				mLastSprite = presssprite;
+				pressed = true;
 				break;
 				
 				// case SDL_MOUSEBUTTONUP:
@@ -557,6 +565,22 @@ int main( int argc, char* args[] )
 				for( int i = 0; i < BUTTON_SPRITE_TOTAL; ++i )
 				{
 					gButtons[ i ].render();
+				}
+
+				if (gButtons[1].isPressed()) {
+					state_3.render(0,0);
+				}
+				if (gButtons[2].isPressed()) {
+					state_4.render(0,0);
+				}
+				if (gButtons[3].isPressed()) {
+					state_5.render(0,0);
+				}
+				if (gButtons[4].isPressed()) {
+					state_6.render(0,0);
+				}
+				if (gButtons[5].isPressed()) {
+					state_7.render(0,0);
 				}
 
 				//Update screen
