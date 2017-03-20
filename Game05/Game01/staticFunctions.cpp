@@ -77,6 +77,11 @@ He hacked Pentagon weapons computer too!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
+   if (!(textures->npcDialogText[5].loadFromText(window, dialogColor,
+      "asddwqdqwfewdfcsdc"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
 }
 
 void getAdaInitializationDialog(Window* window, Textures* textures)

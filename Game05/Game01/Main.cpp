@@ -84,7 +84,7 @@ void gameLoop(Textures* textures, Window* window)
          }
          if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && interactionFlag != Interaction::AdaInitialization) {
             interactionFlag = checkForInteraction(&character, &ada, npcs);
-            dialogNumber = rand() % 5;
+            dialogNumber = rand() % 6;
          }
          if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && interactionFlag == Interaction::AdaInitialization
             && e.key.repeat == 0) {
@@ -177,7 +177,6 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render Casar
       if (interactionFlag == Interaction::CaesarCipher) {
-         renderCaesar(window, textures, &caesar);
          textures->ada_screen.render(window, 0, 0);
          textures->start_state.render(window, 0, 0);
          for (int i = 0; i < 7; ++i)
@@ -227,11 +226,6 @@ void gameLoop(Textures* textures, Window* window)
       // Sleep for a short while to add pixel-styled movement
       SDL_Delay(50);
    }
-}
-
-void renderCaesar(Window* window, Textures* textures, std::vector<Caesar>* caesar)
-{
-
 }
 
 void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
