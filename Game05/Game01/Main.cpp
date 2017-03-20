@@ -120,11 +120,12 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render the screen to the window depending on current location player is in
       if (character.getCurrentLocation() == Location::Home) {
-         renderHome(window, textures, &camera);
+         renderHome(window, textures, &camera);      // Render character
+         character.render(window, textures, camera.x, camera.y, currentAnimation);
          ada.render(window, textures, camera.x, camera.y, currentAnimation);
       }
       else if (character.getCurrentLocation() == Location::World) {
-         renderWorld(window, textures, &character, &camera, npcs);
+         renderWorld(window, textures, &character, &camera, npcs, &currentAnimation);
       }
 
       // No interaction when character starts moving hence will kill the dialog window
@@ -142,9 +143,6 @@ void gameLoop(Textures* textures, Window* window)
       if (interactionFlag == Interaction::AdaInitialization) {
          StartAdaInitializationEvent(window, textures, &ada, currentAdaDialog);
       }
-
-      // Render character
-      character.render(window, textures, camera.x, camera.y, currentAnimation);
 
       // Render Ada if active
       if (ada.getAdaActive()) {
@@ -181,10 +179,13 @@ void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
       CAMERA_HEIGHT / 2 - textures->home.getHeight() / 2);
 }
 
-void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Npc> npcs)
+void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Npc> npcs,
+   int* currentAnimation)
 {
    // Render background clipped to the camera screen
    textures->worldmap.render(window, 0, 0, camera);
+   character->render(window, textures, camera->x, camera->y, *currentAnimation);
+   textures->objects.render(window, 0, 0, camera);
 
    // Render all the NPCs
    for (auto npc : npcs) {

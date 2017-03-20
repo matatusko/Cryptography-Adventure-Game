@@ -1,13 +1,5 @@
 #include "Main.h"
 
-void setObstacles(std::vector<Obstacles>* obstacles)
-{
-   obstacles->push_back(Obstacles({ 0, 2040, 745, 200 })); // bottom-left forest
-   obstacles->push_back(Obstacles({ 0, 630, 350, 850 })); // left-side water and trees up to 2 houses
-   obstacles->push_back(Obstacles({ 310, 460, 135, 140 })); // bridge left area
-   obstacles->push_back(Obstacles({ 0, 1520, 530, 130 })); // left area around 2 houses
-}
-
 void setNpc(std::vector<Npc>* npc)
 {
    npc->push_back(Npc(320, 1632, rand() % 24));
@@ -130,7 +122,19 @@ bool loadMedia(Textures *textures, Window *window)
    bool success = true;
 
    // Load the background texture
-   if (!(textures->worldmap.loadFromFile("images/map.png", window))) {
+//   if (!(textures->worldmap.loadFromFile("images/map.png", window))) {
+//     std::cout << "Failed to load the map texture" << std::endl;
+//     success = false;
+//   }
+
+   // Load the background texture
+   if (!(textures->worldmap.loadFromFile("images/ground.png", window))) {
+      std::cout << "Failed to load the map texture" << std::endl;
+      success = false;
+   }
+
+   // Load the background texture
+   if (!(textures->objects.loadFromFile("images/collision.png", window))) {
       std::cout << "Failed to load the map texture" << std::endl;
       success = false;
    }
@@ -262,4 +266,377 @@ void setRailSpritesPosition(Textures* textures, std::vector<Rail>* rail)
       next_x = 70;
       next_y += 66;
    }
+}
+
+void setObstacles(std::vector<Obstacles>* obstacles)
+{
+   obstacles->push_back(Obstacles({ 0, 2040, 745, 200 })); // bottom-left forest
+   obstacles->push_back(Obstacles({ 0, 630, 350, 850 })); // left-side water and trees up to 2 houses
+   obstacles->push_back(Obstacles({ 310, 460, 135, 140 })); // bridge left area
+   obstacles->push_back(Obstacles({ 0, 1520, 530, 130 })); // left area around 2 houses
+                                                           //trees at the right of the main house
+   obstacles->push_back(Obstacles({ 2208,1728,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2208,1632,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2304,1632,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2464,1632,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2464,1792,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2240,1760,1,1 }));//no comment
+
+                                                      //house 
+   obstacles->push_back(Obstacles({ 2048,1792,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2048,1696,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1952,1664,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1856,1728,1,1 }));//no comment
+
+   obstacles->push_back(Obstacles({ 1888,1760,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1920,1728,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1984,1728,33,33 }));//no comment
+   obstacles->push_back(Obstacles({ 2080,1728,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2080,1664,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2080,1792,1,1 }));//no comment
+
+   obstacles->push_back(Obstacles({ 1888,1664,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1984,1664,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1888,1792,1,1 }));//no comment
+                                                      //House and trees at the left
+   obstacles->push_back(Obstacles({ 1920,1760,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1696,1760,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1664,1600,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1824,1600,1,1 }));//no comment
+
+                                                      //trees  at the left and top left colorful
+   obstacles->push_back(Obstacles({ 1152,192,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1280,192,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,192,1,1 }));//no comment
+
+                                                     // addition to big two trees and one for house at the left
+   obstacles->push_back(Obstacles({ 1696,1600,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 896,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 704,1600,1,1 }));//no comment
+
+                                                     // trees second right of the house
+   obstacles->push_back(Obstacles({ 2720,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2848,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2976,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3104,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2720,1728,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2848,1728,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2976,1728,1,1 }));//no comment
+
+
+                                                      //same area, not colorful trees
+
+   obstacles->push_back(Obstacles({ 1152,352,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1280,352,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,352,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1152,512,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1280,512,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,512,1,1 }));//no comment
+
+   obstacles->push_back(Obstacles({ 1408,1184,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,1056,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,928,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,800,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,640,1,1 }));//no comment
+
+
+                                                     //left big trees (2)
+
+   obstacles->push_back(Obstacles({ 672,1600,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 704,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 864,1600,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 864,1568,1,1 }));//no comment
+
+                                                     //pool 
+
+   obstacles->push_back(Obstacles({ 1088,2048,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1120,2080,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1152,2080,1,1 }));//no comment
+
+                                                      //small bushes around pool
+
+   obstacles->push_back(Obstacles({ 992,1856,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1056,1856,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1120,1856,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1184,1856,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1248,1856,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1280,1856,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1312,1856,1,1 }));//no comment
+
+                                                      //red thing with white lines ( or vice versa) in front of two people
+
+   obstacles->push_back(Obstacles({ 1024,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1056,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1088,1600,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1024,1536,65,65 }));//no comment
+
+                                                        //house near it
+
+   obstacles->push_back(Obstacles({ 1120,1472,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1152,1472,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1184,1472,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1184,1504,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1152,1504,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1184,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1152,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1216,1472,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1216,1504,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1216,1536,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1216,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1216,1600,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1184,1600,1,1 }));//no comment
+
+                                                      //house next to it
+
+   obstacles->push_back(Obstacles({ 1312,1472,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1344,1472,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1376,1472,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1376,1504,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1344,1504,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1312,1504,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1312,1536,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1344,1536,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1376,1536,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,1472,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,1504,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,1536,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1376,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1344,1568,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1312,1568,1,1 }));//no comment
+
+                                                      //umbrella near pool
+
+   obstacles->push_back(Obstacles({ 1344,1920,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1376,1920,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,1920,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1440,1920,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1440,1952,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1440,1984,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,1984,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,1952,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1376,1952,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1344,1952,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1344,1984,1,1 }));//no comment
+
+
+
+
+                                                      //back coverage of the lighthouse a long rectangle
+
+   obstacles->push_back(Obstacles({ 160,0,833,161 }));//no comment
+
+                                                      //right sides of the lighthouse
+
+   obstacles->push_back(Obstacles({ 512,512,513,65 }));//no comment
+   obstacles->push_back(Obstacles({ 1056,576,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1056,544,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 736,448,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 224,448,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 256,480,1,1 }));//no comment
+
+                                                    //reactor near the light house
+                                                    //light house collisions
+   obstacles->push_back(Obstacles({ 544,256,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 480,256,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 448,256,1,1 }));//no comment
+
+                                                    //ATTENTION! when you add gate to light house, you might need to remove those two, maybe above three
+   obstacles->push_back(Obstacles({ 480,288,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 448,288,1,1 }));//no comment
+
+                                                    //lower pyramid 
+   obstacles->push_back(Obstacles({ 2304,1152,65,129 }));//no comment
+
+                                                         //upper pyramid
+   obstacles->push_back(Obstacles({ 2304,864,65,97 }));//no comment
+
+                                                       //thing near upper pyramid
+   obstacles->push_back(Obstacles({ 2208,896,1,1 }));//no comment
+
+                                                     //thing near lower pyramid
+   obstacles->push_back(Obstacles({ 2208,1216,1,1 }));//no comment
+
+                                                      //reactors  at the sides of the building ( around pyramid)
+
+   obstacles->push_back(Obstacles({ 2112,1120,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1856,1120,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2112,1056,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1856,1056,1,1 }));//no comment
+
+                                                      //things at the left  lower and upper
+   obstacles->push_back(Obstacles({ 1792,1248,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1792,928,1,1 }));//no comment
+
+                                                     //pyramid head building
+   obstacles->push_back(Obstacles({ 2048,1056,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2016,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1984,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1952,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1920,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1920,1056,1,1 }));//no comment
+
+                                                      //pyramd head building
+                                                      //ATTENTION, those might need to be removed when gate added to the door
+                                                      //it causes a weird bug (last test: emre)
+   obstacles->push_back(Obstacles({ 2048,1120,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1920,1120,1,1 }));//no comment
+
+                                                      // I dont remember but seems like home or tree
+
+   obstacles->push_back(Obstacles({ 2048,1056,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2016,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1984,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1952,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1920,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1920,1056,1,1 }));//no comment
+
+                                                      //tractor between pyramids
+
+   obstacles->push_back(Obstacles({ 2560,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2528,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2496,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2528,992,1,1 }));//no comment
+
+                                                     // dead tree near reactor in cemetary
+
+   obstacles->push_back(Obstacles({ 2944,192,1,1 }));//no comment
+
+                                                     //reactor near dead three in cemetary
+
+   obstacles->push_back(Obstacles({ 3104,224,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3072,192,1,1 }));//no comment
+
+                                                     //building in the cemetary
+
+   obstacles->push_back(Obstacles({ 3488,384,65,97 }));//no comment
+
+                                                       //small house made of tree below cemetary
+
+   obstacles->push_back(Obstacles({ 3648,1728,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3616,1664,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3584,1696,1,1 }));//no comment
+
+                                                      //like aztec pyramid below cemetary
+   obstacles->push_back(Obstacles({ 3296,1760,161,129 }));//no comment
+
+                                                          //obstacles->push_back(Obstacles({ 3296,1728,161,161 }));//no comment
+                                                          //obstacles->push_back(Obstacles({ 3296,1824,161,65 }));//no comment
+
+
+                                                          //building like a church, in the left area 
+
+                                                          //put the gate teleporter a little front or change the collision if gate does not work
+   obstacles->push_back(Obstacles({ 800,1056,129,97 }));//no comment
+
+
+                                                        //  obstacles->push_back(Obstacles({ 2176,864,33,65 }));//no comment
+                                                        // obstacles->push_back(Obstacles({ 2304,1120,65,161 }));//no comment
+                                                        /*
+                                                        obstacles->push_back(Obstacles({ 1024,32,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,64,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,96,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,128,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,160,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,192,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,224,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,256,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,288,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,320,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,352,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,384,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,416,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,448,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,480,1,1 }));//no comment
+                                                        obstacles->push_back(Obstacles({ 1024,512,1,1 }));//no comment
+                                                        */
+   obstacles->push_back(Obstacles({ 1056,0,1,513 }));//no comment
+
+                                                     //left upper corner behind the trees ( right of lighthouse)
+
+                                                     //obstacles->push_back(Obstacles({ 1088,0,737,1 }));//no comment
+
+                                                     //colorful trees infront of the left upper corner
+
+   obstacles->push_back(Obstacles({ 1152,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1280,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1408,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1536,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1664,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 1792,64,1,1 }));//no comment
+
+
+                                                    //other colorful trees next to those , around cemetary
+
+   obstacles->push_back(Obstacles({ 2080,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2208,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2336,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2464,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2592,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2720,64,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2464,192,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2592,192,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2720,192,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2848,192,1,1 }));//no comment
+
+
+   obstacles->push_back(Obstacles({ 2752,480,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2880,480,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3008,480,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3136,480,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2624,576,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2752,576,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2880,576,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3008,576,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3136,576,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2624,672,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2752,672,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2880,672,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3008,672,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3136,672,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2880,768,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3008,768,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3136,768,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 2880,864,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3008,864,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3136,864,1,1 }));//no comment
+
+                                                     //trees at the cemetary
+
+   obstacles->push_back(Obstacles({ 2880,96,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3008,96,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3136,96,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3264,96,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3392,96,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3520,96,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3648,96,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3584,224,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3456,224,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3328,224,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3200,224,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3680,352,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3680,480,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3680,640,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3648,768,1,1 }));//no comment
+
+                                                     //trees below cemetary, including big ones
+
+   obstacles->push_back(Obstacles({ 3648,1504,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3648,1248,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3648,992,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3488,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3488,1184,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3488,1344,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3232,1344,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3232,1184,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3232,1024,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3072,1152,1,1 }));//no comment
+   obstacles->push_back(Obstacles({ 3072,1408,1,1 }));//no comment
+
+                                                      //lighthouse left sea coverage, right sea coverage
+
+   obstacles->push_back(Obstacles({ 224,192,1,225 }));//no comment
+   obstacles->push_back(Obstacles({ 736,192,1,225 }));//no comment
+
+                                                      //obstacles->push_back(Obstacles({ 704,192,1,225 }));//no comment
 }

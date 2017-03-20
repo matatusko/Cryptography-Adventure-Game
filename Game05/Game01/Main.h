@@ -46,6 +46,7 @@ struct Obstacles {
 
 struct Textures {
    Texture worldmap;
+   Texture objects;
    Texture character;
    Texture home;
    // npc stuff
@@ -86,7 +87,8 @@ int animateCharacter(Character* character);
 void setObstacles(std::vector<Obstacles>* obstacles);
 bool checkCollision(SDL_Rect rect1, const SDL_Rect rect2);
 void renderHome(Window* window, Textures* textures, SDL_Rect* camera);
-void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Npc> npcs);
+void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Npc> npcs,
+   int* currentAnimation);
 void cutNPCSpritesheet(Textures* textures);
 void setNpc(std::vector<Npc>* npc);
 void checkForObjectsCollision(Character *character, Ada* ada, std::vector<Obstacles> obstacles, std::vector<Npc> npc,
