@@ -177,7 +177,7 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render Casar
       if (interactionFlag == Interaction::CaesarCipher) {
-         renderCaesar(window, textures, &caesar);
+      //    renderCaesar(window, textures, &caesar);
          textures->ada_screen.render(window, 0, 0);
          textures->start_state.render(window, 0, 0);
          for (int i = 0; i < 7; ++i)
@@ -229,10 +229,10 @@ void gameLoop(Textures* textures, Window* window)
    }
 }
 
-void renderCaesar(Window* window, Textures* textures, std::vector<Caesar>* caesar)
-{
+// void renderCaesar(Window* window, Textures* textures, std::vector<Caesar>* caesar)
+// {
 
-}
+// }
 
 void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
 {

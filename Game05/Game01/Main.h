@@ -64,7 +64,7 @@ struct Textures {
    // npc stuff
    Texture npc;
    SDL_Rect NPCspritesAvailable[24];
-   Texture npcDialogText[5];
+   Texture npcDialogText[6];
    Texture dialogBox;
    // ada stuff
    Texture ada;
