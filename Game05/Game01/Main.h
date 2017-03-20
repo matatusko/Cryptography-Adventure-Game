@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <stdio.h>
+#include <fstream>
+#include <sstream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
@@ -27,6 +29,7 @@ enum class Interaction {
    Npc,
    AdaInitialization,
    RailCipher,
+   CaesarCipher,
    None
 };
 
@@ -42,6 +45,15 @@ struct Obstacles {
       pos = pos_;
    }
    SDL_Rect pos;
+};
+
+enum LButtonSprite
+{
+	BUTTON_SPRITE_MOUSE_OUT = 2,
+	BUTTON_SPRITE_MOUSE_OVER_MOTION = BUTTON_SPRITE_MOUSE_OUT+1*7,
+	BUTTON_SPRITE_MOUSE_DOWN = BUTTON_SPRITE_MOUSE_OUT+2*7,
+	//BUTTON_SPRITE_MOUSE_UP = 3,
+	BUTTON_SPRITE_TOTAL = 7
 };
 
 struct Textures {
@@ -70,8 +82,8 @@ struct Textures {
    Texture state_5;
    Texture state_6;
    Texture state_7;
-   SDL_Rect caesarButtons[7];
-
+   Texture caesarButtonsSpritesheet;
+   SDL_Rect caesarButtons[21];
 };
 typedef struct Textures Textures;
 // Somehow Character class wouldn't recognize the Textures structures if it was included beforehand
@@ -79,6 +91,7 @@ typedef struct Textures Textures;
 #include "npc.h"
 #include "Ada.h"
 #include "Rail.h"
+#include "Caesar.h"
 
 bool loadMedia(Textures *textures, Window *window);
 void gameLoop(Textures* textures, Window* window);
@@ -99,3 +112,6 @@ void getAdaInitializationDialog(Window* window, Textures* textures);
 void StartAdaInitializationEvent(Window* window, Textures* textures, Ada* ada, int currentAdaDialog);
 void cutRailSpritesheet(Textures* textures);
 void setRailSpritesPosition(Textures* textures, std::vector<Rail>* rail);
+void automaticCollisions(SDL_Event &e, Character* character);
+void cutCaesarButtons(Textures* textures);
+void setCaesarSpritesPosition(Textures* textures, std::vector<Caesar>* caesar);

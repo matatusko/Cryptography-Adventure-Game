@@ -74,11 +74,11 @@ class LTexture
 };
 
 //The mouse button
-class LButton
+class Caesar
 {
 	public:
 		//Initializes internal variables
-		LButton();
+		Caesar();
 
 		//Sets top left position
 		void setPosition( int x, int y , int current_sprite);
@@ -108,11 +108,11 @@ class LButton
 		bool pressed;
 };
 
-bool LButton::isPressed() {
+bool Caesar::isPressed() {
 	return pressed;
 }
 
-void LButton::resetPress() {
+void Caesar::resetPress() {
 	pressed = false;
 }
 
@@ -146,7 +146,7 @@ SDL_Rect gSpriteClips[ TOTAL_BUTTONS ];
 LTexture gButtonSpriteSheetTexture;
 
 //Buttons objects
-LButton gButtons[ TOTAL_BUTTONS ]; 
+Caesar gButtons[ TOTAL_BUTTONS ]; 
 
 LTexture::LTexture()
 {
@@ -295,14 +295,14 @@ int LTexture::getHeight()
 	return mHeight;
 }
 
-LButton::LButton()
+Caesar::Caesar()
 {
 	mPosition.x = 0;
 	mPosition.y = 0;
 	pressed = false;
 }
 
-void LButton::setPosition( int x, int y , int current_sprite)
+void Caesar::setPosition( int x, int y , int current_sprite)
 {
 	mPosition.x = x;
 	mPosition.y = y;
@@ -313,7 +313,7 @@ void LButton::setPosition( int x, int y , int current_sprite)
 	presssprite = current_sprite + 14;
 }
 
-void LButton::handleEvent( SDL_Event* e )
+void Caesar::handleEvent( SDL_Event* e )
 {
 	//If mouse event happened
 	if( e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP )
@@ -375,7 +375,7 @@ void LButton::handleEvent( SDL_Event* e )
 	}
 }
 	
-void LButton::render()
+void Caesar::render()
 {
 	//Show current button sprite
 	gButtonSpriteSheetTexture.render( mPosition.x, mPosition.y, &gSpriteClips[ mCurrentSprite ] );

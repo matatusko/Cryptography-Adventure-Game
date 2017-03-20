@@ -37,6 +37,10 @@ void gameLoop(Textures* textures, Window* window)
    std::vector<Rail> rail;
    setRailSpritesPosition(textures, &rail);
 
+   // Initialize Caesar Cipher
+   std::vector<Caesar> caesar;
+   setCaesarSpritesPosition(textures, &caesar);
+
    // Create the camera rectangle at position 0, 0 with camera's features
    SDL_Rect camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
 
@@ -74,6 +78,7 @@ void gameLoop(Textures* textures, Window* window)
       // Handle the main game events on queue
       while (SDL_PollEvent(&e) != 0) {
          // Check for quit signal
+         // automaticCollisions(e, &character);
          if (e.type == SDL_QUIT) {
             gameRunning = false;
          }
@@ -88,12 +93,21 @@ void gameLoop(Textures* textures, Window* window)
                ada.setAdaActive(true);
                interactionFlag = Interaction::None;
             }
+            if (currentAdaDialog == 2) {
+               interactionFlag = Interaction::CaesarCipher;
+            }
          }
 
          // Handle the mouse movement for rail cipher
          if (interactionFlag == Interaction::RailCipher) {
             for (int i = 0; i < 60; i++) {
                rail[i].handleEvents(&e);
+            }
+         }
+         // Handle the mouse movement for Caesar
+         if (interactionFlag == Interaction::CaesarCipher) {
+            for (int i = 0; i < 7; i++) {
+               caesar[i].handleEvent(&e);
             }
          }
 
@@ -120,7 +134,8 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render the screen to the window depending on current location player is in
       if (character.getCurrentLocation() == Location::Home) {
-         renderHome(window, textures, &camera);      // Render character
+         renderHome(window, textures, &camera);      
+         // Render character
          character.render(window, textures, camera.x, camera.y, currentAnimation);
          ada.render(window, textures, camera.x, camera.y, currentAnimation);
       }
@@ -160,6 +175,48 @@ void gameLoop(Textures* textures, Window* window)
          }
       }
 
+      // Render Casar
+      if (interactionFlag == Interaction::CaesarCipher) {
+         textures->ada_screen.render(window, 0, 0);
+         textures->start_state.render(window, 0, 0);
+         for (int i = 0; i < 7; ++i)
+         {
+            caesar[i].render(window, textures);
+         }
+
+         if (caesar[2].isPressed()) {
+            textures->state_4.render(window, 0, 0);
+         }
+         if (caesar[3].isPressed()) {
+            textures->state_5.render(window, 0, 0);
+         }
+
+         if (caesar[5].isPressed()) {
+            textures->state_7.render(window, 0, 0);
+         }
+
+         if (caesar[1].isPressed()) {
+            bool clean = true;
+            if (caesar[5].isPressed()) {
+               textures->state_3.render(window, 0, 0);
+               textures->state_7.render(window, 0, 0);
+               clean = false;
+            }
+            if (caesar[3].isPressed()) {
+               textures->state_3.render(window, 0, 0);
+               textures->state_5.render(window, 0, 0);
+               clean = false;
+            }
+            if (clean == true) {
+               textures->state_3.render(window, 0, 0);
+            }
+         }
+
+         if (caesar[4].isPressed()) {
+            textures->state_6.render(window, 0, 0);
+         }
+      }
+
       printf("pos X: %d, pos y: %d\n", character.getPosX(), character.getPosY());
       printf("current inteaction = %d\n", (int)interactionFlag);
 
@@ -169,6 +226,11 @@ void gameLoop(Textures* textures, Window* window)
       // Sleep for a short while to add pixel-styled movement
       SDL_Delay(50);
    }
+}
+
+void renderCaesar(Window* window, Textures* textures, std::vector<Caesar>* caesar)
+{
+
 }
 
 void renderHome(Window* window, Textures* textures, SDL_Rect* camera)

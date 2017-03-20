@@ -221,6 +221,11 @@ bool loadMedia(Textures *textures, Window *window)
 		std::cout << "Failed to load the state_7 texture" << std::endl;
 		success = false;
 	}
+      if (!(textures->caesarButtonsSpritesheet.loadFromFile("images/caesar_img/c_buttons.png", window))) {
+         std::cout << "Failed to load the state_7 texture" << std::endl;
+         success = false;
+      }
+   cutCaesarButtons(textures);
       
 
    return success;
@@ -237,6 +242,23 @@ void cutRailSpritesheet(Textures* textures)
          textures->railButtons[curr].w = 66;
          textures->railButtons[curr].h = 66;
       }
+   }
+}
+
+void cutCaesarButtons(Textures* textures)
+{
+
+   for (int y = 0, curr = 0; y < 3; y++) {
+      for (int x = 0; x < 7; x++, curr++)
+      {
+//         std::cout << "curr = " << curr << std::endl;
+         textures->caesarButtons[curr].x = x*88;
+         textures->caesarButtons[curr].y = y*88;
+         textures->caesarButtons[curr].w = 88;
+         textures->caesarButtons[curr].h = 88;
+      }
+//      std::cout << "endx" << curr << std::endl;
+//      std::cout << "y" << y << std::endl;
    }
 }
 
@@ -266,6 +288,31 @@ void setRailSpritesPosition(Textures* textures, std::vector<Rail>* rail)
       next_x = 70;
       next_y += 66;
    }
+}
+
+void setCaesarSpritesPosition(Textures* textures, std::vector<Caesar>* caesar)
+{
+   caesar->push_back(Caesar(316, 448, 0));
+   caesar->push_back(Caesar(272, 360, 1));
+   caesar->push_back(Caesar(360, 360, 2));
+   caesar->push_back(Caesar(228, 272, 3));
+   caesar->push_back(Caesar(316, 272, 4));
+   caesar->push_back(Caesar(404, 272, 5));
+   caesar->push_back(Caesar(316, 184, 6));
+   caesar->push_back(Caesar(316, 448, 7));
+   caesar->push_back(Caesar(272, 360, 8));
+   caesar->push_back(Caesar(360, 360, 9));
+   caesar->push_back(Caesar(228, 272, 10));
+   caesar->push_back(Caesar(316, 272, 11));
+   caesar->push_back(Caesar(404, 272, 12));
+   caesar->push_back(Caesar(316, 184, 13));
+   caesar->push_back(Caesar(316, 448, 14));
+   caesar->push_back(Caesar(272, 360, 15));
+   caesar->push_back(Caesar(360, 360, 16));
+   caesar->push_back(Caesar(228, 272, 17));
+   caesar->push_back(Caesar(316, 272, 18));
+   caesar->push_back(Caesar(404, 272, 19));
+   caesar->push_back(Caesar(316, 184, 20));
 }
 
 void setObstacles(std::vector<Obstacles>* obstacles)
