@@ -177,6 +177,7 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render Casar
       if (interactionFlag == Interaction::CaesarCipher) {
+         renderCaesar(window, textures, &caesar);
          textures->ada_screen.render(window, 0, 0);
          textures->start_state.render(window, 0, 0);
          for (int i = 0; i < 7; ++i)
