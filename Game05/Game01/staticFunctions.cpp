@@ -52,7 +52,7 @@ void getNPCDialog(Window* window, Textures* textures)
 {
    SDL_Color dialogColor = { 0, 0, 0 };
    if (!(textures->npcDialogText[0].loadFromText(window, dialogColor,
-      "Did you know? Computing industry boasts one of the highest starting salaries for new college graduates!"))) {
+      "My dad said that computer scientists make the most money... but I don't believe him'"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -62,18 +62,23 @@ void getNPCDialog(Window* window, Textures* textures)
       return;
    }
    if (!(textures->npcDialogText[2].loadFromText(window, dialogColor,
-      "A 15 year old hacked NASA computers and caused a 21-day shutdown of their computers. \
+      "A 15 year old once hacked the computers at NASA and caused a 21-day shutdown of their computers. \
 He hacked Pentagon weapons computer too!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->npcDialogText[3].loadFromText(window, dialogColor,
-      "U.S. chose 00000000 as the password for its computer controls of nuclear tipped missiles for eight years."))) {
+      "Did, you know, the American government chose 00000000 as the password to launch nuclear missiles for eight years!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->npcDialogText[4].loadFromText(window, dialogColor,
-      "CAPTCHA is an acronym for \"Completely Automated Public Turing test to tell Computers and Humans Apart\""))) {
+      "I read that CAPTCHA is an acronym for \"Completely Automated Public Turing test to tell Computers and Humans Apart\"... Turing... I recognise that name..."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[6].loadFromText(window, dialogColor,
+      "My mum said I have to stop talking so much about memory and RAM, but what she doesen't know is that memory IS RAM!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
