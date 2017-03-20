@@ -187,6 +187,38 @@ bool loadMedia(Textures *textures, Window *window)
    }
    cutRailSpritesheet(textures);
 
+   // Load Caesar textures :
+   //load Ada background
+	if (!(textures->ada_screen.loadFromFile("images/caesar_img/ada_screen.png", window))) {
+		std::cout << "Failed to load the ada_screen texture" << std::endl;
+		success = false;
+	}
+      if (!(textures->start_state.loadFromFile("images/caesar_img/start_state.png", window))) {
+		std::cout << "Failed to load the start_state texture" << std::endl;
+		success = false;
+	}
+      if (!(textures->state_3.loadFromFile("images/caesar_img/state_3.png", window))) {
+		std::cout << "Failed to load the state_3 texture" << std::endl;
+		success = false;
+	}
+      if (!(textures->state_4.loadFromFile("images/caesar_img/state_4.png", window))) {
+		std::cout << "Failed to load the state_4 texture" << std::endl;
+		success = false;
+	}
+      if (!(textures->state_5.loadFromFile("images/caesar_img/state_5.png", window))) {
+		std::cout << "Failed to load the state_5 texture" << std::endl;
+		success = false;
+	}
+      if (!(textures->state_6.loadFromFile("images/caesar_img/state_6.png", window))) {
+		std::cout << "Failed to load the state_6 texture" << std::endl;
+		success = false;
+	}
+      if (!(textures->state_7.loadFromFile("images/caesar_img/state_7.png", window))) {
+		std::cout << "Failed to load the state_7 texture" << std::endl;
+		success = false;
+	}
+      
+
    return success;
 }
 

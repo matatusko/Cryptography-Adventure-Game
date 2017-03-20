@@ -60,6 +60,17 @@ struct Textures {
    Texture railCipher;
    Texture AdaRailCipherScreen;
    SDL_Rect railButtons[60];
+
+   // Caesar cipher stuff
+   Texture ada_screen;
+   Texture start_state;
+   Texture state_3;
+   Texture state_4;
+   Texture state_5;
+   Texture state_6;
+   Texture state_7;
+   SDL_Rect caesarButtons[7];
+
 };
 typedef struct Textures Textures;
 // Somehow Character class wouldn't recognize the Textures structures if it was included beforehand
