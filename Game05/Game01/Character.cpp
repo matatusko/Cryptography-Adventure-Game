@@ -86,7 +86,7 @@ void Character::CheckForWallCollisions(Textures* textures)
       
    }
 
-   if (currentLoc == Location::Home) {
+   else if (currentLoc == Location::Home) {
       // Check if the character is touching the walls in the house or the door
       if (posY >= CAMERA_HEIGHT / 2 + textures->home.getHeight() / 2 - 32) {
          currentLoc = Location::World;

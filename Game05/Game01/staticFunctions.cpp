@@ -62,13 +62,13 @@ void getNPCDialog(Window* window, Textures* textures)
       return;
    }
    if (!(textures->npcDialogText[2].loadFromText(window, dialogColor,
-      "A 15 year old once hacked the computers at NASA and caused a 21-day shutdown of their computers. \
-He hacked Pentagon weapons computer too!"))) {
+      "I've heard a 15 year old once hacked the computers at NASA and caused a 21-day shutdown of their computers. \
+He hacked Pentagon weapons computer too! Kids are geniuses these days..."))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->npcDialogText[3].loadFromText(window, dialogColor,
-      "Did, you know, the American government chose 00000000 as the password to launch nuclear missiles for eight years!"))) {
+      "Did you know that the American government chose 00000000 as the password to launch nuclear missiles for eight years?! Crazy dangerous, with password like this!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -83,7 +83,7 @@ He hacked Pentagon weapons computer too!"))) {
       return;
    }
    if (!(textures->npcDialogText[5].loadFromText(window, dialogColor,
-      "asddwqdqwfewdfcsdc"))) {
+      "Apparently the first computer was called ENIAC and weighted more than 27 tons, taking up to 1800 square feet?!"))) {
       printf("Failed to render text texture!\n");
       return;
    }

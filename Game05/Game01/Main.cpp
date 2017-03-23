@@ -125,8 +125,10 @@ void gameLoop(Textures* textures, Window* window)
 
          // Check for collisions and if those happen return character right to their original positions
          // before collision happened
-         checkForObjectsCollision(&character, &ada, obstacles, npcs, playerPositionX, playerPositionY,
-            adaPositionX, adaPositionY);
+         if (character.getCurrentLocation() == Location::World) {
+            checkForObjectsCollision(&character, &ada, obstacles, npcs, playerPositionX, playerPositionY,
+               adaPositionX, adaPositionY);
+         }
       }
 
       // Clear screen
@@ -140,7 +142,7 @@ void gameLoop(Textures* textures, Window* window)
          ada.render(window, textures, camera.x, camera.y, currentAnimation);
       }
       else if (character.getCurrentLocation() == Location::World) {
-         renderWorld(window, textures, &character, &camera, npcs, &currentAnimation);
+         renderWorld(window, textures, &character, &ada, &camera, npcs, &currentAnimation);
       }
 
       // No interaction when character starts moving hence will kill the dialog window
@@ -159,11 +161,6 @@ void gameLoop(Textures* textures, Window* window)
          StartAdaInitializationEvent(window, textures, &ada, currentAdaDialog);
       }
 
-      // Render Ada if active
-      if (ada.getAdaActive()) {
-         ada.render(window, textures, camera.x, camera.y, currentAnimation);
-      }
-
       // Render the rail cipher if it is its turn
       if (interactionFlag == Interaction::RailCipher) {
          textures->AdaRailCipherScreen.render(window, 0, 0);
@@ -177,10 +174,6 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render Casar
       if (interactionFlag == Interaction::CaesarCipher) {
-<<<<<<< HEAD
-=======
-      //    renderCaesar(window, textures, &caesar);
->>>>>>> be936703301e1970e1484661bd61d0563faabc17
          textures->ada_screen.render(window, 0, 0);
          textures->start_state.render(window, 0, 0);
          for (int i = 0; i < 7; ++i)
@@ -221,8 +214,8 @@ void gameLoop(Textures* textures, Window* window)
          }
       }
 
-      printf("pos X: %d, pos y: %d\n", character.getPosX(), character.getPosY());
-      printf("current inteaction = %d\n", (int)interactionFlag);
+      //printf("pos X: %d, pos y: %d\n", character.getPosX(), character.getPosY());
+      //printf("current inteaction = %d\n", (int)interactionFlag);
 
       // Update screen
       SDL_RenderPresent(window->renderer);
@@ -232,14 +225,6 @@ void gameLoop(Textures* textures, Window* window)
    }
 }
 
-<<<<<<< HEAD
-=======
-// void renderCaesar(Window* window, Textures* textures, std::vector<Caesar>* caesar)
-// {
-
-// }
-
->>>>>>> be936703301e1970e1484661bd61d0563faabc17
 void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
 {
    // Render the home in the middle of a screen and reset the camera
@@ -248,12 +233,16 @@ void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
       CAMERA_HEIGHT / 2 - textures->home.getHeight() / 2);
 }
 
-void renderWorld(Window* window, Textures* textures, Character* character, SDL_Rect* camera, std::vector<Npc> npcs,
+void renderWorld(Window* window, Textures* textures, Character* character, Ada* ada, SDL_Rect* camera, std::vector<Npc> npcs,
    int* currentAnimation)
 {
    // Render background clipped to the camera screen
    textures->worldmap.render(window, 0, 0, camera);
    character->render(window, textures, camera->x, camera->y, *currentAnimation);
+   // Render Ada if active
+   if (ada->getAdaActive()) {
+      ada->render(window, textures, camera->x, camera->y, *currentAnimation);
+   }
    textures->objects.render(window, 0, 0, camera);
 
    // Render all the NPCs
