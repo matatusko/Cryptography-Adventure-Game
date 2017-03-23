@@ -174,6 +174,11 @@ void gameLoop(Textures* textures, Window* window)
 
       // Render Casar
       if (interactionFlag == Interaction::CaesarCipher) {
+<<<<<<< HEAD
+=======
+
+      //    renderCaesar(window, textures, &caesar);
+>>>>>>> 34933b8bad9bf522dd8954d9dabac2bff894680a
          textures->ada_screen.render(window, 0, 0);
          textures->start_state.render(window, 0, 0);
          for (int i = 0; i < 7; ++i)
@@ -225,6 +230,14 @@ void gameLoop(Textures* textures, Window* window)
    }
 }
 
+<<<<<<< HEAD
+=======
+// void renderCaesar(Window* window, Textures* textures, std::vector<Caesar>* caesar)
+// {
+
+// }
+
+>>>>>>> 34933b8bad9bf522dd8954d9dabac2bff894680a
 void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
 {
    // Render the home in the middle of a screen and reset the camera
