@@ -32,10 +32,16 @@ void gameLoop(Textures* textures, Window* window)
    Ada ada;
    int adaPositionX, adaPositionY;
    int currentAdaDialog = 0;
+
+   // Initialize Alphabet
+   std::vector<Alphabet> railAlphabet;
+   setAlphabetPositionForRail(textures, &railAlphabet);
    
    // Initialize Rail Cipher
    std::vector<Rail> rail;
    setRailSpritesPosition(textures, &rail);
+   int currentRailDialog = 0;
+   getAdaRailDialog(window, textures);
 
    // Initialize Caesar Cipher
    std::vector<Caesar> caesar;
@@ -82,7 +88,7 @@ void gameLoop(Textures* textures, Window* window)
          if (e.type == SDL_QUIT) {
             gameRunning = false;
          }
-         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && interactionFlag != Interaction::AdaInitialization) {
+         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && interactionFlag == Interaction::None) {
             interactionFlag = checkForInteraction(&character, &ada, npcs);
             dialogNumber = rand() % 6;
          }
@@ -97,11 +103,24 @@ void gameLoop(Textures* textures, Window* window)
                interactionFlag = Interaction::CaesarCipher;
             }
          }
+         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE && interactionFlag == Interaction::RailDialog
+            && e.key.repeat == 0) {
+            currentRailDialog++;
+            if (currentRailDialog == 5) {
+               interactionFlag = Interaction::RailCipher;
+            }
+            if (currentRailDialog >= 8) {
+               interactionFlag = Interaction::None;
+            }
+         }
 
          // Handle the mouse movement for rail cipher
          if (interactionFlag == Interaction::RailCipher) {
             for (int i = 0; i < 60; i++) {
                rail[i].handleEvents(&e);
+            }
+            for (int i = 0; i < railAlphabet.size(); i++) {
+               railAlphabet[i].handleEvents(&e);
             }
          }
          // Handle the mouse movement for Caesar
@@ -161,24 +180,27 @@ void gameLoop(Textures* textures, Window* window)
          StartAdaInitializationEvent(window, textures, &ada, currentAdaDialog);
       }
 
+      if (interactionFlag == Interaction::RailDialog) {
+         textures->dialogBox.render(window, 50, 50);
+         textures->adaRailDialog[currentRailDialog - 1].render(window, 75, 75);
+      }
+
       // Render the rail cipher if it is its turn
       if (interactionFlag == Interaction::RailCipher) {
          textures->AdaRailCipherScreen.render(window, 0, 0);
          for (int i = 0; i < 30; i++) {
             rail[i].render(window, textures);
          }
+         for (int i = 0; i < railAlphabet.size(); i++) {
+            railAlphabet[i].render(window, textures);
+         }
          if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
-            interactionFlag = Interaction::None;
+            interactionFlag = Interaction::RailDialog;
          }
       }
 
       // Render Casar
       if (interactionFlag == Interaction::CaesarCipher) {
-<<<<<<< HEAD
-=======
-
-      //    renderCaesar(window, textures, &caesar);
->>>>>>> 34933b8bad9bf522dd8954d9dabac2bff894680a
          textures->ada_screen.render(window, 0, 0);
          textures->start_state.render(window, 0, 0);
          for (int i = 0; i < 7; ++i)
@@ -230,14 +252,6 @@ void gameLoop(Textures* textures, Window* window)
    }
 }
 
-<<<<<<< HEAD
-=======
-// void renderCaesar(Window* window, Textures* textures, std::vector<Caesar>* caesar)
-// {
-
-// }
-
->>>>>>> 34933b8bad9bf522dd8954d9dabac2bff894680a
 void renderHome(Window* window, Textures* textures, SDL_Rect* camera)
 {
    // Render the home in the middle of a screen and reset the camera
@@ -373,7 +387,7 @@ Interaction checkForInteraction(Character *character, Ada *ada, std::vector<Npc>
       ((character->getPosX() == 3360 && character->getPosY() == 1952) || 
       (character->getPosX() == 3328 && character->getPosY() == 1952))) {
       // return the correct interaction
-      return Interaction::RailCipher;
+      return Interaction::RailDialog;
    }
    // I have no idea why he locations are supposed to be like this :D I suppose 2nd and 4th if-statement make sense
    // But the 1st and 3rd are trial-and-error :D

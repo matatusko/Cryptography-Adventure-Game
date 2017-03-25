@@ -45,6 +45,9 @@
     <ClCompile Include="Caesar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Alphabet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -69,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Caesar.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Alphabet.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

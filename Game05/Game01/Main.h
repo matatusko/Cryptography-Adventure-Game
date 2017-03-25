@@ -28,6 +28,7 @@ enum class Location {
 enum class Interaction {
    Npc,
    AdaInitialization,
+   RailDialog,
    RailCipher,
    CaesarCipher,
    None
@@ -69,11 +70,14 @@ struct Textures {
    // ada stuff
    Texture ada;
    Texture adaInitializationDialog[3];
+   // Alphabet for puzzles
+   Texture alphabet;
+   SDL_Rect alphabetLetters[26];
    // Rail cipher stuff
    Texture railCipher;
    Texture AdaRailCipherScreen;
+   Texture adaRailDialog[7];
    SDL_Rect railButtons[60];
-
    // Caesar cipher stuff
    Texture ada_screen;
    Texture start_state;
@@ -92,6 +96,7 @@ typedef struct Textures Textures;
 #include "Ada.h"
 #include "Rail.h"
 #include "Caesar.h"
+#include "Alphabet.h"
 
 bool loadMedia(Textures *textures, Window *window);
 void gameLoop(Textures* textures, Window* window);
@@ -115,3 +120,6 @@ void setRailSpritesPosition(Textures* textures, std::vector<Rail>* rail);
 void automaticCollisions(SDL_Event &e, Character* character);
 void cutCaesarButtons(Textures* textures);
 void setCaesarSpritesPosition(Textures* textures, std::vector<Caesar>* caesar);
+void cutAlphabetSpritesheet(Textures* textures);
+void setAlphabetPositionForRail(Textures* textures, std::vector<Alphabet>* railAlphabet);
+void getAdaRailDialog(Window *window, Textures* textures);

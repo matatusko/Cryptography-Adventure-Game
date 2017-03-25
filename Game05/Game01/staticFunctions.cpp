@@ -83,7 +83,7 @@ He hacked Pentagon weapons computer too! Kids are geniuses these days..."))) {
       return;
    }
    if (!(textures->npcDialogText[5].loadFromText(window, dialogColor,
-      "Apparently the first computer was called ENIAC and weighted more than 27 tons, taking up to 1800 square feet?!"))) {
+      "Apparently the first computer was called ENIAC and weighted more than 27 tons, taking up to 1800 square feet?! That's more than a huge track!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -104,6 +104,46 @@ void getAdaInitializationDialog(Window* window, Textures* textures)
    }
    if (!(textures->adaInitializationDialog[2].loadFromText(window, dialogColor,
       "Thanks for the power! I will now explain the quest!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+}
+
+void getAdaRailDialog(Window *window, Textures* textures) 
+{
+   SDL_Color dialogColor = { 255, 0, 0 };
+   if (!(textures->adaRailDialog[0].loadFromText(window, dialogColor,
+      "Wrrruum! It appears my creator has left a message here!\n Give me a second, I will download it..."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaRailDialog[1].loadFromText(window, dialogColor,
+      "1... 2... 3... Downloading... \n FINISHED"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaRailDialog[2].loadFromText(window, dialogColor,
+      "I got the message, however it appears to be encrypther using a mix of rail and pigpen cipher :(\n But I'm sure you can break the code."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaRailDialog[3].loadFromText(window, dialogColor,
+      "Remember, you can press X to access my console anytime and get help with various ciphers.\n\n GOOD LUCK!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaRailDialog[4].loadFromText(window, dialogColor,
+      "PUZZLE GOES HERE"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaRailDialog[5].loadFromText(window, dialogColor,
+      "Good job! The code read: ALAN TURING. \n... Oh, Alan! I remember him, a great mathematician and cryptographer."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaRailDialog[6].loadFromText(window, dialogColor,
+      "Remember his name, I've got a feeling it will be needed for the final puzzle!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -237,6 +277,12 @@ bool loadMedia(Textures *textures, Window *window)
       }
    cutCaesarButtons(textures);
       
+   // Load the alphabet spritesheet
+   if (!(textures->alphabet.loadFromFile("images/alphabet.png", window))) {
+      std::cout << "Failed to load the alphabet texture" << std::endl;
+      success = false;
+   }
+   cutAlphabetSpritesheet(textures);
 
    return success;
 }
@@ -251,6 +297,23 @@ void cutRailSpritesheet(Textures* textures)
          textures->railButtons[curr].y = y * 66;
          textures->railButtons[curr].w = 66;
          textures->railButtons[curr].h = 66;
+      }
+   }
+}
+
+void cutAlphabetSpritesheet(Textures* textures)
+{
+   // Cut the spritesheet
+   for (int y = 0, curr = 0; y < 4; y++) {
+      for (int x = 0; x < 8; x++, curr++)
+      {
+         if (curr >= 26) {
+            break;
+         }
+         textures->alphabetLetters[curr].x = x * 54;
+         textures->alphabetLetters[curr].y = y * 54;
+         textures->alphabetLetters[curr].w = 54;
+         textures->alphabetLetters[curr].h = 54;
       }
    }
 }
@@ -297,6 +360,17 @@ void setRailSpritesPosition(Textures* textures, std::vector<Rail>* rail)
       }
       next_x = 70;
       next_y += 66;
+   }
+}
+
+void setAlphabetPositionForRail(Textures* textures, std::vector<Alphabet>* railAlphabet)
+{
+   for (int i = 0, position = 170; i < 4; i++, position += 60) {
+      railAlphabet->push_back(Alphabet(position, 566, 0));
+   }
+
+   for (int i = 0, position = 450; i < 6; i++, position += 60) {
+      railAlphabet->push_back(Alphabet(position, 566, 0));
    }
 }
 
