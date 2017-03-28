@@ -10,6 +10,7 @@
 #include <time.h>
 #include "Window.h"
 #include "Texture.h"
+#include "Constants.h"
 
 // Map and camera related definitions
 #define MAP_WIDTH 3840
@@ -57,7 +58,7 @@ struct Textures {
    // NPCs textures
    Texture npc;
    SDL_Rect NPCspritesAvailable[24];
-   Texture npcDialogText[6];
+   Texture npcDialogText[constants::NPC_DIALOGUE_NUM];
    Texture dialogBox;
    // ADA
    Texture ada;
