@@ -4,6 +4,7 @@ bool initializeVariables(Textures* textures, Window* window, Puzzles* puzzles, G
 {
    // Set the initial interaction flag to none
    gameObjects->interactionFlag = Interaction::None;
+   textures->currentHelp = CurrentHelp::AdaHelpWindow;
 
    // Set the storyline dialogs to 0
    gameObjects->adaInitializationDialog = 0;
@@ -16,6 +17,9 @@ bool initializeVariables(Textures* textures, Window* window, Puzzles* puzzles, G
 
    // Initialize Caesar Cipher
    setCaesarSpritesPosition(textures, puzzles);
+
+   // Initialize Ada interface buttons
+   setAdaInterfaceButtons(gameObjects, textures);
 
    // Create the camera rectangle at position 0, 0 with camera's features
    gameObjects->camera = { 0, 0, CAMERA_WIDTH, CAMERA_HEIGHT };
@@ -275,7 +279,7 @@ bool loadMedia(Textures *textures, Window *window)
    cutRailSpritesheet(textures);
 
    // Load Caesar textures :
-   //load Ada background
+   // load Ada background
 	if (!(textures->ada_screen.loadFromFile("images/caesar_img/ada_screen.png", window))) {
 		std::cout << "Failed to load the ada_screen texture" << std::endl;
 		success = false;
@@ -317,6 +321,37 @@ bool loadMedia(Textures *textures, Window *window)
    }
    cutAlphabetSpritesheet(textures);
 
+   // Load Ada Interface Textures
+   if (!(textures->adaHelpWindow.loadFromFile("images/Ada_interface/main_screen.png", window))) {
+      std::cout << "Failed to load the ada interface screen" << std::endl;
+      success = false;
+   }
+   if (!(textures->caesarExplanation.loadFromFile("images/Ada_interface/caesar.png", window))) {
+      std::cout << "Failed to load the ada caesar help window" << std::endl;
+      success = false;
+   }
+   if (!(textures->hexExplanation.loadFromFile("images/Ada_interface/hex.png", window))) {
+      std::cout << "Failed to load the ada hex help window" << std::endl;
+      success = false;
+   }
+   if (!(textures->morseExplanation.loadFromFile("images/Ada_interface/morse.png", window))) {
+      std::cout << "Failed to load the ada morse help window" << std::endl;
+      success = false;
+   }
+   if (!(textures->pigpenExplanation.loadFromFile("images/Ada_interface/pigpen.png", window))) {
+      std::cout << "Failed to load the ada pigpen help window" << std::endl;
+      success = false;
+   }
+   if (!(textures->railExplanation.loadFromFile("images/Ada_interface/rail.png", window))) {
+      std::cout << "Failed to load the ada rail help window" << std::endl;
+      success = false;
+   }
+   if (!(textures->interfaceButtonsSpritesheet.loadFromFile("images/Ada_interface/interfaceButtons.png", window))) {
+      std::cout << "Failed to load the ada interface buttons" << std::endl;
+      success = false;
+   }
+   cutInterfaceSpritesheet(textures);
+
    return success;
 }
 
@@ -330,6 +365,20 @@ void cutRailSpritesheet(Textures* textures)
          textures->railButtons[curr].y = y * 66;
          textures->railButtons[curr].w = 66;
          textures->railButtons[curr].h = 66;
+      }
+   }
+}
+
+void cutInterfaceSpritesheet(Textures* textures)
+{
+   // Cut the spritesheet
+   for (int y = 0, curr = 0; y < 7; y++) {
+      for (int x = 0; x < 2; x++, curr++)
+      {
+         textures->interfaceButtons[curr].x = x * 133;
+         textures->interfaceButtons[curr].y = y * 28;
+         textures->interfaceButtons[curr].w = 133;
+         textures->interfaceButtons[curr].h = 28;
       }
    }
 }
@@ -366,6 +415,17 @@ void cutCaesarButtons(Textures* textures)
 //      std::cout << "endx" << curr << std::endl;
 //      std::cout << "y" << y << std::endl;
    }
+}
+
+void setAdaInterfaceButtons(GameObjects* gameObjects, Textures* textures)
+{
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(50, 50, 0, CurrentHelp::AdaHelpWindow));
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(200, 50, 2, CurrentHelp::CaesarExplanation));
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(350, 50, 4, CurrentHelp::PigpenExplanation));
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(500, 50, 6, CurrentHelp::RailExplanation));
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(650, 50, 8, CurrentHelp::HexExplanation));
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(800, 50, 10, CurrentHelp::MorseExplanation));
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(950, 50, 12, CurrentHelp::None));
 }
 
 void setRailSpritesPosition(Textures* textures, Puzzles* puzzles)

@@ -29,6 +29,7 @@ enum class Location {
 enum class Interaction {
    Npc,
    AdaInitialization,
+   AdaInterface,
    RailDialog,
    RailCipher,
    CaesarCipher,
@@ -40,6 +41,16 @@ enum class Direction {
    Down = 0,
    Right = 4,
    Left = 12,
+};
+
+enum class CurrentHelp {
+   CaesarExplanation,
+   RailExplanation,
+   PigpenExplanation,
+   MorseExplanation,
+   HexExplanation,
+   AdaHelpWindow,
+   None
 };
 
 struct Obstacles {
@@ -81,6 +92,16 @@ struct Textures {
    Texture state_7;
    Texture caesarButtonsSpritesheet;
    SDL_Rect caesarButtons[21];
+   // Ada Interface Textures
+   Texture adaHelpWindow;
+   Texture caesarExplanation;
+   Texture railExplanation;
+   Texture pigpenExplanation;
+   Texture morseExplanation;
+   Texture hexExplanation;
+   Texture interfaceButtonsSpritesheet;
+   SDL_Rect interfaceButtons[14];
+   CurrentHelp currentHelp;
 };
 typedef struct Textures Textures;
 
@@ -92,6 +113,7 @@ typedef struct Textures Textures;
 #include "Rail.h"
 #include "Caesar.h"
 #include "Alphabet.h"
+#include "AdaInterfaceButtons.h"
 
 struct Puzzles {
    // Variables related to the rail cipher
@@ -120,6 +142,9 @@ struct GameObjects {
    // All the Obstacles and NPCs in the game
    std::vector<Obstacles> obstacles;
    std::vector<Npc> npcs;
+   // Ada Interface
+   std::vector<AdaInterfaceButtons> AdaInterfaceButtons;
+   
 };
 typedef struct GameObjects GameObjects;
 
@@ -141,10 +166,11 @@ void renderNPCDialogs(Window* window, Textures* textures, GameObjects* gameObjec
 void renderRailCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e);
 void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles);
 void renderAdaDialogs(Window* window, Textures* textures, GameObjects* gameObjects);
+void renderAdaInterface(Window* window, Textures* textures, GameObjects* gameObjects);
 
 // Events functions:
 void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects);
-void handlePuzzleEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles);
+void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles, Textures* textures);
 void handleTheMovementAndCollisions(SDL_Event& e, Textures* textures, GameObjects* gameObjects);
 
 // Initialization functions:
@@ -156,6 +182,7 @@ void cutNPCSpritesheet(Textures* textures);
 void setNpc(GameObjects* gameObjects);
 void getNPCDialog(Window* window, Textures* textures);
 void getAdaInitializationDialog(Window* window, Textures* textures);
+void setAdaInterfaceButtons(GameObjects* gameObjects, Textures* textures);
 
 void cutRailSpritesheet(Textures* textures);
 void setRailSpritesPosition(Textures* textures, Puzzles* puzzles);
@@ -166,6 +193,8 @@ void setCaesarSpritesPosition(Textures* textures, Puzzles* puzzles);
 
 void cutAlphabetSpritesheet(Textures* textures);
 void setAlphabetPositionForRail(Textures* textures, Puzzles* puzzles);
+
+void cutInterfaceSpritesheet(Textures* textures);
 
 // MISC
 void automaticCollisions(SDL_Event &e, GameObjects* gameObjects);

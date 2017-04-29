@@ -1,19 +1,8 @@
-﻿  collisions.cpp
-  Main.cpp
+﻿  Main.cpp
 c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(275): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(415): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  Compiling...
-  staticFunctions.cpp
-  npc.cpp
-  Window.cpp
-  Texture.cpp
-  Rail.cpp
-  Character.cpp
-  Caesar.cpp
-  Alphabet.cpp
-  Ada.cpp
-  Generating Code...
+c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(277): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(286): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(441): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(459): warning C4018: '<': signed/unsigned mismatch
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game06\Debug\Game01.exe
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game06\Debug\Game01.pdb (Full PDB)

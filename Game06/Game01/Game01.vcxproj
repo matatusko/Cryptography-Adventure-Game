@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ada.cpp" />
+    <ClCompile Include="AdaInterfaceButtons.cpp" />
     <ClCompile Include="Alphabet.cpp" />
     <ClCompile Include="Caesar.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -33,9 +34,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ada.h" />
+    <ClInclude Include="AdaInterfaceButtons.h" />
     <ClInclude Include="Alphabet.h" />
     <ClInclude Include="Caesar.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="npc.h" />
     <ClInclude Include="Rail.h" />

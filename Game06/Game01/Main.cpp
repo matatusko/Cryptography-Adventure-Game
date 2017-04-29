@@ -55,7 +55,7 @@ void gameLoop(Textures* textures, Window* window, Puzzles* puzzles, GameObjects*
          }
 
          handleInteractionInput(e, gameObjects);
-         handlePuzzleEvents(e, gameObjects, puzzles);
+         handlePuzzleAndInterfaceEvents(e, gameObjects, puzzles, textures);
          handleTheMovementAndCollisions(e, textures, gameObjects);
          // automaticCollisions(e, gameObjects);
       }
@@ -231,12 +231,17 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
       gameObjects->interactionFlag = checkForInteraction(gameObjects);
       gameObjects->currentNPCdialog = rand() % 6;
    }
+   // Open up the Ada Interface screen if she's active
+   if (gameObjects->ada.getAdaActive() == true &&
+      e.key.keysym.sym == SDLK_ESCAPE) {
+      gameObjects->interactionFlag = Interaction::AdaInterface;
+   }
    // When the AdaInitialization event is running, checks for space to increase the current dialog being shown
    // to the player
    if (e.type == SDL_KEYDOWN &&
       e.key.keysym.sym == SDLK_SPACE &&
-      gameObjects->interactionFlag == Interaction::AdaInitialization
-      && e.key.repeat == 0) {
+      gameObjects->interactionFlag == Interaction::AdaInitialization &&
+      e.key.repeat == 0) {
       gameObjects->adaInitializationDialog++;
       // Dialog over, set Ada to active so she follows around and reset interaction flag to none
       if (gameObjects->adaInitializationDialog > 3) {
@@ -251,8 +256,8 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
    // Run the dialog for the Rail Cipther event
    if (e.type == SDL_KEYDOWN &&
       e.key.keysym.sym == SDLK_SPACE &&
-      gameObjects->interactionFlag == Interaction::RailDialog
-      && e.key.repeat == 0) {
+      gameObjects->interactionFlag == Interaction::RailDialog &&
+      e.key.repeat == 0) {
       gameObjects->adaCurrentRailDialog++;
       // Change the interaction to Rail Cipher when the right place in dialog occurs 
       if (gameObjects->adaCurrentRailDialog == 5) {
@@ -265,8 +270,14 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
    }
 }
 
-void handlePuzzleEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles)
+void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles, Textures* textures)
 {
+   // Handle the mouse movement for Ada interface
+   if (gameObjects->interactionFlag == Interaction::AdaInterface) {
+      for (int i = 0; i < gameObjects->AdaInterfaceButtons.size(); i++) {
+         gameObjects->AdaInterfaceButtons[i].handleEvents(&e, textures);
+      }
+   }
    // Handle the mouse movement for rail cipher
    if (gameObjects->interactionFlag == Interaction::RailCipher) {
       for (int i = 0; i < 60; i++) {
@@ -317,6 +328,7 @@ void renderEverything(Window* window, Textures* textures, GameObjects* gameObjec
    renderMainGameScreen(window, textures, gameObjects, puzzles);
    renderNPCDialogs(window, textures, gameObjects);
    renderAdaDialogs(window, textures, gameObjects);
+   renderAdaInterface(window, textures, gameObjects);
    renderRailCipher(window, textures, gameObjects, puzzles, e);
    renderCaesarCipher(window, textures, gameObjects, puzzles);
 
@@ -397,6 +409,38 @@ void renderAdaDialogs(Window* window, Textures* textures, GameObjects* gameObjec
    if (gameObjects->interactionFlag == Interaction::RailDialog) {
       textures->dialogBox.render(window, 50, 50);
       textures->adaRailDialog[gameObjects->adaCurrentRailDialog - 1].render(window, 75, 75);
+   }
+}
+
+void renderAdaInterface(Window* window, Textures* textures, GameObjects* gameObjects) {
+   
+   if (gameObjects->interactionFlag == Interaction::AdaInterface) {
+      if (textures->currentHelp == CurrentHelp::AdaHelpWindow) {
+         textures->adaHelpWindow.render(window, 0, 0);
+      }
+      else if (textures->currentHelp == CurrentHelp::CaesarExplanation) {
+         textures->caesarExplanation.render(window, 0, 0);
+      }
+      else if (textures->currentHelp == CurrentHelp::RailExplanation) {
+         textures->railExplanation.render(window, 0, 0);
+      }
+      else if (textures->currentHelp == CurrentHelp::PigpenExplanation) {
+         textures->pigpenExplanation.render(window, 0, 0);
+      }
+      else if (textures->currentHelp == CurrentHelp::MorseExplanation) {
+         textures->morseExplanation.render(window, 0, 0);
+      }
+      else if (textures->currentHelp == CurrentHelp::HexExplanation) {
+         textures->hexExplanation.render(window, 0, 0);
+      }
+      else if (textures->currentHelp == CurrentHelp::None) {
+         textures->currentHelp = CurrentHelp::AdaHelpWindow;
+         gameObjects->interactionFlag = Interaction::None;
+      }
+      
+      for (int i = 0; i < gameObjects->AdaInterfaceButtons.size(); i++) {
+         gameObjects->AdaInterfaceButtons[i].render(window, textures);
+      }
    }
 }
 
