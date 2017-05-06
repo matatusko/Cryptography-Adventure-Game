@@ -92,6 +92,8 @@ struct Textures {
    Texture state_7;
    Texture caesarButtonsSpritesheet;
    SDL_Rect caesarButtons[21];
+   // Morse code textures
+   
    // Ada Interface Textures
    Texture adaHelpWindow;
    Texture caesarExplanation;
