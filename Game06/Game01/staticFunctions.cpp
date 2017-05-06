@@ -313,6 +313,13 @@ bool loadMedia(Textures *textures, Window *window)
          success = false;
       }
    cutCaesarButtons(textures);
+
+   //Load Morse Code textures :
+   //load Ada Background
+	if (!(textures->morse_screen.loadFromFile("images/morse_img/morse.png", window))) {
+		std::cout << "Failed to load the morse_screen texture" << std::endl;
+		success = false;
+	}
       
    // Load the alphabet spritesheet
    if (!(textures->alphabet.loadFromFile("images/alphabet.png", window))) {

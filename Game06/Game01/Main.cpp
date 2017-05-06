@@ -198,6 +198,15 @@ Interaction checkForInteraction(GameObjects* gameObjects)
       // return the correct interaction
       return Interaction::RailDialog;
    }
+   // check for interaction fo the Morse puzzle in the top-right dungeon
+   if ((gameObjects->character.getCurrentLocation() == Location::World) && (gameObjects->ada.getAdaActive() == true) &&
+      (gameObjects->character.getCurrentDirection() == Direction::Up) &&
+      ((gameObjects->character.getPosX() == 3456 && gameObjects->character.getPosY() == 544) || 
+      (gameObjects->character.getPosX() == 3488 && gameObjects->character.getPosY() == 544))) {
+      // return the correct interaction
+      return Interaction::MorseCode;
+   }
+
    // I have no idea why he locations are supposed to be like this :D I suppose 2nd and 4th if-statement make sense
    // But the 1st and 3rd are trial-and-error :D
    for (auto npc : gameObjects->npcs) {
@@ -268,7 +277,15 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
          gameObjects->interactionFlag = Interaction::None;
       }
    }
-}
+   //Run the Morse Code puzzle
+   if (e.type == SDL_KEYDOWN &&
+      e.key.keysym.sym == SDLK_SPACE &&
+      gameObjects->interactionFlag == Interaction::MorseCode &&
+      e.key.repeat == 0) {
+         gameObjects->interactionFlag = Interaction::MorseCode;
+      }
+   }
+
 
 void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles, Textures* textures)
 {
@@ -331,6 +348,7 @@ void renderEverything(Window* window, Textures* textures, GameObjects* gameObjec
    renderAdaInterface(window, textures, gameObjects);
    renderRailCipher(window, textures, gameObjects, puzzles, e);
    renderCaesarCipher(window, textures, gameObjects, puzzles);
+   renderMorseCode(window, textures, gameObjects, puzzles);
 
    // Update screen
    SDL_RenderPresent(window->renderer);
@@ -509,4 +527,13 @@ void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObj
          textures->state_6.render(window, 0, 0);
       }
    }
+}
+
+void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles)
+{
+   // Render Casar
+   if (gameObjects->interactionFlag == Interaction::MorseCode) {
+      textures->morse_screen.render(window, 0, 0);
+   }
+
 }

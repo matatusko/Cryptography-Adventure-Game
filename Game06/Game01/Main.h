@@ -33,6 +33,7 @@ enum class Interaction {
    RailDialog,
    RailCipher,
    CaesarCipher,
+   MorseCode,
    None
 };
 
@@ -93,7 +94,7 @@ struct Textures {
    Texture caesarButtonsSpritesheet;
    SDL_Rect caesarButtons[21];
    // Morse code textures
-   
+   Texture morse_screen;
    // Ada Interface Textures
    Texture adaHelpWindow;
    Texture caesarExplanation;
@@ -167,6 +168,7 @@ void renderWorld(Window* window, Textures* textures, GameObjects* gameObjects);
 void renderNPCDialogs(Window* window, Textures* textures, GameObjects* gameObjects);
 void renderRailCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e);
 void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles);
+void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles);
 void renderAdaDialogs(Window* window, Textures* textures, GameObjects* gameObjects);
 void renderAdaInterface(Window* window, Textures* textures, GameObjects* gameObjects);
 
