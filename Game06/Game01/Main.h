@@ -78,6 +78,8 @@ struct Textures {
    // Alphabet for different puzzles
    Texture alphabet;
    SDL_Rect alphabetLetters[26];
+   Texture letters;
+   SDL_Rect lettersLetters[26];
    // Rail cipher textures
    Texture railCipher;
    Texture AdaRailCipherScreen;
@@ -117,6 +119,7 @@ typedef struct Textures Textures;
 #include "Caesar.h"
 #include "Alphabet.h"
 #include "AdaInterfaceButtons.h"
+#include "Morse.h"
 
 struct Puzzles {
    // Variables related to the rail cipher
@@ -124,6 +127,8 @@ struct Puzzles {
    std::vector<Rail> rail;
    // Varaibles related to the caaesar cipher
    std::vector<Caesar> caesar;
+   // Morse variables
+   std::vector<Morse> morse;
 };
 typedef struct Puzzles Puzzles;
 
@@ -197,6 +202,8 @@ void setCaesarSpritesPosition(Textures* textures, Puzzles* puzzles);
 
 void cutAlphabetSpritesheet(Textures* textures);
 void setAlphabetPositionForRail(Textures* textures, Puzzles* puzzles);
+
+void cutLettersSpritesheet(Textures* textures);
 
 void cutInterfaceSpritesheet(Textures* textures);
 

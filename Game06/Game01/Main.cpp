@@ -201,8 +201,8 @@ Interaction checkForInteraction(GameObjects* gameObjects)
    // check for interaction fo the Morse puzzle in the top-right dungeon
    if ((gameObjects->character.getCurrentLocation() == Location::World) && (gameObjects->ada.getAdaActive() == true) &&
       (gameObjects->character.getCurrentDirection() == Direction::Up) &&
-      ((gameObjects->character.getPosX() == 3456 && gameObjects->character.getPosY() == 544) || 
-      (gameObjects->character.getPosX() == 3488 && gameObjects->character.getPosY() == 544))) {
+      ((gameObjects->character.getPosX() == 3488 && gameObjects->character.getPosY() == 544) || 
+      (gameObjects->character.getPosX() == 3520 && gameObjects->character.getPosY() == 544))) {
       // return the correct interaction
       return Interaction::MorseCode;
    }
@@ -310,6 +310,7 @@ void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzz
          puzzles->caesar[i].handleEvent(&e);
       }
    }
+   // Handle the mouse movement for Morse
 }
 
 void handleTheMovementAndCollisions(SDL_Event& e, Textures* textures, GameObjects* gameObjects)
@@ -484,6 +485,14 @@ void renderRailCipher(Window* window, Textures* textures, GameObjects* gameObjec
    }
 }
 
+void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles)
+{
+   if (gameObjects->interactionFlag == Interaction::MorseCode) {
+      textures->morse_screen.render(window, 0, 0);
+   }
+
+}
+
 void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles)
 {
    // Render Casar
@@ -529,11 +538,4 @@ void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObj
    }
 }
 
-void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles)
-{
-   // Render Casar
-   if (gameObjects->interactionFlag == Interaction::MorseCode) {
-      textures->morse_screen.render(window, 0, 0);
-   }
 
-}

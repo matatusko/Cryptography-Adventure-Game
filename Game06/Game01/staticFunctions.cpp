@@ -327,6 +327,12 @@ bool loadMedia(Textures *textures, Window *window)
       success = false;
    }
    cutAlphabetSpritesheet(textures);
+   //Load letters spritesheet
+//    if (!(textures->alphabet.loadFromFile("images/morse_img/letters.png", window))) {
+//       std::cout << "Failed to load the letters texture" << std::endl;
+//       success = false;
+//    }
+//    cutLettersSpritesheet(textures);
 
    // Load Ada Interface Textures
    if (!(textures->adaHelpWindow.loadFromFile("images/Ada_interface/main_screen.png", window))) {
@@ -403,6 +409,24 @@ void cutAlphabetSpritesheet(Textures* textures)
          textures->alphabetLetters[curr].y = y * 54;
          textures->alphabetLetters[curr].w = 54;
          textures->alphabetLetters[curr].h = 54;
+      }
+   }
+}
+
+//Letters for morse code
+void cutLettersSpritesheet(Textures* textures)
+{
+   // Cut the spritesheet
+   for (int y = 0, curr = 0; y < 4; y++) {
+      for (int x = 0; x < 8; x++, curr++)
+      {
+         if (curr >= 26) {
+            break;
+         }
+         textures->lettersLetters[curr].x = x * 100;
+         textures->lettersLetters[curr].y = y * 100;
+         textures->lettersLetters[curr].w = 100;
+         textures->lettersLetters[curr].h = 100;
       }
    }
 }
@@ -498,6 +522,11 @@ void setCaesarSpritesPosition(Textures* textures, Puzzles* puzzles)
    puzzles->caesar.push_back(Caesar(404, 272, 19));
    puzzles->caesar.push_back(Caesar(316, 184, 20));
 }
+
+// void setMorseSpritesPosition(Textures* textures, Puzzles* puzzles)
+// {
+//       puzzles->morse.push_back(Caesar(316, 448, 0));
+// }
 
 void setObstacles(GameObjects* gameObjects)
 {
