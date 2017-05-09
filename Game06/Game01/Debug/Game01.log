@@ -1,8 +1,10 @@
-﻿  Main.cpp
+﻿  staticFunctions.cpp
+  Main.cpp
 c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(277): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(286): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(441): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(459): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(303): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(312): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(472): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(489): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game06\Debug\Game01.exe
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game06\Debug\Game01.pdb (Full PDB)

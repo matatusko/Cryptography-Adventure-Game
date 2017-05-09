@@ -65,6 +65,8 @@ void gameLoop(Textures* textures, Window* window, Puzzles* puzzles, GameObjects*
       // FOR DEBUGGING
       // printf("pos X: %d, pos y: %d\n", character.getPosX(), character.getPosY());
       // printf("current inteaction = %d\n", (int)interactionFlag);
+      printf("dialog interaction: %d\n", gameObjects->adaCurrentRailDialog);
+      printf("rail done? %d\n", gameObjects->isRailCompleted);
 
       // Sleep for a short while to add pixel-styled movement
       SDL_Delay(50);
@@ -190,9 +192,9 @@ Interaction checkForInteraction(GameObjects* gameObjects)
       return Interaction::AdaInitialization;
    }
 
-   // Check for interaction for rail puzzle in the left-bottom 'dungeon'
+   // Check for interaction for rail puzzle in the right-bottom 'dungeon'
    if ((gameObjects->character.getCurrentLocation() == Location::World) && (gameObjects->ada.getAdaActive() == true) &&
-      (gameObjects->character.getCurrentDirection() == Direction::Up) &&
+      (gameObjects->character.getCurrentDirection() == Direction::Up) && (gameObjects->isRailCompleted == false) &&
       ((gameObjects->character.getPosX() == 3360 && gameObjects->character.getPosY() == 1952) || 
       (gameObjects->character.getPosX() == 3328 && gameObjects->character.getPosY() == 1952))) {
       // return the correct interaction
@@ -239,6 +241,10 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
       gameObjects->interactionFlag == Interaction::None) {
       gameObjects->interactionFlag = checkForInteraction(gameObjects);
       gameObjects->currentNPCdialog = rand() % 6;
+      // Reset the rail dialog to 0 if the puzzle is not completed
+      if (gameObjects->isRailCompleted == false) {
+         gameObjects->adaCurrentRailDialog = 0;
+      }
    }
    // Open up the Ada Interface screen if she's active
    if (gameObjects->ada.getAdaActive() == true &&
@@ -262,21 +268,25 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
          gameObjects->interactionFlag = Interaction::CaesarCipher;
       }
    }
-   // Run the dialog for the Rail Cipther event
-   if (e.type == SDL_KEYDOWN &&
-      e.key.keysym.sym == SDLK_SPACE &&
-      gameObjects->interactionFlag == Interaction::RailDialog &&
-      e.key.repeat == 0) {
-      gameObjects->adaCurrentRailDialog++;
+
+   // Run the dialog for the Rail Cipher event
+   if (gameObjects->interactionFlag == Interaction::RailDialog) {
+      if (e.type == SDL_KEYDOWN &&
+         e.key.keysym.sym == SDLK_SPACE &&
+         e.key.repeat == 0) {
+            gameObjects->adaCurrentRailDialog++;
+      }
       // Change the interaction to Rail Cipher when the right place in dialog occurs 
-      if (gameObjects->adaCurrentRailDialog == 5) {
+      if (gameObjects->adaCurrentRailDialog == 5 && gameObjects->isRailCompleted == false) {
          gameObjects->interactionFlag = Interaction::RailCipher;
       }
       // Puzzles were solved and rail event is over
       if (gameObjects->adaCurrentRailDialog >= 8) {
+         gameObjects->isRailCompleted = true;
          gameObjects->interactionFlag = Interaction::None;
       }
    }
+
    //Run the Morse Code puzzle
    if (e.type == SDL_KEYDOWN &&
       e.key.keysym.sym == SDLK_SPACE &&
@@ -285,7 +295,6 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
          gameObjects->interactionFlag = Interaction::MorseCode;
       }
    }
-
 
 void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles, Textures* textures)
 {
@@ -452,6 +461,9 @@ void renderAdaInterface(Window* window, Textures* textures, GameObjects* gameObj
       else if (textures->currentHelp == CurrentHelp::HexExplanation) {
          textures->hexExplanation.render(window, 0, 0);
       }
+      else if (textures->currentHelp == CurrentHelp::AlanTuring) {
+         textures->alanTuringExplanation.render(window, 0, 0);
+      }
       else if (textures->currentHelp == CurrentHelp::None) {
          textures->currentHelp = CurrentHelp::AdaHelpWindow;
          gameObjects->interactionFlag = Interaction::None;
@@ -474,15 +486,42 @@ void renderRailCipher(Window* window, Textures* textures, GameObjects* gameObjec
          puzzles->rail[i].render(window, textures);
       }
       // render each Alphabet letter for the user input
-      // TODO: solved function
       for (int i = 0; i < puzzles->railAlphabet.size(); i++) {
          puzzles->railAlphabet[i].render(window, textures);
       }
-      // Close the screen if esc clicked
-      if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
+      if (checkIfRailSolved(puzzles)) {
+         gameObjects->isRailCompleted = true;
+         gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(50, 635, 14, CurrentHelp::AlanTuring));
+         gameObjects->adaCurrentRailDialog = 6;
          gameObjects->interactionFlag = Interaction::RailDialog;
       }
+      // Close the screen if esc clicked
+      if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
+         gameObjects->adaCurrentRailDialog = 0;
+         gameObjects->interactionFlag = Interaction::None;
+      }
    }
+}
+
+bool checkIfRailSolved(Puzzles* puzzles) 
+{
+/*   for (int i = 0; i < puzzles->railAlphabet.size(); i++) {
+      puzzles->railAlphabet[i].getCurrectSprite = 25;
+   } */
+   if (puzzles->railAlphabet[0].getCurrectSprite() == 0 &&
+      puzzles->railAlphabet[1].getCurrectSprite() == 11 && 
+      puzzles->railAlphabet[2].getCurrectSprite() == 0 && 
+      puzzles->railAlphabet[3].getCurrectSprite() == 13 && 
+      puzzles->railAlphabet[4].getCurrectSprite() == 19 && 
+      puzzles->railAlphabet[5].getCurrectSprite() == 20 && 
+      puzzles->railAlphabet[6].getCurrectSprite() == 17 && 
+      puzzles->railAlphabet[7].getCurrectSprite() == 8 && 
+      puzzles->railAlphabet[8].getCurrectSprite() == 13 && 
+      puzzles->railAlphabet[9].getCurrectSprite() == 6 ) {
+      return true;
+   }
+
+   return false;
 }
 
 void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles)

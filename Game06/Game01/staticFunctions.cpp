@@ -14,6 +14,7 @@ bool initializeVariables(Textures* textures, Window* window, Puzzles* puzzles, G
    setAlphabetPositionForRail(textures, puzzles);
    setRailSpritesPosition(textures, puzzles);
    getAdaRailDialog(window, textures);
+   gameObjects->isRailCompleted = false;
 
    // Initialize Caesar Cipher
    setCaesarSpritesPosition(textures, puzzles);
@@ -150,22 +151,22 @@ void getAdaRailDialog(Window *window, Textures* textures)
 {
    SDL_Color dialogColor = { 255, 0, 0 };
    if (!(textures->adaRailDialog[0].loadFromText(window, dialogColor,
-      "Wrrruum! It appears my creator has left a message here!\n Give me a second, I will download it..."))) {
+      "Wrrruum! It appears my creator has left a message here!\nGive me a second, I will download it..."))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaRailDialog[1].loadFromText(window, dialogColor,
-      "1... 2... 3... Downloading... \n FINISHED"))) {
+      "1... 2... 3... Downloading... \nFINISHED"))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaRailDialog[2].loadFromText(window, dialogColor,
-      "I got the message, however it appears to be encrypther using a mix of rail and pigpen cipher :(\n But I'm sure you can break the code."))) {
+      "I got the message, however it appears to be encrypther using a mix of rail and pigpen cipher :(\nBut I'm sure you can break the code."))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaRailDialog[3].loadFromText(window, dialogColor,
-      "Remember, you can press X to access my console anytime and get help with various ciphers.\n\n GOOD LUCK!"))) {
+      "Remember, you can press ESC key to access my console anytime and get help with various ciphers.\n\nGOOD LUCK!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -175,12 +176,13 @@ void getAdaRailDialog(Window *window, Textures* textures)
       return;
    }
    if (!(textures->adaRailDialog[5].loadFromText(window, dialogColor,
-      "Good job! The code read: ALAN TURING. \n... Oh, Alan! I remember him, a great mathematician and cryptographer."))) {
+      "Good job! The code reads: ALAN TURING. \n... Oh, Alan! I remember him, a great mathematician and cryptographer."))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaRailDialog[6].loadFromText(window, dialogColor,
-      "Remember his name, I've got a feeling it will be needed for the final puzzle!"))) {
+      "You can read more about his achievements using my interface by pressing ESC key.\n\n\
+Remember his name, I've got a feeling it will be needed for the final puzzle!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -359,6 +361,10 @@ bool loadMedia(Textures *textures, Window *window)
       std::cout << "Failed to load the ada rail help window" << std::endl;
       success = false;
    }
+   if (!(textures->alanTuringExplanation.loadFromFile("images/Ada_interface/alan.png", window))) {
+      std::cout << "Failed to load the ada alan help window" << std::endl;
+      success = false;
+   }
    if (!(textures->interfaceButtonsSpritesheet.loadFromFile("images/Ada_interface/interfaceButtons.png", window))) {
       std::cout << "Failed to load the ada interface buttons" << std::endl;
       success = false;
@@ -385,7 +391,7 @@ void cutRailSpritesheet(Textures* textures)
 void cutInterfaceSpritesheet(Textures* textures)
 {
    // Cut the spritesheet
-   for (int y = 0, curr = 0; y < 7; y++) {
+   for (int y = 0, curr = 0; y < 8; y++) {
       for (int x = 0; x < 2; x++, curr++)
       {
          textures->interfaceButtons[curr].x = x * 133;

@@ -11,6 +11,10 @@ Alphabet::Alphabet(int x, int y, int sprite)
    currentSprite = sprite;
 }
 
+int Alphabet::getCurrectSprite() {
+   return currentSprite;
+}
+
 void Alphabet::render(Window* window, Textures* textures)
 {
    textures->alphabet.render(window, position.x, position.y, &(textures->alphabetLetters[currentSprite]));

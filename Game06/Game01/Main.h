@@ -51,6 +51,7 @@ enum class CurrentHelp {
    MorseExplanation,
    HexExplanation,
    AdaHelpWindow,
+   AlanTuring,
    None
 };
 
@@ -104,8 +105,9 @@ struct Textures {
    Texture pigpenExplanation;
    Texture morseExplanation;
    Texture hexExplanation;
+   Texture alanTuringExplanation;
    Texture interfaceButtonsSpritesheet;
-   SDL_Rect interfaceButtons[14];
+   SDL_Rect interfaceButtons[16];
    CurrentHelp currentHelp;
 };
 typedef struct Textures Textures;
@@ -138,6 +140,7 @@ struct GameObjects {
    int playerPositionX, playerPositionY;
    int currentAnimation;
    Interaction interactionFlag;
+   bool isRailCompleted;
    // Ada variables;
    Ada ada;
    int adaPositionX, adaPositionY;
@@ -181,6 +184,7 @@ void renderAdaInterface(Window* window, Textures* textures, GameObjects* gameObj
 void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects);
 void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles, Textures* textures);
 void handleTheMovementAndCollisions(SDL_Event& e, Textures* textures, GameObjects* gameObjects);
+bool checkIfRailSolved(Puzzles* puzzles);
 
 // Initialization functions:
 bool loadMedia(Textures *textures, Window *window);

@@ -26,6 +26,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="collisions.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Morse.cpp" />
     <ClCompile Include="npc.cpp" />
     <ClCompile Include="Rail.cpp" />
     <ClCompile Include="staticFunctions.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Morse.h" />
     <ClInclude Include="npc.h" />
     <ClInclude Include="Rail.h" />
     <ClInclude Include="Texture.h" />

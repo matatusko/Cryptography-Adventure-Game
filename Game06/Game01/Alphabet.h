@@ -9,6 +9,8 @@ public:
 
    void render(Window* window, Textures* textures);
 
+   int getCurrectSprite();
+
 private:
    SDL_Point position;
 
