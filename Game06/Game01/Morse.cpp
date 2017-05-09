@@ -10,10 +10,10 @@ Morse::Morse(int x, int y, int sprite)
    coloredSprite = sprite + 30;
 }
 
-void Morse::render(Window* window, Textures* textures)
-{
-   textures->morse_screen.render(window, position.x, position.y, &(textures->MorseButtons[currentSprite]));
-}
+// void Morse::render(Window* window, Textures* textures)
+// {
+//    textures->morse_screen.render(window, position.x, position.y, &(textures->MorseButtons[currentSprite]));
+// }
 
 void Morse::handleEvents(SDL_Event* e)
 {
