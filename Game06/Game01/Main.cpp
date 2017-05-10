@@ -1,4 +1,7 @@
 #include "Main.h"
+   //Sound effects
+   Mix_Chunk *sam = NULL;
+   Mix_Chunk *morse = NULL;
 
 int main(int argc, char* argv[])
 {
@@ -12,6 +15,17 @@ int main(int argc, char* argv[])
    window.initialize();
    srand(time(NULL));
 
+
+   //Initialise mixer
+      if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+      {
+            printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+      }
+
+   //load sounds
+      sam = Mix_LoadWAV( "audio/morse/sam.wav" );
+    morse = Mix_LoadWAV( "audio/morse/morse.wav" );
+
    // Load all the necessary media to run the game and place them into corresponding textures. 
    // If failed print an error and shut down the game.
    if (!loadMedia(&textures, &window)) {
@@ -21,10 +35,17 @@ int main(int argc, char* argv[])
       gameLoop(&textures, &window, &puzzles, &gameObjects);
    }
 
+      // cleanup sounds
+    Mix_FreeChunk( sam );
+    Mix_FreeChunk( morse );
+       //Quit SDL_mixer
+    Mix_CloseAudio();
+
    // Close window, renderer and all the other SDL stuff
    window.cleanup();
    return 0;
 }
+
 
 void gameLoop(Textures* textures, Window* window, Puzzles* puzzles, GameObjects* gameObjects)
 {
@@ -528,6 +549,7 @@ bool checkIfRailSolved(Puzzles* puzzles)
    return false;
 }
 
+
 void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e)
 {
    if (gameObjects->interactionFlag == Interaction::MorseCode) {
@@ -547,6 +569,15 @@ void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObject
       }
       if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
          gameObjects->interactionFlag = Interaction::None;
+      }
+
+      if (puzzles->morse[0].isPressed()) {
+            Mix_PlayChannel(-1, sam, 0);
+            puzzles->morse[0].resetPress();
+      }
+      if (puzzles->morse[1].isPressed()) {
+            Mix_PlayChannel(-1, morse, 0);
+            puzzles->morse[1].resetPress();
       }
    }
 }

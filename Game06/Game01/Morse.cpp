@@ -1,6 +1,15 @@
 #include "Main.h"
 #include "Morse.h"
 
+
+bool Morse::isPressed() {
+   return pressed;
+}
+
+void Morse::resetPress() {
+   pressed = false;
+}
+
 Morse::Morse(int x, int y, int current_sprite)
 {
    mPosition.x = x;
