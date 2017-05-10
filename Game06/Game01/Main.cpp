@@ -63,10 +63,9 @@ void gameLoop(Textures* textures, Window* window, Puzzles* puzzles, GameObjects*
       renderEverything(window, textures, gameObjects, puzzles, e);
 
       // FOR DEBUGGING
-      // printf("pos X: %d, pos y: %d\n", character.getPosX(), character.getPosY());
-      // printf("current inteaction = %d\n", (int)interactionFlag);
-      printf("dialog interaction: %d\n", gameObjects->adaCurrentRailDialog);
-      printf("rail done? %d\n", gameObjects->isRailCompleted);
+      // printf("pos X: %d, pos y: %d\n", gameObjects->character.getPosX(), gameObjects->character.getPosY());
+      // printf("dialog interaction: %d\n", gameObjects->adaCurrentRailDialog);
+      // printf("rail done? %d\n", gameObjects->isRailCompleted);
 
       // Sleep for a short while to add pixel-styled movement
       SDL_Delay(50);
