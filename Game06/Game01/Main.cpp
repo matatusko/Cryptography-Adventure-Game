@@ -323,6 +323,9 @@ void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzz
       for (int i = 0; i < puzzles->morseAlphabet.size(); i++) {
          puzzles->morseAlphabet[i].handleEvents(&e);
       }
+      for (int i= 0; i<2; i++) {
+            puzzles->morse[i].handleEvent(&e);
+      }
    }
 }
 
@@ -532,6 +535,9 @@ void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObject
       // Render the alphabet buttons for answer
       for (int i = 0; i < puzzles->morseAlphabet.size(); i++) {
          puzzles->morseAlphabet[i].render(window, textures);
+      }
+      for (int i = 0; i < 2; i++) {
+            puzzles->morse[i].render(window, textures);
       }
       // Check if the puzzle has been completed
       if (checkIfMorseSolved(puzzles)) {

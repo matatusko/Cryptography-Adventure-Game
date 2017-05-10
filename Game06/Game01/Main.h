@@ -98,6 +98,9 @@ struct Textures {
    SDL_Rect caesarButtons[21];
    // Morse code textures
    Texture morse_screen;
+   Texture morseButtonSpritesheet;
+   SDL_Rect morseButton[2];
+
    // Ada Interface Textures
    Texture adaHelpWindow;
    Texture caesarExplanation;
@@ -206,6 +209,9 @@ void getAdaRailDialog(Window *window, Textures* textures);
 
 void cutCaesarButtons(Textures* textures);
 void setCaesarSpritesPosition(Textures* textures, Puzzles* puzzles);
+
+void cutMorseButtons(Textures* textures);
+void setMorseSpritesPosition(Textures* textures, Puzzles* puzzles);
 
 void cutAlphabetSpritesheet(Textures* textures);
 void setAlphabetPositionForRail(Textures* textures, Puzzles* puzzles);

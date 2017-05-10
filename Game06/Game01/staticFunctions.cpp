@@ -20,6 +20,7 @@ bool initializeVariables(Textures* textures, Window* window, Puzzles* puzzles, G
    setCaesarSpritesPosition(textures, puzzles);
 
    // Initialize Morse Cipher
+   setMorseSpritesPosition(textures, puzzles);
    setAlphabetPositionForMorse(textures, puzzles);
    gameObjects->isRailCompleted = false;
 
@@ -326,6 +327,12 @@ bool loadMedia(Textures *textures, Window *window)
 		std::cout << "Failed to load the morse_screen texture" << std::endl;
 		success = false;
 	}
+      // Load button spritesheet
+      if (!(textures->morseButtonSpritesheet.loadFromFile("images/morse_img/audio_buttons.png", window))) {
+		std::cout << "Failed to load the audio_buttons texture" << std::endl;
+		success = false;
+	}
+      cutMorseButtons(textures);
       
    // Load the alphabet spritesheet
    if (!(textures->alphabet.loadFromFile("images/alphabet.png", window))) {
@@ -463,6 +470,28 @@ void cutCaesarButtons(Textures* textures)
 //      std::cout << "endx" << curr << std::endl;
 //      std::cout << "y" << y << std::endl;
    }
+}
+
+void cutMorseButtons(Textures* textures)
+{
+
+
+         textures->morseButton[0].x = 0;
+         textures->morseButton[0].y = 0;
+         textures->morseButton[0].w = 100;
+         textures->morseButton[0].h = 100;
+
+         textures->morseButton[1].x = 0;
+         textures->morseButton[1].y = 100;
+         textures->morseButton[1].w = 100;
+         textures->morseButton[1].h = 100;
+
+}
+
+void setMorseSpritesPosition(Textures* textures, Puzzles* puzzles)
+{
+   puzzles->morse.push_back(Morse(450, 345, 0));
+   puzzles->morse.push_back(Morse(450, 520, 1));
 }
 
 void setAdaInterfaceButtons(GameObjects* gameObjects, Textures* textures)

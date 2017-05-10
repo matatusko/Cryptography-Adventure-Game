@@ -5,12 +5,27 @@ class Morse
 public:
    Morse(int x, int y, int sprite);
 
-   void handleEvents(SDL_Event* e);
+   //Handles mouse event
+   void handleEvent(SDL_Event* e);
 
+   //Shows button sprite
    void render(Window* window, Textures* textures);
 
-private:
-   SDL_Point position;
+   //Returns pressed state
+   bool isPressed();
 
-   int currentSprite, lastSprite, coloredSprite;
+   //Resets press state
+   void resetPress();
+
+private:
+   //Top left position
+   SDL_Point mPosition;
+
+   //Currently used global sprite
+   int mCurrentSprite;
+   int mLastSprite;
+   int hoversprite;
+   int presssprite;
+
+   bool pressed;
 };
