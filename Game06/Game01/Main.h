@@ -131,6 +131,7 @@ struct Puzzles {
    std::vector<Caesar> caesar;
    // Morse variables
    std::vector<Morse> morse;
+   std::vector<Alphabet> morseAlphabet;
 };
 typedef struct Puzzles Puzzles;
 
@@ -141,6 +142,7 @@ struct GameObjects {
    int currentAnimation;
    Interaction interactionFlag;
    bool isRailCompleted;
+   bool isMorseCompleted;
    // Ada variables;
    Ada ada;
    int adaPositionX, adaPositionY;
@@ -176,7 +178,7 @@ void renderWorld(Window* window, Textures* textures, GameObjects* gameObjects);
 void renderNPCDialogs(Window* window, Textures* textures, GameObjects* gameObjects);
 void renderRailCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e);
 void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles);
-void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles);
+void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e);
 void renderAdaDialogs(Window* window, Textures* textures, GameObjects* gameObjects);
 void renderAdaInterface(Window* window, Textures* textures, GameObjects* gameObjects);
 
@@ -185,6 +187,7 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects);
 void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles, Textures* textures);
 void handleTheMovementAndCollisions(SDL_Event& e, Textures* textures, GameObjects* gameObjects);
 bool checkIfRailSolved(Puzzles* puzzles);
+bool checkIfMorseSolved(Puzzles* puzzles);
 
 // Initialization functions:
 bool loadMedia(Textures *textures, Window *window);
@@ -208,6 +211,7 @@ void cutAlphabetSpritesheet(Textures* textures);
 void setAlphabetPositionForRail(Textures* textures, Puzzles* puzzles);
 
 void cutLettersSpritesheet(Textures* textures);
+void setAlphabetPositionForMorse(Textures* textures, Puzzles* puzzles);
 
 void cutInterfaceSpritesheet(Textures* textures);
 

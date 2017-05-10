@@ -19,6 +19,10 @@ bool initializeVariables(Textures* textures, Window* window, Puzzles* puzzles, G
    // Initialize Caesar Cipher
    setCaesarSpritesPosition(textures, puzzles);
 
+   // Initialize Morse Cipher
+   setAlphabetPositionForMorse(textures, puzzles);
+   gameObjects->isRailCompleted = false;
+
    // Initialize Ada interface buttons
    setAdaInterfaceButtons(gameObjects, textures);
 
@@ -329,12 +333,6 @@ bool loadMedia(Textures *textures, Window *window)
       success = false;
    }
    cutAlphabetSpritesheet(textures);
-   //Load letters spritesheet
-//    if (!(textures->alphabet.loadFromFile("images/morse_img/letters.png", window))) {
-//       std::cout << "Failed to load the letters texture" << std::endl;
-//       success = false;
-//    }
-//    cutLettersSpritesheet(textures);
 
    // Load Ada Interface Textures
    if (!(textures->adaHelpWindow.loadFromFile("images/Ada_interface/main_screen.png", window))) {
@@ -435,6 +433,19 @@ void cutLettersSpritesheet(Textures* textures)
          textures->lettersLetters[curr].h = 100;
       }
    }
+}
+
+void setAlphabetPositionForMorse(Textures* textures, Puzzles* puzzles) 
+{
+   puzzles->morseAlphabet.push_back(Alphabet(600, 370, 0));
+   puzzles->morseAlphabet.push_back(Alphabet(650, 370, 0));
+   puzzles->morseAlphabet.push_back(Alphabet(700, 370, 0));
+
+   puzzles->morseAlphabet.push_back(Alphabet(600, 540, 0));
+   puzzles->morseAlphabet.push_back(Alphabet(650, 540, 0));
+   puzzles->morseAlphabet.push_back(Alphabet(700, 540, 0));
+   puzzles->morseAlphabet.push_back(Alphabet(750, 540, 0));
+   puzzles->morseAlphabet.push_back(Alphabet(800, 540, 0));
 }
 
 void cutCaesarButtons(Textures* textures)

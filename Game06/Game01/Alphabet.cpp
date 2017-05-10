@@ -11,7 +11,7 @@ Alphabet::Alphabet(int x, int y, int sprite)
    currentSprite = sprite;
 }
 
-int Alphabet::getCurrectSprite() {
+int Alphabet::getCurrentSprite() {
    return currentSprite;
 }
 

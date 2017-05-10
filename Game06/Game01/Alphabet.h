@@ -9,7 +9,7 @@ public:
 
    void render(Window* window, Textures* textures);
 
-   int getCurrectSprite();
+   int getCurrentSprite();
 
 private:
    SDL_Point position;

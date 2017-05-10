@@ -319,6 +319,11 @@ void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzz
       }
    }
    // Handle the mouse movement for Morse
+   if (gameObjects->interactionFlag == Interaction::MorseCode) {
+      for (int i = 0; i < puzzles->morseAlphabet.size(); i++) {
+         puzzles->morseAlphabet[i].handleEvents(&e);
+      }
+   }
 }
 
 void handleTheMovementAndCollisions(SDL_Event& e, Textures* textures, GameObjects* gameObjects)
@@ -357,7 +362,7 @@ void renderEverything(Window* window, Textures* textures, GameObjects* gameObjec
    renderAdaInterface(window, textures, gameObjects);
    renderRailCipher(window, textures, gameObjects, puzzles, e);
    renderCaesarCipher(window, textures, gameObjects, puzzles);
-   renderMorseCode(window, textures, gameObjects, puzzles);
+   renderMorseCode(window, textures, gameObjects, puzzles, e);
 
    // Update screen
    SDL_RenderPresent(window->renderer);
@@ -504,31 +509,55 @@ void renderRailCipher(Window* window, Textures* textures, GameObjects* gameObjec
 
 bool checkIfRailSolved(Puzzles* puzzles) 
 {
-/*   for (int i = 0; i < puzzles->railAlphabet.size(); i++) {
-      puzzles->railAlphabet[i].getCurrectSprite = 25;
-   } */
-   if (puzzles->railAlphabet[0].getCurrectSprite() == 0 &&
-      puzzles->railAlphabet[1].getCurrectSprite() == 11 && 
-      puzzles->railAlphabet[2].getCurrectSprite() == 0 && 
-      puzzles->railAlphabet[3].getCurrectSprite() == 13 && 
-      puzzles->railAlphabet[4].getCurrectSprite() == 19 && 
-      puzzles->railAlphabet[5].getCurrectSprite() == 20 && 
-      puzzles->railAlphabet[6].getCurrectSprite() == 17 && 
-      puzzles->railAlphabet[7].getCurrectSprite() == 8 && 
-      puzzles->railAlphabet[8].getCurrectSprite() == 13 && 
-      puzzles->railAlphabet[9].getCurrectSprite() == 6 ) {
+   if (puzzles->railAlphabet[0].getCurrentSprite() == 0 &&
+      puzzles->railAlphabet[1].getCurrentSprite() == 11 && 
+      puzzles->railAlphabet[2].getCurrentSprite() == 0 && 
+      puzzles->railAlphabet[3].getCurrentSprite() == 13 && 
+      puzzles->railAlphabet[4].getCurrentSprite() == 19 && 
+      puzzles->railAlphabet[5].getCurrentSprite() == 20 && 
+      puzzles->railAlphabet[6].getCurrentSprite() == 17 && 
+      puzzles->railAlphabet[7].getCurrentSprite() == 8 && 
+      puzzles->railAlphabet[8].getCurrentSprite() == 13 && 
+      puzzles->railAlphabet[9].getCurrentSprite() == 6 ) {
       return true;
    }
 
    return false;
 }
 
-void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles)
+void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e)
 {
    if (gameObjects->interactionFlag == Interaction::MorseCode) {
       textures->morse_screen.render(window, 0, 0);
+      // Render the alphabet buttons for answer
+      for (int i = 0; i < puzzles->morseAlphabet.size(); i++) {
+         puzzles->morseAlphabet[i].render(window, textures);
+      }
+      // Check if the puzzle has been completed
+      if (checkIfMorseSolved(puzzles)) {
+         gameObjects->isMorseCompleted = true;
+         // TODO add Sam Morse to the profile descriptions 
+         gameObjects->interactionFlag = Interaction::None;
+      }
+      if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
+         gameObjects->interactionFlag = Interaction::None;
+      }
    }
+}
 
+bool checkIfMorseSolved(Puzzles* puzzles) 
+{
+   if (puzzles->morseAlphabet[0].getCurrentSprite() == 18 &&
+      puzzles->morseAlphabet[1].getCurrentSprite() == 0 &&
+      puzzles->morseAlphabet[2].getCurrentSprite() == 12 &&
+      puzzles->morseAlphabet[3].getCurrentSprite() == 12 &&
+      puzzles->morseAlphabet[4].getCurrentSprite() == 14 &&
+      puzzles->morseAlphabet[5].getCurrentSprite() == 17 &&
+      puzzles->morseAlphabet[6].getCurrentSprite() == 18 &&
+      puzzles->morseAlphabet[7].getCurrentSprite() == 4) {
+      return true;
+   }
+   return false;
 }
 
 void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles)
