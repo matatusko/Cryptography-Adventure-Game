@@ -78,7 +78,7 @@ struct Textures {
    Texture dialogBox;
    // ADA
    Texture ada;
-   Texture adaInitializationDialog[3];
+   Texture adaInitializationDialog[8];
    // Alphabet for different puzzles
    Texture alphabet;
    SDL_Rect alphabetLetters[26];

@@ -273,13 +273,14 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
    }
    // When the AdaInitialization event is running, checks for space to increase the current dialog being shown
    // to the player
-   if (e.type == SDL_KEYDOWN &&
-      e.key.keysym.sym == SDLK_SPACE &&
-      gameObjects->interactionFlag == Interaction::AdaInitialization &&
-      e.key.repeat == 0) {
-      gameObjects->adaInitializationDialog++;
+   if (gameObjects->interactionFlag == Interaction::AdaInitialization) {
+      if (e.type == SDL_KEYDOWN &&
+         e.key.keysym.sym == SDLK_SPACE &&
+         e.key.repeat == 0) {
+         gameObjects->adaInitializationDialog++;
+      }
       // Dialog over, set Ada to active so she follows around and reset interaction flag to none
-      if (gameObjects->adaInitializationDialog > 3) {
+     if (gameObjects->adaInitializationDialog > 8) {
          gameObjects->ada.setAdaActive(true);
          gameObjects->interactionFlag = Interaction::None;
       }
@@ -313,8 +314,8 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
       gameObjects->interactionFlag == Interaction::MorseCode &&
       e.key.repeat == 0) {
          gameObjects->interactionFlag = Interaction::MorseCode;
-      }
    }
+}
 
 void handlePuzzleAndInterfaceEvents(SDL_Event &e, GameObjects* gameObjects, Puzzles* puzzles, Textures* textures)
 {

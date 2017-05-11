@@ -136,7 +136,7 @@ void getAdaInitializationDialog(Window* window, Textures* textures)
 {
    SDL_Color dialogColor = { 255, 0, 0 };
    if (!(textures->adaInitializationDialog[0].loadFromText(window, dialogColor,
-      "BZzzzZr... WARREUUUM... \n P-please.. Power. up.. wERRRRRUM"))) {
+      "BZzzzZr... WARREUUUM... \nP-please.. Power. up.. wERRRRRUM"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -146,7 +146,38 @@ void getAdaInitializationDialog(Window* window, Textures* textures)
       return;
    }
    if (!(textures->adaInitializationDialog[2].loadFromText(window, dialogColor,
-      "Thanks for the power! I will now explain the quest!"))) {
+      "Wow, thanks! Hello World! You decrypted the caesar cipher, well done!\n\
+My name is A.D.A - Advanced Digital Automation, I am a last creation of a first computer scientist, Ada Lovelace."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaInitializationDialog[3].loadFromText(window, dialogColor,
+      "Did you know that in this little town all the greatest mind in computer science throughtout \
+history did some of their best work?"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaInitializationDialog[4].loadFromText(window, dialogColor,
+      "All of them somewhat contributed to the creation of a perfect machine!\n\
+I know its hidden somewhere around in this town, although I do know what where or what it is! :(\n"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaInitializationDialog[5].loadFromText(window, dialogColor,
+   "You cracked the caesar cipher on your own, how about you give it a shot and look for my creator's final secret \
+together with me? I sense 4 different secret codes scattered across the town."))) {
+      printf("Failed to render text texture!\n");
+   return;
+   }
+   if (!(textures->adaInitializationDialog[6].loadFromText(window, dialogColor,
+      "Knowing my creator, all of the codes are encrypther via different ciphers, but I'm sure you can crack them all!\n\
+In case you need some help with certain puzzle, you can access my console by hitting ESC button."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->adaInitializationDialog[7].loadFromText(window, dialogColor,
+      "Also, check out the profile section in my console interface to learn more about the greates computer scientists!\n\
+\nGood luck!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
