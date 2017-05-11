@@ -84,6 +84,12 @@ void AdaInterfaceButtons::handleEvents(SDL_Event* e, Textures* textures)
             else if (type == CurrentHelp::AlanTuring) {
                textures->currentHelp = CurrentHelp::AlanTuring;
             }
+            else if (type == CurrentHelp::AdaLovelace) {
+               textures->currentHelp = CurrentHelp::AdaLovelace;
+            }
+            else if (type == CurrentHelp::CharlesBabbage) {
+               textures->currentHelp = CurrentHelp::CharlesBabbage;
+            }
             else if (type == CurrentHelp::None) {
                textures->currentHelp = CurrentHelp::None;
             }

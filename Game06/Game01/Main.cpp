@@ -492,6 +492,12 @@ void renderAdaInterface(Window* window, Textures* textures, GameObjects* gameObj
       else if (textures->currentHelp == CurrentHelp::AlanTuring) {
          textures->alanTuringExplanation.render(window, 0, 0);
       }
+      else if (textures->currentHelp == CurrentHelp::AdaLovelace) {
+         textures->adaLovelaceExplanation.render(window, 0, 0);
+      }
+      else if (textures->currentHelp == CurrentHelp::CharlesBabbage) {
+         textures->charlesBabbageExplanation.render(window, 0, 0);
+      }
       else if (textures->currentHelp == CurrentHelp::None) {
          textures->currentHelp = CurrentHelp::AdaHelpWindow;
          gameObjects->interactionFlag = Interaction::None;
@@ -519,7 +525,7 @@ void renderRailCipher(Window* window, Textures* textures, GameObjects* gameObjec
       }
       if (checkIfRailSolved(puzzles)) {
          gameObjects->isRailCompleted = true;
-         gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(50, 635, 14, CurrentHelp::AlanTuring));
+         gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(350, 635, 14, CurrentHelp::AlanTuring));
          gameObjects->adaCurrentRailDialog = 6;
          gameObjects->interactionFlag = Interaction::RailDialog;
       }
@@ -548,7 +554,6 @@ bool checkIfRailSolved(Puzzles* puzzles)
 
    return false;
 }
-
 
 void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e)
 {

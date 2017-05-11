@@ -53,6 +53,8 @@ enum class CurrentHelp {
    HexExplanation,
    AdaHelpWindow,
    AlanTuring,
+   AdaLovelace,
+   CharlesBabbage,
    None
 };
 
@@ -110,8 +112,10 @@ struct Textures {
    Texture morseExplanation;
    Texture hexExplanation;
    Texture alanTuringExplanation;
+   Texture adaLovelaceExplanation;
+   Texture charlesBabbageExplanation;
    Texture interfaceButtonsSpritesheet;
-   SDL_Rect interfaceButtons[16];
+   SDL_Rect interfaceButtons[20];
    CurrentHelp currentHelp;
 };
 typedef struct Textures Textures;

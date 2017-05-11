@@ -367,7 +367,15 @@ bool loadMedia(Textures *textures, Window *window)
       success = false;
    }
    if (!(textures->alanTuringExplanation.loadFromFile("images/Ada_interface/alan.png", window))) {
-      std::cout << "Failed to load the ada alan help window" << std::endl;
+      std::cout << "Failed to load the ada alan profile window" << std::endl;
+      success = false;
+   }
+   if (!(textures->adaLovelaceExplanation.loadFromFile("images/Ada_interface/lovelace.png", window))) {
+      std::cout << "Failed to load the ada lovelace profile window" << std::endl;
+      success = false;
+   }
+   if (!(textures->charlesBabbageExplanation.loadFromFile("images/Ada_interface/babbage.png", window))) {
+      std::cout << "Failed to load the ada alan profile window" << std::endl;
       success = false;
    }
    if (!(textures->interfaceButtonsSpritesheet.loadFromFile("images/Ada_interface/interfaceButtons.png", window))) {
@@ -396,7 +404,7 @@ void cutRailSpritesheet(Textures* textures)
 void cutInterfaceSpritesheet(Textures* textures)
 {
    // Cut the spritesheet
-   for (int y = 0, curr = 0; y < 8; y++) {
+   for (int y = 0, curr = 0; y < 10; y++) {
       for (int x = 0; x < 2; x++, curr++)
       {
          textures->interfaceButtons[curr].x = x * 133;
@@ -503,6 +511,9 @@ void setAdaInterfaceButtons(GameObjects* gameObjects, Textures* textures)
    gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(650, 50, 8, CurrentHelp::HexExplanation));
    gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(800, 50, 10, CurrentHelp::MorseExplanation));
    gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(950, 50, 12, CurrentHelp::None));
+
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(50, 635, 16, CurrentHelp::AdaLovelace));
+   gameObjects->AdaInterfaceButtons.push_back(AdaInterfaceButtons(200, 635, 18, CurrentHelp::CharlesBabbage));
 }
 
 void setRailSpritesPosition(Textures* textures, Puzzles* puzzles)
