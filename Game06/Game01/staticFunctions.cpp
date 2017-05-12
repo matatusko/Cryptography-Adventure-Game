@@ -147,19 +147,19 @@ void getAdaInitializationDialog(Window* window, Textures* textures)
    }
    if (!(textures->adaInitializationDialog[2].loadFromText(window, dialogColor,
       "Wow, thanks! Hello World! You decrypted the caesar cipher, well done!\n\
-My name is A.D.A - Advanced Digital Automation, I am a last creation of a first computer scientist, Ada Lovelace."))) {
+My name is the Advanced Digital Automaton, but you can call me A.D.A."))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaInitializationDialog[3].loadFromText(window, dialogColor,
-      "Did you know that in this little town all the greatest mind in computer science throughtout \
+      "Did you know that in this little town all the greatest minds in computer science throughtout \
 history did some of their best work?"))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaInitializationDialog[4].loadFromText(window, dialogColor,
       "All of them somewhat contributed to the creation of a perfect machine!\n\
-I know its hidden somewhere around in this town, although I do know what where or what it is! :(\n"))) {
+I know its hidden somewhere around this town, although I do not know what where or what it is! :(\n"))) {
       printf("Failed to render text texture!\n");
       return;
    }
@@ -170,13 +170,13 @@ together with me? I sense 4 different secret codes scattered across the town."))
    return;
    }
    if (!(textures->adaInitializationDialog[6].loadFromText(window, dialogColor,
-      "Knowing my creator, all of the codes are encrypther via different ciphers, but I'm sure you can crack them all!\n\
+      "Knowing my creator, all of the codes are encrypther in some way. But I'm sure you can crack them all!\n\
 In case you need some help with certain puzzle, you can access my console by hitting ESC button."))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaInitializationDialog[7].loadFromText(window, dialogColor,
-      "Also, check out the profile section in my console interface to learn more about the greates computer scientists!\n\
+      "Also, check out the profile section in my console interface to learn more about the great computer scientists!\n\
 \nGood luck!"))) {
       printf("Failed to render text texture!\n");
       return;
