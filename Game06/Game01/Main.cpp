@@ -85,8 +85,6 @@ void gameLoop(Textures* textures, Window* window, Puzzles* puzzles, GameObjects*
 
       // FOR DEBUGGING
       // printf("pos X: %d, pos y: %d\n", gameObjects->character.getPosX(), gameObjects->character.getPosY());
-      // printf("dialog interaction: %d\n", gameObjects->adaCurrentRailDialog);
-      // printf("rail done? %d\n", gameObjects->isRailCompleted);
 
       // Sleep for a short while to add pixel-styled movement
       SDL_Delay(50);
@@ -227,6 +225,14 @@ Interaction checkForInteraction(GameObjects* gameObjects)
       (gameObjects->character.getPosX() == 3520 && gameObjects->character.getPosY() == 544))) {
       // return the correct interaction
       return Interaction::MorseCode;
+   }
+   // check for interaction fo the snake puzzle in the mid-left weird tower dungeon
+   if ((gameObjects->character.getCurrentLocation() == Location::World) && (gameObjects->ada.getAdaActive() == true) &&
+      (gameObjects->character.getCurrentDirection() == Direction::Up) &&
+      ((gameObjects->character.getPosX() == 864 && gameObjects->character.getPosY() == 1184) ||
+      (gameObjects->character.getPosX() == 832 && gameObjects->character.getPosY() == 1184))) {
+      // return the correct interaction
+      return Interaction::SnakeCipher;
    }
 
    // I have no idea why he locations are supposed to be like this :D I suppose 2nd and 4th if-statement make sense
@@ -388,6 +394,7 @@ void renderEverything(Window* window, Textures* textures, GameObjects* gameObjec
    renderRailCipher(window, textures, gameObjects, puzzles, e);
    renderCaesarCipher(window, textures, gameObjects, puzzles);
    renderMorseCode(window, textures, gameObjects, puzzles, e);
+   renderSnakeCipher(window, textures, gameObjects, puzzles, e);
 
    // Update screen
    SDL_RenderPresent(window->renderer);
@@ -644,6 +651,16 @@ void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObj
 
       if (puzzles->caesar[4].isPressed()) {
          textures->state_6.render(window, 0, 0);
+      }
+   }
+}
+
+void renderSnakeCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e) {
+   if (gameObjects->interactionFlag == Interaction::SnakeCipher) {
+      printf("Starting snake cipher\n");
+
+      if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
+         gameObjects->interactionFlag = Interaction::None;
       }
    }
 }

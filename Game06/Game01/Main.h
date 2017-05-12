@@ -35,6 +35,7 @@ enum class Interaction {
    RailCipher,
    CaesarCipher,
    MorseCode,
+   SnakeCipher,
    None
 };
 
@@ -189,6 +190,7 @@ void renderCaesarCipher(Window* window, Textures* textures, GameObjects* gameObj
 void renderMorseCode(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e);
 void renderAdaDialogs(Window* window, Textures* textures, GameObjects* gameObjects);
 void renderAdaInterface(Window* window, Textures* textures, GameObjects* gameObjects);
+void renderSnakeCipher(Window* window, Textures* textures, GameObjects* gameObjects, Puzzles* puzzles, SDL_Event &e);
 
 // Events functions:
 void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects);
