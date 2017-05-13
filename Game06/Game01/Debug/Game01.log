@@ -1,4 +1,3 @@
 ﻿  staticFunctions.cpp
-Ada.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game06\Debug\Game01.exe
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game06\Debug\Game01.pdb (Full PDB)

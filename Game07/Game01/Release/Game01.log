@@ -1,4 +1,95 @@
-﻿  staticFunctions.cpp
+﻿  Ada.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  AdaInterfaceButtons.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Alphabet.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Caesar.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Character.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Main.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+Main.cpp(16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Main.cpp(330): warning C4018: '<': signed/unsigned mismatch
+Main.cpp(339): warning C4018: '<': signed/unsigned mismatch
+Main.cpp(351): warning C4018: '<': signed/unsigned mismatch
+Main.cpp(520): warning C4018: '<': signed/unsigned mismatch
+Main.cpp(537): warning C4018: '<': signed/unsigned mismatch
+Main.cpp(577): warning C4018: '<': signed/unsigned mismatch
+  Morse.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Rail.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Texture.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Window.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  collisions.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  npc.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(324): warning C4018: '<': signed/unsigned mismatch
+  staticFunctions.cpp
 c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(218): warning C4018: '<': signed/unsigned mismatch
 c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(230): warning C4018: '<': signed/unsigned mismatch
 c:\users\tatus\documents\github\teamb\game07\game01\SnakeGame.h(236): warning C4018: '<': signed/unsigned mismatch
@@ -859,8 +950,44 @@ Window.obj : warning LNK4006: "private: void __thiscall SnakeDirection::set(int,
 Window.obj : warning LNK4006: "public: __thiscall SnakeDirection::SnakeDirection(int,int)" (??0SnakeDirection@@QAE@HH@Z) already defined in Ada.obj; second definition ignored
 C:\Users\tatus\Documents\GitHub\teamB\Game07\Release\Game01.exe : warning LNK4088: image being generated due to /FORCE option; image may not run
   Generating code
-  2 of 1165 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    33 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-staticFunctions.obj : fatal error LNK1179: invalid or corrupt file: duplicate COMDAT '??0Snake@@QAE@XZ'
+* CIL library *(* CIL module *) : warning LNK4006: "public: void __thiscall SnakeGame::initComplete(void)" (?initComplete@SnakeGame@@QAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: void __thiscall SnakeGame::moveTextTwo(struct SDL_Renderer *)" (?moveTextTwo@SnakeGame@@QAEXPAUSDL_Renderer@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: void __thiscall SnakeGame::moveText(struct SDL_Renderer *)" (?moveText@SnakeGame@@QAEXPAUSDL_Renderer@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: void __thiscall SnakeGame::getTexture(struct SDL_Renderer *)" (?getTexture@SnakeGame@@QAEXPAUSDL_Renderer@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: void __thiscall SnakeGame::getSurface(void)" (?getSurface@SnakeGame@@QAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: void __thiscall SnakeGame::createText(void)" (?createText@SnakeGame@@QAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: void __thiscall SnakeGame::createOct(void)" (?createOct@SnakeGame@@QAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: void __thiscall SnakeGame::createHex(void)" (?createHex@SnakeGame@@QAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: __thiscall SnakeGame::SnakeGame(struct SDL_Window *,struct SDL_Renderer *)" (??0SnakeGame@@QAE@PAUSDL_Window@@PAUSDL_Renderer@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeAudio::loadAudio(void)" (?loadAudio@SnakeAudio@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: __thiscall SnakeAudio::SnakeAudio(void)" (??0SnakeAudio@@AAE@XZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeText::newText(char const *,struct SDL_Renderer *)" (?newText@SnakeText@@AAEXPBDPAUSDL_Renderer@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeText::setRect(void)" (?setRect@SnakeText@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeText::createTexture(struct SDL_Renderer *)" (?createTexture@SnakeText@@AAEXPAUSDL_Renderer@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeText::createSurface(char const *)" (?createSurface@SnakeText@@AAEXPBD@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeText::setColor(unsigned char,unsigned char,unsigned char,unsigned char)" (?setColor@SnakeText@@AAEXEEEE@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeText::getFont(int)" (?getFont@SnakeText@@AAEXH@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: __thiscall SnakeText::SnakeText(void)" (??0SnakeText@@AAE@XZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeTexture::setRectangle(void)" (?setRectangle@SnakeTexture@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeTexture::setPos(int,int)" (?setPos@SnakeTexture@@AAEXHH@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeTexture::getDimensions(void)" (?getDimensions@SnakeTexture@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeTexture::createTexture(struct SDL_Renderer *)" (?createTexture@SnakeTexture@@AAEXPAUSDL_Renderer@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeTexture::loadImage(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?loadImage@SnakeTexture@@AAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: __thiscall SnakeTexture::SnakeTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (??0SnakeTexture@@AAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeBackground::setRectangle(void)" (?setRectangle@SnakeBackground@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeBackground::createTexture(struct SDL_Renderer *)" (?createTexture@SnakeBackground@@AAEXPAUSDL_Renderer@@@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeBackground::loadImage(void)" (?loadImage@SnakeBackground@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: __thiscall SnakeBackground::SnakeBackground(void)" (??0SnakeBackground@@AAE@XZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeRandom::generate(void)" (?generate@SnakeRandom@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: __thiscall SnakeRandom::SnakeRandom(void)" (??0SnakeRandom@@QAE@XZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall Snake::setPosition(void)" (?setPosition@Snake@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall Snake::createSnake(void)" (?createSnake@Snake@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: __thiscall Snake::Snake(void)" (??0Snake@@QAE@XZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeBoundary::setBoundary(void)" (?setBoundary@SnakeBoundary@@AAEXXZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: __thiscall SnakeBoundary::SnakeBoundary(void)" (??0SnakeBoundary@@AAE@XZ) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "private: void __thiscall SnakeDirection::set(int,int)" (?set@SnakeDirection@@AAEXHH@Z) already defined in Main.obj; second definition ignored
+* CIL library *(* CIL module *) : warning LNK4006: "public: __thiscall SnakeDirection::SnakeDirection(int,int)" (??0SnakeDirection@@QAE@HH@Z) already defined in Main.obj; second definition ignored
+C:\Users\tatus\Documents\GitHub\teamB\Game07\Release\Game01.exe : warning LNK4088: image being generated due to /FORCE option; image may not run
+  Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game07\Release\Game01.exe
+  Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game07\Release\Game01.pdb (Full PDB)
