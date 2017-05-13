@@ -9,6 +9,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL_mixer.h>
 #include <time.h>
+#include <assert.h>
 #include "Window.h"
 #include "Texture.h"
 #include "Constants.h"

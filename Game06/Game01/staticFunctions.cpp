@@ -54,12 +54,12 @@ void setNpc(GameObjects* gameObjects)
    gameObjects->npcs.push_back(Npc(2784, 1760, rand() % 24));
    gameObjects->npcs.push_back(Npc(3328, 288, rand() % 24));
    gameObjects->npcs.push_back(Npc(3296, 288, rand() % 24));
-   gameObjects->npcs.push_back(Npc(1856, 32, rand() % 24));
+   gameObjects->npcs.push_back(Npc(2016, 32, rand() % 24));
    gameObjects->npcs.push_back(Npc(1888, 32, rand() % 24));
    gameObjects->npcs.push_back(Npc(1920, 32, rand() % 24));
    gameObjects->npcs.push_back(Npc(1952, 32, rand() % 24));
    gameObjects->npcs.push_back(Npc(1984, 32, rand() % 24));
-   gameObjects->npcs.push_back(Npc(1440, 384, rand() % 24));
+   gameObjects->npcs.push_back(Npc(1472, 352, rand() % 24));
    gameObjects->npcs.push_back(Npc(1184, 544, rand() % 24));
    gameObjects->npcs.push_back(Npc(1216, 544, rand() % 24));
    gameObjects->npcs.push_back(Npc(320, 320, rand() % 24));
@@ -120,12 +120,12 @@ He hacked Pentagon weapons computer too! Kids are geniuses these days..."))) {
       printf("Failed to render text texture!\n");
       return;
    }
-   if (!(textures->npcDialogText[6].loadFromText(window, dialogColor,
+   if (!(textures->npcDialogText[5].loadFromText(window, dialogColor,
       "My mum said I have to stop talking so much about memory and RAM, but what she doesen't know is that memory IS RAM!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
-   if (!(textures->npcDialogText[5].loadFromText(window, dialogColor,
+   if (!(textures->npcDialogText[6].loadFromText(window, dialogColor,
       "Apparently the first computer was called ENIAC and weighted more than 27 tons, taking up to 1800 square feet?! That's more than a huge track!"))) {
       printf("Failed to render text texture!\n");
       return;

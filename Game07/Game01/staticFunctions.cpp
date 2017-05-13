@@ -56,12 +56,12 @@ void setNpc(GameObjects* gameObjects)
    gameObjects->npcs.push_back(Npc(2784, 1760, rand() % 24));
    gameObjects->npcs.push_back(Npc(3328, 288, rand() % 24));
    gameObjects->npcs.push_back(Npc(3296, 288, rand() % 24));
-   gameObjects->npcs.push_back(Npc(1856, 32, rand() % 24));
+   gameObjects->npcs.push_back(Npc(2016, 32, rand() % 24));
    gameObjects->npcs.push_back(Npc(1888, 32, rand() % 24));
    gameObjects->npcs.push_back(Npc(1920, 32, rand() % 24));
    gameObjects->npcs.push_back(Npc(1952, 32, rand() % 24));
    gameObjects->npcs.push_back(Npc(1984, 32, rand() % 24));
-   gameObjects->npcs.push_back(Npc(1440, 384, rand() % 24));
+   gameObjects->npcs.push_back(Npc(1472, 352, rand() % 24));
    gameObjects->npcs.push_back(Npc(1184, 544, rand() % 24));
    gameObjects->npcs.push_back(Npc(1216, 544, rand() % 24));
    gameObjects->npcs.push_back(Npc(320, 320, rand() % 24));
@@ -122,12 +122,12 @@ He hacked Pentagon weapons computer too! Kids are geniuses these days..."))) {
       printf("Failed to render text texture!\n");
       return;
    }
-   if (!(textures->npcDialogText[6].loadFromText(window, dialogColor,
+   if (!(textures->npcDialogText[5].loadFromText(window, dialogColor,
       "My mum said I have to stop talking so much about memory and RAM, but what she doesen't know is that memory IS RAM!"))) {
       printf("Failed to render text texture!\n");
       return;
    }
-   if (!(textures->npcDialogText[5].loadFromText(window, dialogColor,
+   if (!(textures->npcDialogText[6].loadFromText(window, dialogColor,
       "Apparently the first computer was called ENIAC and weighted more than 27 tons, taking up to 1800 square feet?! That's more than a huge track!"))) {
       printf("Failed to render text texture!\n");
       return;
@@ -149,36 +149,36 @@ void getAdaInitializationDialog(Window* window, Textures* textures)
    }
    if (!(textures->adaInitializationDialog[2].loadFromText(window, dialogColor,
       "Wow, thanks! Hello World! You decrypted the caesar cipher, well done!\n\
-My name is A.D.A - Advanced Digital Automation, I am a last creation of a first computer scientist, Ada Lovelace."))) {
+My name is the Advanced Digital Automaton, but you can call me A.D.A."))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaInitializationDialog[3].loadFromText(window, dialogColor,
-      "Did you know that in this little town all the greatest mind in computer science throughtout \
+      "Did you know that in this little town all the greatest minds in computer science throughtout \
 history did some of their best work?"))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaInitializationDialog[4].loadFromText(window, dialogColor,
       "All of them somewhat contributed to the creation of a perfect machine!\n\
-I know its hidden somewhere around in this town, although I do know what where or what it is! :(\n"))) {
+I know its hidden somewhere around this town, although I do not know what where or what it is! :(\n"))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaInitializationDialog[5].loadFromText(window, dialogColor,
-   "You cracked the caesar cipher on your own, how about you give it a shot and look for my creator's final secret \
+      "You cracked the caesar cipher on your own, how about you give it a shot and look for my creator's final secret \
 together with me? I sense 4 different secret codes scattered across the town."))) {
       printf("Failed to render text texture!\n");
-   return;
+      return;
    }
    if (!(textures->adaInitializationDialog[6].loadFromText(window, dialogColor,
-      "Knowing my creator, all of the codes are encrypther via different ciphers, but I'm sure you can crack them all!\n\
+      "Knowing my creator, all of the codes are encrypther in some way. But I'm sure you can crack them all!\n\
 In case you need some help with certain puzzle, you can access my console by hitting ESC button."))) {
       printf("Failed to render text texture!\n");
       return;
    }
    if (!(textures->adaInitializationDialog[7].loadFromText(window, dialogColor,
-      "Also, check out the profile section in my console interface to learn more about the greates computer scientists!\n\
+      "Also, check out the profile section in my console interface to learn more about the great computer scientists!\n\
 \nGood luck!"))) {
       printf("Failed to render text texture!\n");
       return;
@@ -228,6 +228,9 @@ Remember his name, I've got a feeling it will be needed for the final puzzle!"))
 
 void cutNPCSpritesheet(Textures* textures)
 {
+   int spritesheetWidth = textures->npc.getWidth();
+   int spritesheetHeight = textures->npc.getHeight();
+
    int next_x = 0, next_y = 0, current_index = 0;
    for (int i = 0; i < 4; i++) {
       for (int j = 0; j < 6; j++) {
@@ -237,6 +240,8 @@ void cutNPCSpritesheet(Textures* textures)
          textures->NPCspritesAvailable[current_index].h = TILE_SIZE;
          next_x += TILE_SIZE;
          current_index++;
+
+         assert(i < spritesheetWidth || j > spritesheetHeight);
       }
       next_x = 0;
       next_y += TILE_SIZE;
@@ -422,6 +427,9 @@ bool loadMedia(Textures *textures, Window *window)
 
 void cutRailSpritesheet(Textures* textures)
 {
+   int railSpritesheetWidth = textures->railCipher.getWidth();
+   int railSpritesheetHeight = textures->railCipher.getHeight();
+
    // Cut the spritesheet
    for (int y = 0, curr = 0; y < 6; y++) {
       for (int x = 0; x < 10; x++, curr++)
@@ -430,12 +438,16 @@ void cutRailSpritesheet(Textures* textures)
          textures->railButtons[curr].y = y * 66;
          textures->railButtons[curr].w = 66;
          textures->railButtons[curr].h = 66;
+
+         assert(x < railSpritesheetWidth || y < railSpritesheetHeight);
       }
    }
 }
 
 void cutInterfaceSpritesheet(Textures* textures)
 {
+   int interfaceSpritesheetWidth = textures->interfaceButtonsSpritesheet.getWidth();
+   int interfaceSpritesheetHeight = textures->interfaceButtonsSpritesheet.getHeight();
    // Cut the spritesheet
    for (int y = 0, curr = 0; y < 10; y++) {
       for (int x = 0; x < 2; x++, curr++)
@@ -444,12 +456,17 @@ void cutInterfaceSpritesheet(Textures* textures)
          textures->interfaceButtons[curr].y = y * 28;
          textures->interfaceButtons[curr].w = 133;
          textures->interfaceButtons[curr].h = 28;
+
+         assert(y < interfaceSpritesheetWidth || x < interfaceSpritesheetHeight);
       }
    }
 }
 
 void cutAlphabetSpritesheet(Textures* textures)
 {
+   int alphabetSpritesheetWidth = textures->alphabet.getWidth();
+   int alphabeteSpritesheetHeight = textures->alphabet.getHeight();
+
    // Cut the spritesheet
    for (int y = 0, curr = 0; y < 4; y++) {
       for (int x = 0; x < 8; x++, curr++)
@@ -461,12 +478,14 @@ void cutAlphabetSpritesheet(Textures* textures)
          textures->alphabetLetters[curr].y = y * 54;
          textures->alphabetLetters[curr].w = 54;
          textures->alphabetLetters[curr].h = 54;
+
+         assert(y < alphabetSpritesheetWidth || x < alphabeteSpritesheetHeight);
       }
    }
 }
 
 //Letters for morse code
-void cutLettersSpritesheet(Textures* textures)
+/* void cutLettersSpritesheet(Textures* textures)
 {
    // Cut the spritesheet
    for (int y = 0, curr = 0; y < 4; y++) {
@@ -481,7 +500,7 @@ void cutLettersSpritesheet(Textures* textures)
          textures->lettersLetters[curr].h = 100;
       }
    }
-}
+} */
 
 void setAlphabetPositionForMorse(Textures* textures, Puzzles* puzzles) 
 {
@@ -498,6 +517,8 @@ void setAlphabetPositionForMorse(Textures* textures, Puzzles* puzzles)
 
 void cutCaesarButtons(Textures* textures)
 {
+   int caesarSpritesheetWidth = textures->caesarButtonsSpritesheet.getWidth();
+   int caesarSpritesheetHeight = textures->caesarButtonsSpritesheet.getHeight();
 
    for (int y = 0, curr = 0; y < 3; y++) {
       for (int x = 0; x < 7; x++, curr++)
@@ -507,6 +528,8 @@ void cutCaesarButtons(Textures* textures)
          textures->caesarButtons[curr].y = y*88;
          textures->caesarButtons[curr].w = 88;
          textures->caesarButtons[curr].h = 88;
+
+         assert(y < caesarSpritesheetWidth || x < caesarSpritesheetHeight);
       }
 //      std::cout << "endx" << curr << std::endl;
 //      std::cout << "y" << y << std::endl;

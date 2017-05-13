@@ -1,10 +1,4 @@
-﻿  Main.cpp
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(330): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(339): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(351): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(514): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(531): warning C4018: '<': signed/unsigned mismatch
-c:\users\tatus\documents\github\teamb\game06\game01\main.cpp(571): warning C4018: '<': signed/unsigned mismatch
+﻿  staticFunctions.cpp
+Ada.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game06\Debug\Game01.exe
   Game01.vcxproj -> C:\Users\tatus\Documents\GitHub\teamB\Game06\Debug\Game01.pdb (Full PDB)
