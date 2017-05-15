@@ -130,6 +130,95 @@ He hacked Pentagon weapons computer too! Kids are geniuses these days..."))) {
       printf("Failed to render text texture!\n");
       return;
    }
+   if (!(textures->npcDialogText[7].loadFromText(window, dialogColor,
+      "I've just heard that average human blinks 20 times a minute. But when using a computer, it's only 7 times a minute!\
+That's crazy, I'll have to test it myself!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[8].loadFromText(window, dialogColor,
+      "I have a huge respect for Tim Berners-Lee who invented the Internet. Did you know he gave it away for free to everyone to use?! \
+I will also give away some of my stuff to help others! :)"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[9].loadFromText(window, dialogColor,
+      "WHAAAT?! I've always thought the Internet is stored in the cloud and we connect to it via a sattelite in the space! \
+But in fact, it's just a bunch of cables in the ground..."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[10].loadFromText(window, dialogColor,
+      "I always do my computer programming in the garage. HP, Google, Microsoft and Apple all started in the garage, so I'm sure it would \
+work out for me one day as well and my company will be as big."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[11].loadFromText(window, dialogColor,
+      "Try to think of a longest word you can type using only one row of the keyboard!\n\n\
+HINT: It's TYPEWRITER!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[12].loadFromText(window, dialogColor,
+      "I've always wondered how come we can have 1000s of songs on our ipods. The reason is the MP3! It's actually a compression method \
+called MPEG-Layer III that shrinks the size of file. Pretty impressive!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[13].loadFromText(window, dialogColor,
+      "I've always wondered who came up with a silly and random name such a Google. But in fact, it comes from a word Googol, which \
+is a number 1 followed by 100 (!!) zeroes. Pretty huge, and quite cool now!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[14].loadFromText(window, dialogColor,
+      "Apparently, when the CD was invented, it was decided that it should be long enough to hold Beethoven's 9th Symphony \
+at any tempo, which is precisely 72 minutes! By the way, it's a beautiful tune, have a listen!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[15].loadFromText(window, dialogColor,
+      "I need to run back home and install new anti-virus!\n\
+You're asking me why? 6000 new computer viruses are being released every month! Better protect yourself and your data."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[16].loadFromText(window, dialogColor,
+      "Did you know that Apple wouldn't exist today if it wasn't for Microsoft? Microsoft invested $150 million to Apple when \
+Apple was on the verge of bankruptcy! Funny to see that Apple is worth more right now..."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[17].loadFromText(window, dialogColor,
+      "Whaaaaat?! Firefox is an English name for Red Panda. So, Firefox logo is actually a red panda and not a fox!!! Unbelievable!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[18].loadFromText(window, dialogColor,
+      "HAHA, The very first Apple logo was Isaac Newton sitting underneath a tree with an apple about to hit his head! \
+I suppose that's more interesting than that silly half-bitten apple they went with after all..."))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[19].loadFromText(window, dialogColor,
+      "My parents often forced me to stop playing games and study to become a doctor. They don't do it anymore when I've showed them \
+that surgeons who grew up playing video games make 37% fewer mistakes. Ha! True story!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[20].loadFromText(window, dialogColor,
+      "First registered domain was www.symbolics.com in 1985. Now over 1 million domain names are being registered every month. \
+At this rate all the new websites in the future will be called ojqwdbohqu3yr0193y410n4yb130v.com !!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
+   if (!(textures->npcDialogText[21].loadFromText(window, dialogColor,
+      "In 1999 PayPal was voted as one of the top worst business ideas, and look at it now... So, if you have a great, novel idea \
+don't let others discourage you!"))) {
+      printf("Failed to render text texture!\n");
+      return;
+   }
 }
 
 void getAdaInitializationDialog(Window* window, Textures* textures)

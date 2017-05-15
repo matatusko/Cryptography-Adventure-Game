@@ -1,4 +1,11 @@
-﻿  Main.cpp
+﻿  staticFunctions.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Main.cpp
 c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
 c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
 c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
@@ -13,19 +20,85 @@ c:\users\tatus\documents\github\teamb\game07\game01\main.cpp(520): warning C4018
 c:\users\tatus\documents\github\teamb\game07\game01\main.cpp(537): warning C4018: '<': signed/unsigned mismatch
 c:\users\tatus\documents\github\teamb\game07\game01\main.cpp(577): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-  Skipping... (no relevant changes detected)
-  staticFunctions.cpp
+  Compiling...
   npc.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   collisions.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   Window.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   Texture.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   Rail.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   Morse.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   Character.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   Caesar.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   Alphabet.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   AdaInterfaceButtons.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
   Ada.cpp
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(218): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(230): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(236): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(242): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(267): warning C4018: '<': signed/unsigned mismatch
+c:\users\tatus\documents\github\teamb\game07\game01\snakegame.h(324): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/FORCE' specification
 Ada.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
 AdaInterfaceButtons.obj : warning LNK4006: "public: __thiscall Snake::Snake(void)" (??0Snake@@QAE@XZ) already defined in Ada.obj; second definition ignored

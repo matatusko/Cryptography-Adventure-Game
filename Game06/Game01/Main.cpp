@@ -266,7 +266,7 @@ void handleInteractionInput(SDL_Event &e, GameObjects* gameObjects)
       e.key.keysym.sym == SDLK_SPACE &&
       gameObjects->interactionFlag == Interaction::None) {
       gameObjects->interactionFlag = checkForInteraction(gameObjects);
-      gameObjects->currentNPCdialog = rand() % 6;
+      gameObjects->currentNPCdialog = rand() % constants::NPC_DIALOGUE_NUM;
       // Reset the rail dialog to 0 if the puzzle is not completed
       if (gameObjects->isRailCompleted == false) {
          gameObjects->adaCurrentRailDialog = 0;

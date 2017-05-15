@@ -1,4 +1,4 @@
 namespace constants
 {
-    const int NPC_DIALOGUE_NUM = 6;
+    const int NPC_DIALOGUE_NUM = 22;
 }
