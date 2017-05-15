@@ -698,6 +698,17 @@ void setAlphabetPositionForRail(Textures* textures, Puzzles* puzzles)
    for (int i = 0, position = 450; i < 6; i++, position += 60) {
       puzzles->railAlphabet.push_back(Alphabet(position, 566, 0));
    }
+
+   puzzles->railAlphabet[0].setCurrentSprite(0);
+   puzzles->railAlphabet[1].setCurrentSprite(11);
+   puzzles->railAlphabet[2].setCurrentSprite(0);
+   puzzles->railAlphabet[3].setCurrentSprite(13);
+   puzzles->railAlphabet[4].setCurrentSprite(19);
+   puzzles->railAlphabet[5].setCurrentSprite(20);
+   puzzles->railAlphabet[6].setCurrentSprite(17);
+   puzzles->railAlphabet[7].setCurrentSprite(8);
+   puzzles->railAlphabet[8].setCurrentSprite(13);
+   puzzles->railAlphabet[9].setCurrentSprite(0);
 }
 
 void setCaesarSpritesPosition(Textures* textures, Puzzles* puzzles)

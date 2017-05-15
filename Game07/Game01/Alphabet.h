@@ -11,6 +11,8 @@ public:
 
    int getCurrentSprite();
 
+   void setCurrentSprite(int x);
+
 private:
    SDL_Point position;
 
