@@ -84,7 +84,7 @@ void gameLoop(Textures* textures, Window* window, Puzzles* puzzles, GameObjects*
       renderEverything(window, textures, gameObjects, puzzles, e);
 
       // FOR DEBUGGING
-      // printf("pos X: %d, pos y: %d\n", gameObjects->character.getPosX(), gameObjects->character.getPosY());
+      printf("pos X: %d, pos y: %d\n", gameObjects->character.getPosX(), gameObjects->character.getPosY());
 
       // Sleep for a short while to add pixel-styled movement
       SDL_Delay(50);
