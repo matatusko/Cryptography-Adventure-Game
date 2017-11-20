@@ -11,6 +11,6 @@ I doubt the code will be of any help to anyone trying to learn how to code games
 The game trailer can be found below.
 
 ## Game trailer
-*Trailer will open with youtube in a new tab*
+*Trailer will open in youtube*
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/-g1cslTGx2Y/0.jpg)](http://www.youtube.com/watch?v=-g1cslTGx2Y "Crypto Game")
